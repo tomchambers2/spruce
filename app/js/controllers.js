@@ -2,10 +2,10 @@
 
 /* Controllers */
 
-angular.module('myApp.controllers', []).
-  controller('MyCtrl1', [function() {
-
-  }])
-  .controller('MyCtrl2', [function() {
+spruce.
+  controller('NewEntryCtrl', ['$scope', function($scope) {
+  	$scope.update = function(thing){
+  		console.log("thanks boss, I've recieved the thing: " + angular.toJson(thing, true));
+  	}
 
   }]);
