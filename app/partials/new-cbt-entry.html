@@ -1,5 +1,27 @@
 <div class="row" ng-controller="NewEntryCtrl">
 	<div class="large-columns-12">
+		<ul class="small-block-grid-4">
+			<li>
+				<div class="panel radius">
+					<!-- Content here -->
+				</div>
+			</li>
+			<li>
+				<div class="panel radius">
+					<!-- Content here -->
+				</div>
+			</li>
+			<li>
+				<div class="panel radius">
+					<!-- Content here -->
+				</div>
+			</li>
+			<li>
+				<div class="panel radius">
+					<!-- Content here -->
+				</div>
+			</li>
+		</ul>
 		<form ng-switch on="next">
 			<fieldset ng-switch-default >
 				<legend>Fieldset</legend>
@@ -14,19 +36,18 @@
 			<fieldset ng-switch-when="andale" >
 				<legend>Fieldset</legend>
 				<div class="row">
-				  <div class="large-6 columns">
-				    <div class="row collapse">
-				      <div class="small-10 columns">
-				        <input type="text" placeholder="Hex Value">
-				      </div>
-				      <div class="small-2 columns">
-				        <a href="#" class="button prefix">Add</a>
-				      </div>
-				    </div>
-				  </div>
-				<button class="small button" ng-click="$parent.next='3'">Done</button>
+					<div class="large-6 columns">
+						<div class="row collapse">
+							<div class="small-10 columns">
+								<input type="text" placeholder="Hex Value"></div>
+							<div class="small-2 columns">
+								<a href="#" class="button prefix">Add</a>
+							</div>
+						</div>
+					</div>
+					<button class="small button" ng-click="$parent.next='3'">Done</button>
 
-			</fieldset>
-		</form>
+				</fieldset>
+			</form>
+		</div>
 	</div>
-</div>
