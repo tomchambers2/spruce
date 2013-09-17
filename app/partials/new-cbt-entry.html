@@ -1,17 +1,32 @@
-  <div class="row" ng-controller="NewEntryCtrl">
-    <div class="large-columns-12">
-     <form>
-  <fieldset>
-    <legend>Fieldset</legend>
+<div class="row" ng-controller="NewEntryCtrl">
+	<div class="large-columns-12">
+		<form ng-switch on="next">
+			<fieldset ng-switch-default >
+				<legend>Fieldset</legend>
 
-    <div class="row">
-      <div class="large-12 columns">
-        <label>What is upsetting you?</label>
-        <input type="text" placeholder="" ng-model="cbtEntry.concern">
-      </div>
-    </div>
-    <button class="small button" ng-click="update(cbtEntry)">Next</button>
-  </fieldset>
-</form>
-    </div>
-  </div>
+				<div class="row">
+					<div class="large-12 columns">
+						<label>What is upsetting you?</label>
+						<input type="text" placeholder="" ng-model="cbtEntry.concern"></div>
+				</div>
+				<button class="small button" ng-click="$parent.next='andale'">Next</button>
+			</fieldset>
+			<fieldset ng-switch-when="andale" >
+				<legend>Fieldset</legend>
+				<div class="row">
+				  <div class="large-6 columns">
+				    <div class="row collapse">
+				      <div class="small-10 columns">
+				        <input type="text" placeholder="Hex Value">
+				      </div>
+				      <div class="small-2 columns">
+				        <a href="#" class="button prefix">Add</a>
+				      </div>
+				    </div>
+				  </div>
+				<button class="small button" ng-click="$parent.next='3'">Done</button>
+
+			</fieldset>
+		</form>
+	</div>
+</div>
