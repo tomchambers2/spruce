@@ -1,12 +1,56 @@
+.one {
+	padding-bottom: 50px;
+}
+
+nav.top-bar {
+	border-bottom: 4px solid grey;
+	background-color: #EADA7D;
+}
+
+.top-bar-section li a:not(.button) {
+	background-color: #EADA7D;
+	color: black;
+	height: 45px;
+	border-bottom: 4px solid grey;
+}
+
+.top-bar-section > ul > .divider {
+	border: none;
+}
+
+.top-bar .name h1 a {
+	color: black;
+}
+
 .main-title {
 	font-size: 50px;
-	font-size: 130px;
-	text-transform: uppercase;
+	font-size: 40px;
+	//text-transform: uppercase;
 }
 .main-title:first-letter {
-	font-size: 155px;
+	//font-size: 155px;
+}
+
+.welcome {
+	border-radius: 10px;
+	border:none;
+}
+
+button.button {
+	background-color: #2ECC71;
+	border:none;
+	border-radius:5px;
+	-webkit-box-shadow:none;
+	-box-shadow: none;
+
 }
 
 .letters {
 	font-size: 50px;
+}
+
+body {
+	font-family: 'Open Sans', sans-serif;
+	background-image:url('../img/background.jpg');
+
 }
