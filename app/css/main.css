@@ -1,0 +1,7 @@
+.main-title {
+	font-size: 130px;
+	text-transform: uppercase;
+}
+.main-title:first-letter {
+	font-size: 155px;
+}
