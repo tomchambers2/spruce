@@ -14,7 +14,11 @@ spruce.
   		$scope.emotions.push(newEmotion);
   	}
 
+
   }]).
   controller('MainCtrl',['$scope', function($scope){
+
+  }]).
+  controller('RegistrationCtrl'['_Parse', function(_parse){
 
   }]);

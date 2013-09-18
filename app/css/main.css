@@ -51,14 +51,14 @@ input[type="text"] {
 	border-radius: 4px;
 }
 
-button.button {
+a.button, button.button {
 	border: 2px solid black;
 	background-color: transparent;
 	color: black;
 	min-width: 100%;
 }
 
-button.button:hover {
+a.button:hover, button.button:hover {
 	background-color: #F0ECD5;
 	color: black;
 }
