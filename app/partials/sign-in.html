@@ -38,7 +38,7 @@
                 <span ng-show="!registrationForm.uPassword.$error.required" class="postfix"><i class="foundicon-checkmark"></i></span>
               </div>
             </div>
-            <button class="button" ng-click="register(newUser)"
+            <button class="button" ng-click="register(newUser.email, newUser.password)"
                             ng-disabled="registrationForm.$invalid">Register!</button>
           </div>
         </div>

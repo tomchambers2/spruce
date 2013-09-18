@@ -59,6 +59,24 @@ a.button, button.button {
 	min-width: 100%;
 }
 
+button[disabled="disabled"].button {
+	background-color: #F2F2F2;
+	border-color:  #BEBEBE;
+	color: #BEBEBE;
+}
+
+button[disabled="disabled"].button:hover {
+	background-color: #F2F2F2;
+	border-color:  #BEBEBE;
+	color: #BEBEBE;
+}
+
+button[disabled="disabled"].button:active {
+	background-color: #F2F2F2;
+	border-color:  #BEBEBE;
+	color: #BEBEBE;
+}
+
 a.button:hover, button.button:hover {
 	background-color: #F0ECD5;
 	color: black;
@@ -181,7 +199,7 @@ div.row.entry {
 	border: 3px solid #00957B;
 }
 
-/* getstarted page */
+/* login and register page */
 .getStarted fieldset {
 	border: 0;
 }
