@@ -180,3 +180,13 @@ div.row.entry {
 	background-color: #FCFBF9;
 	border: 3px solid #00957B;
 }
+
+/* getstarted page */
+.getStarted fieldset {
+	border: 0;
+}
+
+.getStarted legend {
+	background-color: transparent;
+	font-size: 25px;
+}
