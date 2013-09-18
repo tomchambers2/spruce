@@ -5,14 +5,13 @@
 spruce.
   controller('NewEntryCtrl', ['$scope', function($scope) {
   	$scope.stage = 1;
-  	$scope.emotions = [];
-  	$scope.update = function(thing){
-  		$scope.next = "andale";
-  		console.log("thanks boss, I've recieved the thing: " + angular.toJson(thing, true));
-  	}
+  	$scope.cbtEntry = {emotions: []};
   	$scope.addEmotion = function(newEmotion){
-  		$scope.emotions.push(newEmotion);
+  		$scope.cbtEntry.emotions.push(newEmotion);
   	}
+  	$scope.$watch('stage', function(newValue, oldValue){
+
+  	});
 
 
   }]).
@@ -27,6 +26,7 @@ spruce.
   		user.set("password", password);
   		user.signUp(null, {
   		  success: function(user) {
+
   		    //console.log(angular.toJson(user, true));
           $scope.$apply(function () {
             $location.path('/dashboard');
@@ -52,7 +52,7 @@ spruce.
   		  },
   		  error: function(user, error) {
   		  	$scope.badLogin = true;
-  		    //alert("Error: " + error.code + " " + error.message + angular.toJson(error));
+  		    alert("Error: " + error.code + " " + error.message + angular.toJson(error));
   		  }
   		});
   	}
