@@ -9,27 +9,27 @@
 		<div class="large-12 columns text-center progress-bar">
 			<ol data-prog-steps="4" class="form-progress small-block-grid-4">
 				<li>
-					<div class="step stepComplete" ng-class="{callout: stage>
+					<div class="step" ng-class="{stepComplete: stage>
 						1, stepSelected: stage==1}" class="panel radius">
 						Actions
 					</div>
 				</li>
 				<div class="progressDivider"></div>
 				<li>
-					<div class="step" ng-class="{callout: stage>
-						2, stepSelected: stage==2}"class="panel radius">
+					<div class="step" ng-class="{stepComplete: stage>
+						2, stepSelected: stage==2, stepDisabled: stage<2}"class="panel radius">
 						Emotions
 					</div>
 				</li>
 				<li>
-					<div class="step stepDisabled" ng-class="{callout: stage>
-						3, stepSelected: stage==3}" class="panel radius">
+					<div class="step" ng-class="{stepComplete: stage>
+						3, stepSelected: stage==3, stepDisabled: stage<3}" class="panel radius">
 						Beliefs
 					</div>
 				</li>
 				<li>
-					<div class="step stepDisabled" ng-class="{callout: stage>
-						4, stepSelected: stage==4}" class="panel radius">
+					<div class="step" ng-class="{stepComplete: stage>
+						4, stepSelected: stage==4, stepDisabled: stage<4}" class="panel radius">
 						Change
 					</div>
 				</li>
@@ -63,7 +63,7 @@
 						<h2>What are you feeling?</h2>
 							<div class="emotion-basket">
 								<ul id="emotion-list">
-									<li class="emotion" ng-repeat="emotion in emotions">{{emotion}}</li>
+									<li class="emotion" ng-repeat="emotion in cbtEntry.emotions">{{emotion}}</li>
 								</ul>
 							</div>
 							<div class="row entry">
@@ -122,7 +122,7 @@
 						<div class="row">
 							<div class="large-12 columns">
 								<h2>Why do you feel this way?</h2>
-								<textarea class="thoughts" placeholder="Write it all down"></textarea>
+								<textarea class="thoughts" placeholder="Write it all down" ng-model="cbtEntry.negativeBeliefs"></textarea>
 							</div>
 						</div>
 					<div class="row">
