@@ -14,4 +14,7 @@ spruce.
   		$scope.emotions.push(newEmotion);
   	}
 
+  }]).
+  controller('MainCtrl',['$scope', function($scope){
+
   }]);
