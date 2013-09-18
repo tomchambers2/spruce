@@ -7,8 +7,7 @@
 // In this case it is a simple value service.
 spruce.
     provider('_Parse', function(){
-    	Parse.initialize("k7y07DrD6MQKnKmzIr0QKuVs0ky1rX9GjOVN1HEl", "XQRePYICookwk173cSyoRQLSTeLhyFWcMJK2udKO");
-
+    	Parse.initialize("ETUovglfQBF2ZwaZFUpTLwczpnWwTwdHfIDSQ54P", "Ia2l8YLXafi6NB3D2aNbtbOpV1wAkjEXCFNaimse");
   		this.$get = function(){
   			return Parse
   		}
