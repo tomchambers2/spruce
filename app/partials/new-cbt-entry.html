@@ -4,32 +4,34 @@
   </div>
 </div>
 
+<div ng-controller="NewEntryCtrl">
+
 <div class="row header">
 	<div class="large-12 columns text-center progress-bar">
 		<ol data-prog-steps="4" class="form-progress small-block-grid-4">
 			<li>
-				<div class="stage-indicator" ng-class="{callout: stage>
+				<div class="step" ng-class="{callout: stage>
 					1, stepSelected: stage==1}" class="panel radius">
-					Situation <i ng-show="stage>1" class="foundicon-checkmark"></i>
+					Step 1 <i ng-show="stage>1" class="foundicon-checkmark"></i>
 				</div>
 			</li>
 			<li>
-				<div class="stage-indicator" ng-class="{callout: stage>
+				<div class="step" ng-class="{callout: stage>
 					2}" class="panel radius">
-					Feelings <i ng-show="stage>2" class="foundicon-checkmark"></i>
+					Step 2 <i ng-show="stage>2" class="foundicon-checkmark"></i>
 				</div>
 			</li>
 			<li>
-				<div class="stage-indicator" ng-class="{callout: stage>
+				<div class="step" ng-class="{callout: stage>
 					3}" class="panel radius">
-					Dispute
+					Step 3
 					<i ng-show="stage>3" class="foundicon-checkmark"></i>
 				</div>
 			</li>
 			<li>
-				<div class="stage-indicator" ng-class="{callout: stage>
+				<div class="step" ng-class="{callout: stage>
 					4}" class="panel radius">
-					Review
+					Step 4
 					<i ng-show="stage>4" class="foundicon-checkmark"></i>
 				</div>
 			</li>
@@ -38,62 +40,62 @@
 </div>
 
 <div class="row main">
-<div class="large-7 columns text-center">
-	<div class="row" ng-controller="NewEntryCtrl">
-		<div class="large-columns-12">
-			<form ng-switch on="stage">
-				<fieldset ng-switch-default >
-					<legend>Fieldset</legend>
+<div class="large-7 columns">
+	<div class="row">
+		<div class="large-12 columns">
+		<form ng-switch on="stage">
+			<fieldset ng-switch-default >
+				<legend>Fieldset</legend>
 
-					<div class="row">
-						<div class="large-12 columns">
-							<label><h2>What is the most recent situation that upset you?</h2></label>
-							<textarea placeholder="" ng-model="cbtEntry.concern">
+				<div class="row">
+					<div class="large-12 columns text-center">
+						<label><h2>What situation upset you?</h2></label>
+						<textarea placeholder="" ng-model="cbtEntry.concern"></textarea>
+					</div>
+				</div>
+				<div class="row">
+					<div class="large-7 columns">200 characters remaining</div>
+					<div class="large-5 columns text-center"><button class="small button" ng-click="$parent.stage='2'">Next</button></div>
+				</div>
+			</fieldset>
+			<fieldset ng-switch-when="2" >
+				<legend>Fieldset</legend>
+				<div class="row">
+					<div class="large-6 columns">
+						<div class="row collapse">
+							<div class="small-10 columns">
+								<input type="text" placeholder="Hex Value"></div>
+							<div class="small-2 columns">
+								<a href="#" class="button prefix">Add</a>
+							</div>
 						</div>
 					</div>
-					<button class="small button" ng-click="$parent.stage='2'">Next</button>
+					<button class="small button" ng-click="$parent.stage='3'">Done</button>
+
 				</fieldset>
-				<fieldset ng-switch-when="2" >
+				<fieldset ng-switch-when="3" >
 					<legend>Fieldset</legend>
 					<div class="row">
-						<div class="large-6 columns">
-							<div class="row collapse">
-								<div class="small-10 columns">
-									<input type="text" placeholder="Hex Value"></div>
-								<div class="small-2 columns">
-									<a href="#" class="button prefix">Add</a>
-								</div>
-							</div>
+						<div class="large-12 columns">
+							<label>Textarea Label</label>
+							<textarea placeholder="small-12.columns"></textarea>
 						</div>
-						<button class="small button" ng-click="$parent.stage='3'">Done</button>
+					</div>
+					<button class="small button" ng-click="$parent.stage='4'">Done</button>
 
-					</fieldset>
-					<fieldset ng-switch-when="3" >
-						<legend>Fieldset</legend>
-						<div class="row">
-							<div class="large-12 columns">
-								<label>Textarea Label</label>
-								<textarea placeholder="small-12.columns"></textarea>
-							</div>
+				</fieldset>
+				<fieldset ng-switch-when="4" >
+					<legend>Fieldset</legend>
+					<div class="row">
+						<div class="large-12 columns">
+							<label>Textarea Label</label>
+							<textarea placeholder="small-12.columns"></textarea>
 						</div>
-						<button class="small button" ng-click="$parent.stage='4'">Done</button>
+					</div>
+					<button class="small button" ng-click="$parent.stage='1'">Done</button>
 
-						</fieldset>
-						<fieldset ng-switch-when="4" >
-						<legend>Fieldset</legend>
-						<div class="row">
-							<div class="large-12 columns">
-								<label>Textarea Label</label>
-								<textarea placeholder="small-12.columns"></textarea>
-							</div>
-						</div>
-						<div class="row">
-							<div class="large-4 columns large-offset-8">
-								<button class="small button" ng-click="$parent.stage='1'">Done</button>
-							</div>
-						</div>
-					</fieldset>
-				</form>
+				</fieldset>
+			</form>
 			</div>
 		</div>
 	</div>
@@ -102,4 +104,11 @@
 	    <p>Start by describing the situation that you think might have caused you to feel this way. It doesn't matter if it you think it might not be right, or if it seems to trivial to worry about - it's not always obvious what the source of the problem is</p>
 	</div>
 </div>
+<div class="row" ng-controller="NewEntryCtrl">
+	<div class="large-columns-12">
+		
+
+		</div>
+	</div>
 </div>
+</div><!-- controller div>

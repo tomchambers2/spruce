@@ -55,8 +55,7 @@ button.button {
 	border: 2px solid black;
 	background-color: transparent;
 	color: black;
-	width: 200px;
-	margin-top: 20px;
+	min-width: 100%;
 }
 
 button.button:hover {
@@ -104,9 +103,10 @@ textarea {
 }
 
 /* progress bar */
-.form-progress .stepSelected{
+.form-progress .stepSelected {
 	border-color: #2ba6cb;
-	box-sizing:border-box;
+	background-color: #FFF5E2;
+	box-sizing: border-box;
 	-moz-box-sizing:border-box;
 	-webkit-box-sizing:border-box;
 }
@@ -115,7 +115,7 @@ textarea {
 	margin-top: 20px;
 }
 
-.stage-indicator {
+.step {
 	display: block;
 	margin-right: auto;
 	margin-left: auto;
