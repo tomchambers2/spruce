@@ -86,3 +86,15 @@ button.button:hover {
 	background-color: #F5F4EB;
 	height: 100%;
 }
+
+.main-title:first-letter {
+	font-size: 155px;
+}
+
+/* CBT Form Styles */
+.form-progress .stepSelected{
+	border-color: #2ba6cb;
+	box-sizing:border-box;
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+}

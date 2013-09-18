@@ -1,17 +1,82 @@
-  <div class="row" ng-controller="NewEntryCtrl">
-    <div class="large-columns-12">
-     <form>
-  <fieldset>
-    <legend>Fieldset</legend>
+<div class="row" ng-controller="NewEntryCtrl">
+	<div class="large-columns-12">
+		<ol data-prog-steps="4" class="form-progress small-block-grid-4">
+			<li>
+				<div ng-class="{callout: stage>
+					1, stepSelected: stage==1}" class="panel radius">
+					Step 1 <i ng-show="stage>1" class="foundicon-checkmark"></i>
+				</div>
+			</li>
+			<li>
+				<div ng-class="{callout: stage>
+					2}" class="panel radius">
+					Step 2 <i ng-show="stage>2" class="foundicon-checkmark"></i>
+				</div>
+			</li>
+			<li>
+				<div ng-class="{callout: stage>
+					3}" class="panel radius">
+					Step 3
+					<i ng-show="stage>3" class="foundicon-checkmark"></i>
+				</div>
+			</li>
+			<li>
+				<div ng-class="{callout: stage>
+					4}" class="panel radius">
+					Step 4
+					<i ng-show="stage>4" class="foundicon-checkmark"></i>
+				</div>
+			</li>
+		</ol>
+		<form ng-switch on="stage">
+			<fieldset ng-switch-default >
+				<legend>Fieldset</legend>
 
-    <div class="row">
-      <div class="large-12 columns">
-        <label>What is upsetting you?</label>
-        <input type="text" placeholder="" ng-model="cbtEntry.concern">
-      </div>
-    </div>
-    <button class="small button" ng-click="update(cbtEntry)">Next</button>
-  </fieldset>
-</form>
-    </div>
-  </div>
+				<div class="row">
+					<div class="large-12 columns">
+						<label>What is upsetting you?</label>
+						<input type="text" placeholder="" ng-model="cbtEntry.concern"></div>
+				</div>
+				<button class="small button" ng-click="$parent.stage='2'">Next</button>
+			</fieldset>
+			<fieldset ng-switch-when="2" >
+				<legend>Fieldset</legend>
+				<div class="row">
+					<div class="large-6 columns">
+						<div class="row collapse">
+							<div class="small-10 columns">
+								<input type="text" placeholder="Hex Value"></div>
+							<div class="small-2 columns">
+								<a href="#" class="button prefix">Add</a>
+							</div>
+						</div>
+					</div>
+					<button class="small button" ng-click="$parent.stage='3'">Done</button>
+
+				</fieldset>
+				<fieldset ng-switch-when="3" >
+					<legend>Fieldset</legend>
+					<div class="row">
+						<div class="large-12 columns">
+							<label>Textarea Label</label>
+							<textarea placeholder="small-12.columns"></textarea>
+						</div>
+					</div>
+					<button class="small button" ng-click="$parent.stage='4'">Done</button>
+
+				</fieldset>
+				<fieldset ng-switch-when="4" >
+					<legend>Fieldset</legend>
+					<div class="row">
+						<div class="large-12 columns">
+							<label>Textarea Label</label>
+							<textarea placeholder="small-12.columns"></textarea>
+						</div>
+					</div>
+					<button class="small button" ng-click="$parent.stage='1'">Done</button>
+
+				</fieldset>
+			</form>
+		</div>
+	</div>
+</div>
