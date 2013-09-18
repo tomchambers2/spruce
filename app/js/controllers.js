@@ -29,7 +29,7 @@ spruce.
 
   		    //console.log(angular.toJson(user, true));
           $scope.$apply(function () {
-            $location.path('/dashboard');
+            $location.path('/entries/new');
           });
   		  },
   		  error: function(user, error) {
