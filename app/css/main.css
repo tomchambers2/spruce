@@ -23,7 +23,7 @@ body {
 .title {
 	background-color: #00957B;
 	//margin-bottom: 20px;
-	width: 100%;	
+	width: 100%;
 	border-bottom: 4px solid #22B49E;
 }
 
@@ -112,11 +112,13 @@ textarea.feelings {
 	-webkit-box-sizing:border-box;
 }
 
+
 .progress-bar {
 	margin-top: 20px;
 }
 
 .step {
+	border-width: 3px;
 	display: block;
 	margin-right: auto;
 	margin-left: auto;

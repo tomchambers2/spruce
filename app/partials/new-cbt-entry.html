@@ -17,20 +17,20 @@
 			</li>
 			<li>
 				<div class="step" ng-class="{callout: stage>
-					2}" class="panel radius">
+					2, stepSelected: stage==2}"class="panel radius">
 					Step 2 <i ng-show="stage>2" class="foundicon-checkmark"></i>
 				</div>
 			</li>
 			<li>
 				<div class="step" ng-class="{callout: stage>
-					3}" class="panel radius">
+					3, stepSelected: stage==3}" class="panel radius">
 					Step 3
 					<i ng-show="stage>3" class="foundicon-checkmark"></i>
 				</div>
 			</li>
 			<li>
 				<div class="step" ng-class="{callout: stage>
-					4}" class="panel radius">
+					4, stepSelected: stage==4}" class="panel radius">
 					Step 4
 					<i ng-show="stage>4" class="foundicon-checkmark"></i>
 				</div>
@@ -62,11 +62,15 @@
 				<legend>Fieldset</legend>
 				<div class="row">
 					<div class="large-6 columns">
+						<ul id="emotion-list">
+							<li ng-repeat="emotion in emotions">{{emotion}}
+							</li>
+						</ul>
 						<div class="row collapse">
 							<div class="small-10 columns">
-								<input type="text" placeholder="Hex Value"></div>
+								<input ng-model="newEmotion" type="text" placeholder="Hex Value"></div>
 							<div class="small-2 columns">
-								<a href="#" class="button prefix">Add</a>
+								<button ng-click="addEmotion(newEmotion)" href="#" class="button prefix">Add</button>
 							</div>
 						</div>
 					</div>
@@ -106,7 +110,7 @@
 </div>
 <div class="row" ng-controller="NewEntryCtrl">
 	<div class="large-columns-12">
-		
+
 
 		</div>
 	</div>
