@@ -21,18 +21,18 @@ spruce.
   }]).
   controller('RegistrationCtrl', ['_Parse','$scope', function(_parse, $scope){
   	$scope.badLogin = false;
-  	$scope.register = function(user){
+  	$scope.register = function(username, password){
   		var user = new _parse.User();
-  		user.set("username", user.email);
-  		user.set("password", user.password);
-
+  		user.setUsername(username, {});
+  		user.set("password", password);
   		user.signUp(null, {
   		  success: function(user) {
-  		    console.log(angular.toJson(user, true));
+  		    //console.log(angular.toJson(user, true));
   		  },
   		  error: function(user, error) {
   		    // Show the error message somewhere and let the user try again.
   		    alert("Error: " + error.code + " " + error.message);
+  		    console.log("Error: " + angular.toJson(error,true) +  angular.toJson(user,true));
   		  }
   		});
   	}
