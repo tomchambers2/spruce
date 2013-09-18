@@ -42,7 +42,7 @@ h2 {
 	padding: 9px;
 }
 
-input[type="text"] {
+input[type="text"].process {
 	border: none;
 	border-radius: 4px;
 }

@@ -74,7 +74,7 @@
 											<label for="emotion-entry" class="right inline">I'm feeling </label>
 										</div>
 										<div class="large-8 columns">
-											<input ng-model="newEmotion" type="text" placeholder="angry" id="emotion-entry" list="emotions">
+											<input class="process" ng-model="newEmotion" type="text" placeholder="angry" id="emotion-entry" list="emotions">
 											<datalist id="emotions">
 												<option value="angry">
 												<option value="annoyed">
@@ -134,7 +134,7 @@
 						<legend class="hidden">Fieldset</legend>
 						<div class="row">
 							<div class="large-12 columns">
-								<label>Textarea Label</label>
+								<label><h2>Challenge your thoughts</h2></label>
 								<textarea placeholder="small-12.columns"></textarea>
 							</div>
 						</div>
@@ -146,7 +146,9 @@
 						<div class="row">
 							<div class="large-12 columns">
 								<h2>Review</h2>
-								<p>So you <strong>got an F in your exam</strong> and you thought this meant that you were <strong>an utter failure</strong> and that <strong>you'd never succeed in anything again</strong>, but you realised that this was a <strong>catastrophic scenario</strong> because <strong>it wasn't actually likely</strong>. Now you understand that <strong>this was just a minor setback</strong>
+								<p>So you <strong>got an F in your exam</strong> and you thought this meant that you were <strong>an utter failure</strong> and that <strong>you'd never succeed in anything again</strong>, but you realised that this was a <strong>catastrophic scenario</strong> because <strong>it wasn't actually likely</strong>. Now you understand that <strong>this was just a minor setback</strong></p>
+
+								<p>We
 							</div>
 						</div>
 						<button class="small button" ng-click="$parent.stage='1'">Done</button>
