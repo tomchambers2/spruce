@@ -3,6 +3,12 @@ body {
 	font-family: Helvetica;
 }
 
+.logo {
+	height: 75px;
+	margin-left: 11%;
+	padding: 5px;
+}
+
 .row-panel {
 	background-color: #FCFBF2;
 	margin-bottom: 30px;
@@ -132,26 +138,45 @@ div.row.entry {
 
 /* progress bar */
 .form-progress .stepSelected {
-	border-color: #2ba6cb;
+	border-color: #00957B;
 	background-color: #FFF5E2;
 	box-sizing: border-box;
 	-moz-box-sizing:border-box;
 	-webkit-box-sizing:border-box;
+	color: #00957B;
+}
+
+.form-progress .stepComplete {
+	//background-image: url('/app/img/checkmark.png');
+	//background-size: 80px;
+	//background-position: 5px 10px;
+	//background-repeat: no-repeat;
+	color: #EDEDED;
+	background-color: #00957B;
+}
+
+.form-progress .stepDisabled {
+	background-color: #EDEDED;
+	color: #D2D2D2;
+	border-color: #D2D2D2;
 }
 
 .progress-bar {
 	margin-top: 20px;
 }
 
+.progressDivider {
+}
+
 .step {
-	border-width: 3px;
+	font-size: 20px;
 	display: block;
 	margin-right: auto;
 	margin-left: auto;
 	border-radius: 50%;
 	height: 100px;
 	width: 100px;
-	line-height: 100px;
+	line-height: 95px;
 	background-color: #FCFBF9;
 	border: 3px solid #00957B;
 }
