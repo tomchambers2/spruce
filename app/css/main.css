@@ -1,13 +1,9 @@
-div {
-	//border: 1px solid black;
-}
-
 body {
 	background-color: #F0ECD5;
 	font-family: Helvetica;
 }
 
-.row {
+.row-panel {
 	background-color: #FCFBF2;
 	margin-bottom: 30px;
 	border-radius: 4px;
@@ -87,19 +83,52 @@ a.button:hover, button.button:hover {
 }
 
 /* CBT Form Styles */
-fieldset legend {
+legend.hidden {
 	border:none;
 	display: none;
 }
-fieldset {
+fieldset.hidden {
 	border:none;
 	margin: 0;
 	padding: 0px 20px 0px 0px;
 }
 
-textarea {
+textarea.feelings, textarea.thoughts {
 	border: none;
 	border-radius: 4px;
+	height: 75px;
+}
+
+/* emotion entry */
+.emotion-basket ul {
+	overflow:auto;
+}
+
+.emotion-basket {
+	border-radius: 8px;
+	padding: 5px;
+	border: 1px dashed #F0ECD5;
+	min-height: 50px;
+}
+
+.emotion {
+	float:left;
+	border: 1px solid #9D9D9D;
+	padding: 4px;
+	margin: 4px;
+	list-style: none;
+}
+
+ul#emotion-list {
+	margin: 0;
+}
+
+div.row.entry {
+	margin-top: 50px
+}
+
+.feeling {
+	line-height: 30px;
 }
 
 /* progress bar */
@@ -110,7 +139,6 @@ textarea {
 	-moz-box-sizing:border-box;
 	-webkit-box-sizing:border-box;
 }
-
 
 .progress-bar {
 	margin-top: 20px;
