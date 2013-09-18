@@ -97,9 +97,10 @@ fieldset {
 	padding: 0px 20px 0px 0px;
 }
 
-textarea {
+textarea.feelings {
 	border: none;
 	border-radius: 4px;
+	height: 75px;
 }
 
 /* progress bar */
