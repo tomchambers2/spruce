@@ -1,3 +1,7 @@
+div {
+	//border: 1px solid black;
+}
+
 body {
 	background-color: #F0ECD5;
 	font-family: Helvetica;
@@ -42,14 +46,6 @@ h2 {
 	padding: 9px;
 }
 
-fieldset legend {
-	border:none;
-	display: none;
-}
-fieldset {
-	border:none;
-}
-
 input[type="text"] {
 	border: none;
 	border-radius: 4px;
@@ -85,4 +81,48 @@ button.button:hover {
 .help {
 	background-color: #F5F4EB;
 	height: 100%;
+}
+
+.main-title:first-letter {
+	font-size: 155px;
+}
+
+/* CBT Form Styles */
+fieldset legend {
+	border:none;
+	display: none;
+}
+fieldset {
+	border:none;
+	margin: 0;
+	padding: 0px 20px 0px 0px;
+}
+
+textarea {
+	border: none;
+	border-radius: 4px;
+}
+
+/* progress bar */
+.form-progress .stepSelected{
+	border-color: #2ba6cb;
+	box-sizing:border-box;
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+}
+
+.progress-bar {
+	margin-top: 20px;
+}
+
+.stage-indicator {
+	display: block;
+	margin-right: auto;
+	margin-left: auto;
+	border-radius: 50%;
+	height: 100px;
+	width: 100px;
+	line-height: 100px;
+	background-color: #FCFBF9;
+	border: 3px solid #00957B;
 }
