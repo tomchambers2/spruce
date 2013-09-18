@@ -5,156 +5,165 @@
 </div>
 
 <div ng-controller="NewEntryCtrl">
-
-<div class="row header">
-	<div class="large-12 columns text-center progress-bar">
-		<ol data-prog-steps="4" class="form-progress small-block-grid-4">
-			<li>
-				<div class="step" ng-class="{callout: stage>
-					1, stepSelected: stage==1}" class="panel radius">
-					Step 1 <i ng-show="stage>1" class="foundicon-checkmark"></i>
-				</div>
-			</li>
-			<li>
-				<div class="step" ng-class="{callout: stage>
-					2, stepSelected: stage==2}"class="panel radius">
-					Step 2 <i ng-show="stage>2" class="foundicon-checkmark"></i>
-				</div>
-			</li>
-			<li>
-				<div class="step" ng-class="{callout: stage>
-					3, stepSelected: stage==3}" class="panel radius">
-					Step 3
-					<i ng-show="stage>3" class="foundicon-checkmark"></i>
-				</div>
-			</li>
-			<li>
-				<div class="step" ng-class="{callout: stage>
-					4, stepSelected: stage==4}" class="panel radius">
-					Step 4
-					<i ng-show="stage>4" class="foundicon-checkmark"></i>
-				</div>
-			</li>
-		</ol>
-	</div>
-</div>
-
-<div class="row main">
-<div class="large-7 columns">
-	<div class="row">
-		<div class="large-12 columns">
-		<form ng-switch on="stage">
-			<fieldset ng-switch-default >
-				<legend>Fieldset</legend>
-
-				<div class="row">
-					<div class="large-12 columns text-center">
-						<label><h2>What situation upset you?</h2></label>
-						<textarea class="feelings" placeholder="" ng-model="cbtEntry.concern"></textarea>
+	<div class="row row-panel header">
+		<div class="large-12 columns text-center progress-bar">
+			<ol data-prog-steps="4" class="form-progress small-block-grid-4">
+				<li>
+					<div class="step" ng-class="{callout: stage>
+						1, stepSelected: stage==1}" class="panel radius">
+						Step 1 <i ng-show="stage>1" class="foundicon-checkmark"></i>
 					</div>
-				</div>
-				<div class="row">
-					<div class="large-7 columns">200 characters remaining</div>
-					<div class="large-5 columns text-center"><button class="small button" ng-click="$parent.stage='2'">Next</button></div>
-				</div>
-			</fieldset>
-			<fieldset ng-switch-when="2" >
-				<legend>Fieldset</legend>
-				<div class="row">
-					<h2>What are you feeling?</h2>
-					<div class="large-12 columns">
-						<div class="emotion-basket">
-							<ul id="emotion-list">
-								<li class="emotion" ng-repeat="emotion in emotions">{{emotion}}</li>
-							</ul>
+				</li>
+				<li>
+					<div class="step" ng-class="{callout: stage>
+						2, stepSelected: stage==2}"class="panel radius">
+						Step 2 <i ng-show="stage>2" class="foundicon-checkmark"></i>
+					</div>
+				</li>
+				<li>
+					<div class="step" ng-class="{callout: stage>
+						3, stepSelected: stage==3}" class="panel radius">
+						Step 3
+						<i ng-show="stage>3" class="foundicon-checkmark"></i>
+					</div>
+				</li>
+				<li>
+					<div class="step" ng-class="{callout: stage>
+						4, stepSelected: stage==4}" class="panel radius">
+						Step 4
+						<i ng-show="stage>4" class="foundicon-checkmark"></i>
+					</div>
+				</li>
+			</ol>
+		</div>
+	</div>
+
+	<div class="row row-panel main">
+	<div class="large-7 columns">
+		<div class="row">
+			<div class="large-12 columns">
+			<form ng-switch on="stage">
+				<fieldset ng-switch-default class="hidden">
+					<legend class="hidden">Fieldset</legend>
+
+					<div class="row">
+						<div class="large-12 columns text-center">
+							<label><h2>What situation upset you?</h2></label>
+							<textarea class="feelings" placeholder="" ng-model="cbtEntry.concern"></textarea>
 						</div>
-						<div class="row entry">
-							<div class="large-10 columns">
-								<div class="row">
-									<div class="large-4 columns inline">
-										<label for="emotion-entry" class="right inline">I'm feeling </label>
-									</div>
-									<div class="large-8 columns">
-										<input ng-model="newEmotion" type="text" placeholder="angry" id="emotion-entry" list="emotions">
-										<datalist id="emotions">
-											<option value="angry">
-											<option value="annoyed">
-											<option value="unhappy">
-											<option value="sad">
-											<option value="melancholy">
-											<option value="blue">
-											<option value="pissed off">
-											<option value="irritable">
-											<option value="joyful">
-											<option value="wonderful">
-											<option value="angsty">
-											<option value="anxious">
-											<option value="worried">
-											<option value="violent">
-											<option value="wound up">
-											<option value="joyless">
-											<option value="cold">
-											<option value="warm">
-											<option value="loving">
-											<option value="paranoid">
-											<option value="unbearable">
-											<option value="fed up">
-											<option value="grumpy">
-											<option value="fiery">
-											<option value="powerless">
-											<option value="weak">
-											<option value="crushed">
-											<option value="determined">
-											<option value="effusive">
-											<option value="great">
+					</div>
+					<div class="row">
+						<div class="large-7 columns">200 characters remaining</div>
+						<div class="large-5 columns text-center"><button class="small button" ng-click="$parent.stage='2'">Next</button></div>
+					</div>
+				</fieldset>
+				<fieldset class="hidden" ng-switch-when="2" >
+					<legend class="hidden">Fieldset</legend>
+					<div class="row">
+						<h2>What are you feeling?</h2>
+						<div class="large-12 columns">
+							<div class="emotion-basket">
+								<ul id="emotion-list">
+									<li class="emotion" ng-repeat="emotion in emotions">{{emotion}}</li>
+								</ul>
+							</div>
+							<div class="row entry">
+								<div class="large-10 columns">
+									<div class="row">
+										<div class="large-4 columns inline">
+											<label for="emotion-entry" class="right inline">I'm feeling </label>
+										</div>
+										<div class="large-8 columns">
+											<input ng-model="newEmotion" type="text" placeholder="angry" id="emotion-entry" list="emotions">
+											<datalist id="emotions">
+												<option value="angry">
+												<option value="annoyed">
+												<option value="unhappy">
+												<option value="sad">
+												<option value="melancholy">
+												<option value="blue">
+												<option value="pissed off">
+												<option value="irritable">
+												<option value="joyful">
+												<option value="wonderful">
+												<option value="angsty">
+												<option value="anxious">
+												<option value="worried">
+												<option value="violent">
+												<option value="wound up">
+												<option value="joyless">
+												<option value="cold">
+												<option value="warm">
+												<option value="loving">
+												<option value="paranoid">
+												<option value="unbearable">
+												<option value="fed up">
+												<option value="grumpy">
+												<option value="fiery">
+												<option value="powerless">
+												<option value="weak">
+												<option value="crushed">
+												<option value="determined">
+												<option value="effusive">
+												<option value="great">
+										</div>
 									</div>
 								</div>
-							</div>
-							<div class="large-2 columns">
-								<button ng-click="addEmotion(newEmotion)" href="#" class="button prefix">Add</button>
+								<div class="large-2 columns">
+									<button ng-click="addEmotion(newEmotion)" href="#" class="button prefix">Add</button>
+								</div>
 							</div>
 						</div>
+					<div class="row">
+						<div class="large-5 columns text-center large-offset-7"><button class="small button" ng-click="$parent.stage='3'">Next</button></div>
 					</div>
-				<div class="row">
-					<div class="large-5 columns text-center large-offset-7"><button class="small button" ng-click="$parent.stage='3'">Next</button></div>
+					</fieldset>
+					<fieldset ng-switch-when="3" class="hidden">
+						<legend class="hidden">Fieldset</legend>
+						<div class="row">
+							<div class="large-12 columns">
+								<label><h2>Why do you feel this way?</h2></label>
+								<textarea class="thoughts" placeholder="Write it all down"></textarea>
+							</div>
+						</div>
+					<div class="row">
+						<div class="large-5 columns text-center large-offset-7"><button class="small button" ng-click="$parent.stage='4'">Next</button></div>
+					</div>
+					</fieldset>
+					<fieldset ng-switch-when="4" class="hidden">
+						<legend class="hidden">Fieldset</legend>
+						<div class="row">
+							<div class="large-12 columns">
+								<label>Textarea Label</label>
+								<textarea placeholder="small-12.columns"></textarea>
+							</div>
+						</div>
+						<button class="small button" ng-click="$parent.stage='5'">Done</button>
+
+					</fieldset>
+					<fieldset ng-switch-when="5" class="hidden">
+						<legend class="hidden">Fieldset</legend>
+						<div class="row">
+							<div class="large-12 columns">
+								<h2>Review</h2>
+								<p>So you <strong>got an F in your exam</strong> and you thought this meant that you were <strong>an utter failure</strong> and that <strong>you'd never succeed in anything again</strong>, but you realised that this was a <strong>catastrophic scenario</strong> because <strong>it wasn't actually likely</strong>. Now you understand that <strong>this was just a minor setback</strong>
+							</div>
+						</div>
+						<button class="small button" ng-click="$parent.stage='1'">Done</button>
+
+					</fieldset>
+				</form>
 				</div>
-				</fieldset>
-				<fieldset ng-switch-when="3" >
-					<legend>Fieldset</legend>
-					<div class="row">
-						<div class="large-12 columns">
-							<label>Textarea Label</label>
-							<textarea placeholder="small-12.columns"></textarea>
-						</div>
-					</div>
-					<button class="small button" ng-click="$parent.stage='4'">Done</button>
-
-				</fieldset>
-				<fieldset ng-switch-when="4" >
-					<legend>Fieldset</legend>
-					<div class="row">
-						<div class="large-12 columns">
-							<label>Textarea Label</label>
-							<textarea placeholder="small-12.columns"></textarea>
-						</div>
-					</div>
-					<button class="small button" ng-click="$parent.stage='1'">Done</button>
-
-				</fieldset>
-			</form>
+			</div>
+		</div>
+		<div class="large-5 columns help">
+		    <h3>What do I do here?</h3>
+		    <p>Start by describing the situation that you think might have caused you to feel this way. It doesn't matter if it you think it might not be right, or if it seems to trivial to worry about - it's not always obvious what the source of the problem is</p>
+		</div>
+	</div>
+		<div class="row" ng-controller="NewEntryCtrl">
+			<div class="large-columns-12">
 			</div>
 		</div>
 	</div>
-	<div class="large-5 columns help">
-	    <h3>What do I do here?</h3>
-	    <p>Start by describing the situation that you think might have caused you to feel this way. It doesn't matter if it you think it might not be right, or if it seems to trivial to worry about - it's not always obvious what the source of the problem is</p>
-	</div>
-</div>
-<div class="row" ng-controller="NewEntryCtrl">
-	<div class="large-columns-12">
-
-
-		</div>
-	</div>
-</div>
 </div><!-- controller div>

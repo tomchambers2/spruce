@@ -1,13 +1,9 @@
-div {
-	//border: 1px solid black;
-}
-
 body {
 	background-color: #F0ECD5;
 	font-family: Helvetica;
 }
 
-.row {
+.row-panel {
 	background-color: #FCFBF2;
 	margin-bottom: 30px;
 	border-radius: 4px;
@@ -87,17 +83,17 @@ button.button:hover {
 }
 
 /* CBT Form Styles */
-fieldset legend {
+legend.hidden {
 	border:none;
 	display: none;
 }
-fieldset {
+fieldset.hidden {
 	border:none;
 	margin: 0;
 	padding: 0px 20px 0px 0px;
 }
 
-textarea.feelings {
+textarea.feelings, textarea.thoughts {
 	border: none;
 	border-radius: 4px;
 	height: 75px;
