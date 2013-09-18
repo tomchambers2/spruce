@@ -6,11 +6,11 @@
 // Demonstrate how to register services
 // In this case it is a simple value service.
 spruce.
-	service();
+    provider('_Parse', function(){
+    	Parse.initialize("k7y07DrD6MQKnKmzIr0QKuVs0ky1rX9GjOVN1HEl", "XQRePYICookwk173cSyoRQLSTeLhyFWcMJK2udKO");
 
-angular.module('phonecatServices', ['ngResource']).
-    factory('Phone', function($resource){
-  return $resource('phones/:phoneId.json', {}, {
-    query: {method:'GET', params:{phoneId:'phones'}, isArray:true}
-  });
+  		this.$get = function(){
+  			return Parse
+  		}
+
 });
