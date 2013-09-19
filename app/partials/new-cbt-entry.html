@@ -3,7 +3,7 @@
 	<div class="large-1 columns"></div>
 </div>
 
-<div ng-controller="NewEntryCtrl">
+<div ng-controller="NewEntryCtrl" ng-init="">
 	<div class="row row-panel header">
 		<div class="large-12 columns text-center progress-bar">
 			<ol data-prog-steps="4" class="form-progress small-block-grid-4">
@@ -188,8 +188,6 @@
 						</div>
 						<div ng-switch on="stage">
 							<div class="large-5 columns help" ng-switch-default>
-								<a href="#" data-reveal-id="myModal">Click Me For A Modal</a>
-
 							    <h3>What do I do here?</h3>
 							    <p>Concisely describe a recent incident that is currently troubling you. Note details about what you and others did and what happened. If nothing immediately springs to mind, consider a prominent event from the past 24 hours.</p>
 							    <p>In this step, only write facts you can objectively prove. This will help you to separate the incident from your interpretation so you can understand the different ways it could be interpreted and what feelings result.</p>
@@ -211,7 +209,7 @@
 							</div>
 							<div class="large-5 columns help" ng-switch-when="5">
 								<h3>That's it!</h3>
-							    <p>You're done. Read carefully through the passage on the left to consolidate the new more rational thought. 
+							    <p>You're done. Read carefully through the passage on the left to consolidate the new more rational thought.
 							    <p>Did this help?</p>
 							    <p>
 							    	<a class="button pass">Yes, I feel better now</a> <a class="button fail">No, I feel the same/worse</a>
@@ -224,4 +222,19 @@
 						</div>
 
 					</div>
+				</div>
+				<div id="introModal" class="reveal-modal">
+					<h2>Welcome to Spruce</h2>
+					<p class="lead">
+						We're taking you to your first dispute so you can try it out straight away. Don't worry if you don't have time right now, we'll be right here waiting for you when you're ready.
+					</p>
+					<p class="lead">
+						Spruce is based on a mental model of the mind that states that it's not what happens to us, but the way we interpret it that makes us feel the way we do. In the process you'll write about a situation that has upset you, add what negative feelings it caused for you, then identify how your interpretation might have made you upset. Finally you'll be prompted with some suggestions of how to make your thinking more rational in this particular case. This will help you to worry less about the situation.
+					</p>
+					<h2>What happens to my data?</h2>
+					<p class="lead">
+						Everything you type is encrypted and stored securely on our servers. We'll never see your entries in a readable format, we don't store your IP address and we won't know who you are.
+					</p>
+					<button class="button" ng-click="closeModal();">Make me happy</button>
+					<a class="close-reveal-modal">&#215;</a>
 				</div>

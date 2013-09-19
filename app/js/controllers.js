@@ -12,6 +12,7 @@ spruce.
     var CbtEntry = _parse.Object.extend("CbtEntry");
   	var newEntry = new CbtEntry();
   	var negBeliefCopy;
+  	$('#introModal').foundation('reveal', 'open');
 
   	var init = function(obj){
   		obj.save(null, {
@@ -26,8 +27,12 @@ spruce.
   		    console.log('Failed to create new object, with error code: ' + error.description);
   		  }
   		});
+
   	}
 
+  	$scope.closeModal = function(){
+  		$('#introModal').foundation('reveal', 'close');
+  	}
   	$scope.nextNegBelief = function(curDistortion, curNegBelief, newThought){
   		//move on to next belief
   		if($scope.distortions.indexOf(curDistortion) == $scope.distortions.length - 1){
