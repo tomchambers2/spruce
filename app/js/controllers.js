@@ -42,7 +42,7 @@ spruce.
   		//move on to next distortion
   		else{
   			if(newThought.length>2){
-	  			$scope.cbtEntry.negativeBeliefs[$scope.negBelief].push({'distortion': $scope.curDistortion, 'why': $scope.newthought});
+	  			$scope.cbtEntry.negativeBeliefs[$scope.negBelief].push({'distortion': $scope.curDistortion, 'why': newThought});
   			}
 			$scope.curDistortion = $scope.distortions[$scope.distortions.indexOf(curDistortion)+1];
   		}
