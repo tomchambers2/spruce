@@ -51,8 +51,6 @@ spruce.
   			}
 			$scope.curDistortion = $scope.distortions[$scope.distortions.indexOf(curDistortion)+1];
   		}
-  		//clear justification
-  		//$scope.newthought = '';
 
   	}
 
