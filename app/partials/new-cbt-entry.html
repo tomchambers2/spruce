@@ -196,8 +196,6 @@
 						</div>
 						<div ng-switch on="stage">
 							<div class="large-5 columns help" ng-switch-default>
-								<a href="#" data-reveal-id="myModal">Click Me For A Modal</a>
-
 							    <h3>What do I do here?</h3>
 							    <p>Concisely describe a recent incident that is currently troubling you. Note details about what you and others did and what happened. If nothing immediately springs to mind, consider a prominent event from the past 24 hours.</p>
 							    <p>In this step, only write facts you can objectively prove. This will help you to separate the incident from your interpretation so you can understand the different ways it could be interpreted and what feelings result.</p>
@@ -245,6 +243,6 @@
 					<p class="lead">
 						Everything you type is encrypted and stored securely on our servers. We'll never see your entries in a readable format, we don't store your IP address and we won't know who you are.
 					</p>
-					<!--button class="button close-reveal-modal">Make me happy</button-->
+					<button class="button" ng-click="closeModal();">Make me happy</button>
 					<a class="close-reveal-modal">&#215;</a>
 				</div>

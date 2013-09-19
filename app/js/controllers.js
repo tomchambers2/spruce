@@ -30,6 +30,9 @@ spruce.
 
   	}
 
+  	$scope.closeModal = function(){
+  		$('#introModal').foundation('reveal', 'close');
+  	}
   	$scope.nextNegBelief = function(curDistortion, curNegBelief, newThought){
   		//move on to next belief
   		if($scope.distortions.indexOf(curDistortion) == $scope.distortions.length - 1){
