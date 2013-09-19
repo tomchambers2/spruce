@@ -28,6 +28,7 @@ spruce.
 
   	$scope.addEmotion = function(newEmotion){
   		$scope.cbtEntry.emotions.push(newEmotion);
+      $scope.newEmotion = "";
   	}
   	$scope.addBelief = function(negativeBelief){
   		$scope.cbtEntry.negativeBeliefs.push(negativeBelief);

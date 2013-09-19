@@ -17,23 +17,21 @@
 				<li>
 					<div class="step radius" ng-class="{stepComplete: stage>
 						2, stepSelected: stage==2, stepDisabled: stage
-						<2}">Emotions
-					</div>
-				</li>
+						<2}">Emotions</div>
+					</li>
 					<li>
 						<div class="step radius" ng-class="{stepComplete: stage>
 							3, stepSelected: stage==3, stepDisabled: stage
-							<3}" >Beliefs
-						</div>
-					</li>
-					<li>
+							<3}" >Beliefs</div>
+						</li>
+						<li>
 							<div class="step radius" ng-class="{stepComplete: stage>
 								4, stepSelected: stage==4, stepDisabled: stage
 								<4}" >Change</div>
-					</li>
-				</ol>
-			</div>
-	</div>
+							</li>
+						</ol>
+					</div>
+				</div>
 
 				<div class="row row-panel main">
 					<div class="large-7 columns">
@@ -227,8 +225,8 @@
 								</p>
 								<p>
 									You don't need to worry about your feelings or any other details right now. This part is important, so try to think carefully in each question about whether it's true.
-							</div>
-							<div class="large-5 columns help" ng-switch-when="5">
+								</div>
+								<div class="large-5 columns help" ng-switch-when="5">
 									<h3>That's it!</h3>
 									<p>
 										You're all done. We'll ask you about you feel in about an hour or so. It can sometimes take time for your feelings to catch up with your thoughts, so it's best to wait a while to see what happens. Make sure to review the passage on the left to really get it into your head, as it's crucial that you change the mental image that is responsible for your emotions.
@@ -236,9 +234,16 @@
 									<p>
 										You can click the button on the left to see previous disputes you've been through.
 									</p>
-							</div>
+									<p>
+										<a class="button pass">Yes, I feel better now</a>
+										<a class="button fail">No, I feel the same/worse</a>
+									</p>
+									<p style="display:none">
+										<a class="button" href="#/dashboard">See record of previous problems</a>
+									</p>
+								</div>
 							</div>
 						</div>
-</div>
-</div>
 
+					</div>
+				</div>
