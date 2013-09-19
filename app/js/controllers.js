@@ -8,6 +8,7 @@ spruce.
   	$scope.cbtEntry = {emotions: []};
   	$scope.addEmotion = function(newEmotion){
   		$scope.cbtEntry.emotions.push(newEmotion);
+      $scope.newEmotion = "";
   	}
   	$scope.$watch('stage', function(newValue, oldValue){
 

@@ -150,6 +150,17 @@ div.row.entry {
 	line-height: 30px;
 }
 
+/* review stage */
+a.button.pass {
+	background-color: #00CB72;
+	color: white;
+}
+
+a.button.fail {
+	background-color: #E74055;
+	color: white;
+}
+
 /* home */
 div#myModal {
 	margin-top: -75px;
