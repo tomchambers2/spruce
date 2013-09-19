@@ -15,23 +15,23 @@
 				</li>
 				<div class="progressDivider"></div>
 				<li>
+				<div class="step radius" ng-class="{stepComplete: stage>
+					2, stepSelected: stage==2, stepDisabled: stage
+					<2}">Emotions</div>
+				</li>
+				<li>
 					<div class="step radius" ng-class="{stepComplete: stage>
-						2, stepSelected: stage==2, stepDisabled: stage
-						<2}">Emotions</div>
+						3, stepSelected: stage==3, stepDisabled: stage
+						<3}" >Beliefs</div>
 					</li>
 					<li>
 						<div class="step radius" ng-class="{stepComplete: stage>
-							3, stepSelected: stage==3, stepDisabled: stage
-							<3}" >Beliefs</div>
+							4, stepSelected: stage==4, stepDisabled: stage
+							<4}" >Change</div>
 						</li>
-						<li>
-							<div class="step radius" ng-class="{stepComplete: stage>
-								4, stepSelected: stage==4, stepDisabled: stage
-								<4}" >Change</div>
-							</li>
-						</ol>
-					</div>
+					</ol>
 				</div>
+			</div>
 
 				<div class="row row-panel main">
 					<div class="large-7 columns">
@@ -42,17 +42,15 @@
 										<legend class="hidden">Fieldset</legend>
 
 										<div class="row">
-											<div class="large-12 columns text-center">
-												<label>
-													<h2>What situation upset you?</h2>
-												</label>
+											<div class="large-12 columns">
+												<h2>What situation made you upset?</h2>
 												<textarea class="feelings" placeholder="" ng-model="cbtEntry.concern"></textarea>
 											</div>
 										</div>
 										<div class="row">
 											<div class="large-7 columns">200 characters maximum</div>
 											<div class="large-5 columns text-center">
-												<button class="small button" ng-click="$parent.stage='2'">Next</button>
+												<button class="small button" ng-click="$parent.stage='2'">Next step - emotions</button>
 											</div>
 										</div>
 									</fieldset>
@@ -60,7 +58,8 @@
 										<legend class="hidden">Fieldset</legend>
 										<div class="row">
 											<div class="large-12 columns">
-												<h2>What are you feeling?</h2>
+												<h2>What are you feeling about this?</h2>
+												<h3>situation text placeholder</h3>
 												<div class="emotion-basket">
 													<ul id="emotion-list">
 														<li class="emotion" ng-repeat="emotion in cbtEntry.emotions">{{emotion}}</li>
@@ -116,7 +115,7 @@
 											</div>
 											<div class="row">
 												<div class="large-5 columns text-center large-offset-7">
-													<button class="small button" ng-click="$parent.stage='3'">Next</button>
+													<button class="small button" ng-click="$parent.stage='3'">Next step - beliefs</button>
 												</div>
 											</div>
 										</fieldset>
@@ -124,21 +123,20 @@
 											<legend class="hidden">Fieldset</legend>
 											<div class="row">
 												<div class="large-12 columns">
+													<h2>What are your thoughts about this situation?</h2>
+													<h3>situation text placeholder</h3>
 													<div class="emotion-basket">
 														<ul>
 															<li class="emotion" ng-repeat="belief in negativeBeliefsCopy">{{belief}}</li>
 														</ul>
 													</div>
-													<h2>
-														Try to name all your negative thoughts. What are they? Add a new entry for each one.
-													</h2>
-													<textarea class="thoughts" placeholder="Write it all down" ng-model="negativeBelief"></textarea>
-													<button ng-click="addBelief(negativeBelief)" href="#" class="button prefix">Add</button>
+													<input type="text" class="thoughts process" placeholder="Write thought here: imagined consequences, self judgements etc" ng-model="negativeBelief" />
+													<button ng-click="addBelief(negativeBelief)" href="#" class="button prefix">Save this thought</button>
 												</div>
 											</div>
 											<div class="row">
 												<div class="large-5 columns text-center large-offset-7">
-													<button class="small button" ng-click="$parent.stage='4'">Next</button>
+													<button class="small button" ng-click="$parent.stage='4'">Next step - change</button>
 												</div>
 											</div>
 										</fieldset>
@@ -146,27 +144,21 @@
 											<legend class="hidden">Fieldset</legend>
 											<div class="row">
 												<div class="large-12 columns">
-													<h2>Challenge your thoughts</h2>
-													<h3>
-														For this belief, identify all of the appropriate distortions. And write why they are applicable.
-													</h3>
-														{{negBelief}}
-														<form class="custom"> <!-- form needs to be here with class custom for check box to work -->
+													<h3>You said: <i>{{negBelief}}</i></h3>
 
-															<ul>
-																<li>
-																	<label for="checkbox1">
-																		<input type="checkbox" id="checkbox1" style="display: none;" ng-model="cbtEntry.negativeBeliefs[negBelief]">
-																		<span class="custom checkbox checked"></span>
-																		{{curDistortion}}
-																	</label>
-																</li>
-															</ul>
-														</form>
-													<textarea ng-model="newthought" placeholder="given this distortion, what's your new thought"></textarea>
+													<p>{{curDistortion}} <strong>Does this change your thought?</strong></p>
+
+													<textarea ng-model="newthought" placeholder="If it applies, write a new, more rational version of this thought with this belief in mind (optional)"></textarea>
 												</div>
 											</div>
-											<button class="small button" ng-click="nextNegBelief(curDistortion, negBelief, newthought); newthought=''">Done</button>
+											<div class="row">
+												<div class="large-6 columns">
+													<button class="small button pass" ng-click="nextNegBelief(curDistortion, negBelief, newthought); newthought=''">Yes</button>
+												</div>
+												<div class="large-6 columns">
+													<button class="small button fail" ng-click="nextNegBelief(curDistortion, negBelief, newthought); newthought=''">No</button>
+												</div>
+											</div>
 
 										</fieldset>
 										<fieldset ng-switch-when="5" class="hidden">
