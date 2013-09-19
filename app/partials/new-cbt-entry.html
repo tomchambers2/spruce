@@ -121,8 +121,14 @@
 						<legend class="hidden">Fieldset</legend>
 						<div class="row">
 							<div class="large-12 columns">
-								<h2>Why do you feel this way?</h2>
-								<textarea class="thoughts" placeholder="Write it all down" ng-model="cbtEntry.negativeBeliefs"></textarea>
+								<div class="emotion-basket">
+									<ul>
+										<li class="emotion" ng-repeat="belief in cbtEntry.negativeBeliefs">{{belief}}</li>
+									</ul>
+								</div>
+								<h2>Try to name all your negative thoughts. What are they? Add a new entry for each one.</h2>
+								<textarea class="thoughts" placeholder="Write it all down" ng-model="negativeBelief"></textarea>
+								<button ng-click="addBelief(negativeBelief)" href="#" class="button prefix">Add</button>
 							</div>
 						</div>
 					<div class="row">
