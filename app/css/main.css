@@ -236,7 +236,8 @@ a.button.start {
 	margin-top: 20px;
 }
 
-.progressDivider {
+.no-style-list {
+	list-style: none;
 }
 
 .step {

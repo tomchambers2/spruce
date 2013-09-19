@@ -143,10 +143,26 @@
 						<div class="row">
 							<div class="large-12 columns">
 								<h2>Challenge your thoughts</h2>
-								<textarea placeholder="small-12.columns"></textarea>
+								<h3>
+									For this belief, identify all of the appropriate distortions. And write why they are applicable.
+								</h3>
+									{{negBelief}}
+									<form class="custom"> <!-- form needs to be here with class custom for check box to work -->
+
+										<ul class="no-style-list">
+											<li>
+												<label for="checkbox1">
+													<input type="checkbox" id="checkbox1" style="display: none;" ng-model="cbtEntry.negativeBeliefs[negBelief]">
+													<span class="custom checkbox checked"></span>
+													{{curDistortion}}
+												</label>
+											</li>
+										</ul>
+									</form>
+								<textarea ng-model="newthought" placeholder="given this distortion, what's your new thought"></textarea>
 							</div>
 						</div>
-						<button class="small button" ng-click="$parent.stage='5'">Done</button>
+						<button class="small button" ng-click="nextNegBelief(curDistortion, negBelief, newthought); newThough=''">Done</button>
 
 					</fieldset>
 					<fieldset ng-switch-when="5" class="hidden">
