@@ -218,10 +218,6 @@ a.button.start {
 }
 
 .form-progress .stepComplete {
-	//background-image: url('/app/img/checkmark.png');
-	//background-size: 80px;
-	//background-position: 5px 10px;
-	//background-repeat: no-repeat;
 	color: #EDEDED;
 	background-color: #00957B;
 }
@@ -239,7 +235,6 @@ a.button.start {
 .no-style-list {
 	list-style: none;
 }
-
 .step {
 	font-size: 20px;
 	display: block;

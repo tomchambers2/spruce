@@ -102,10 +102,149 @@
 												<option value="effusive">
 												<option value="great">
 										</div>
+<<<<<<< HEAD
 									</div>
 								</div>
 								<div class="large-2 columns">
 									<button ng-click="addEmotion(newEmotion)" href="#" class="button prefix">Add</button>
+=======
+									</fieldset>
+									<fieldset class="hidden" ng-switch-when="2">
+										<legend class="hidden">Fieldset</legend>
+										<div class="row">
+											<div class="large-12 columns">
+												<h2>What are you feeling?</h2>
+												<div class="emotion-basket">
+													<ul id="emotion-list">
+														<li class="emotion" ng-repeat="emotion in cbtEntry.emotions">{{emotion}}</li>
+													</ul>
+												</div>
+												<div class="row entry">
+													<div class="large-10 columns">
+														<div class="row">
+															<div class="large-4 columns inline">
+																<label for="emotion-entry" class="right inline">I'm feeling</label>
+															</div>
+															<div class="large-8 columns">
+																<input class="process" ng-model="newEmotion" type="text" placeholder="angry" id="emotion-entry" list="emotions">
+																<datalist id="emotions">
+																	<option value="angry"></option>
+																	<option value="annoyed"></option>
+																	<option value="unhappy"></option>
+																	<option value="sad"></option>
+																	<option value="melancholy"></option>
+																	<option value="blue"></option>
+																	<option value="pissed off"></option>
+																	<option value="irritable"></option>
+																	<option value="joyful"></option>
+																	<option value="wonderful"></option>
+																	<option value="angsty"></option>
+																	<option value="anxious"></option>
+																	<option value="worried"></option>
+																	<option value="violent"></option>
+																	<option value="wound up"></option>
+																	<option value="joyless"></option>
+																	<option value="cold"></option>
+																	<option value="warm"></option>
+																	<option value="loving"></option>
+																	<option value="paranoid"></option>
+																	<option value="unbearable"></option>
+																	<option value="fed up"></option>
+																	<option value="grumpy"></option>
+																	<option value="fiery"></option>
+																	<option value="powerless"></option>
+																	<option value="weak"></option>
+																	<option value="crushed"></option>
+																	<option value="determined"></option>
+																	<option value="effusive"></option>
+																	<option value="great"></option>
+																</datalist>
+															</div>
+														</div>
+													</div>
+													<div class="large-2 columns">
+														<button ng-click="addEmotion(newEmotion)" href="#" class="button prefix">Add</button>
+													</div>
+												</div>
+											</div>
+											<div class="row">
+												<div class="large-5 columns text-center large-offset-7">
+													<button class="small button" ng-click="$parent.stage='3'">Next</button>
+												</div>
+											</div>
+										</fieldset>
+										<fieldset ng-switch-when="3" class="hidden">
+											<legend class="hidden">Fieldset</legend>
+											<div class="row">
+												<div class="large-12 columns">
+													<div class="emotion-basket">
+														<ul>
+															<li class="emotion" ng-repeat="belief in negativeBeliefsCopy">{{belief}}</li>
+														</ul>
+													</div>
+													<h2>
+														Try to name all your negative thoughts. What are they? Add a new entry for each one.
+													</h2>
+													<textarea class="thoughts" placeholder="Write it all down" ng-model="negativeBelief"></textarea>
+													<button ng-click="addBelief(negativeBelief)" href="#" class="button prefix">Add</button>
+												</div>
+											</div>
+											<div class="row">
+												<div class="large-5 columns text-center large-offset-7">
+													<button class="small button" ng-click="$parent.stage='4'">Next</button>
+												</div>
+											</div>
+										</fieldset>
+										<fieldset ng-switch-when="4" class="hidden">
+											<legend class="hidden">Fieldset</legend>
+											<div class="row">
+												<div class="large-12 columns">
+													<h2>Challenge your thoughts</h2>
+													<h3>
+														For this belief, identify all of the appropriate distortions. And write why they are applicable.
+													</h3>
+														{{negBelief}}
+														<form class="custom"> <!-- form needs to be here with class custom for check box to work -->
+
+															<ul>
+																<li>
+																	<label for="checkbox1">
+																		<input type="checkbox" id="checkbox1" style="display: none;" ng-model="cbtEntry.negativeBeliefs[negBelief]">
+																		<span class="custom checkbox checked"></span>
+																		{{curDistortion}}
+																	</label>
+																</li>
+															</ul>
+														</form>
+													<textarea ng-model="newthought" placeholder="given this distortion, what's your new thought"></textarea>
+												</div>
+											</div>
+											<button class="small button" ng-click="nextNegBelief(curDistortion, negBelief, newthought); newThough=''">Done</button>
+
+										</fieldset>
+										<fieldset ng-switch-when="5" class="hidden">
+											<legend class="hidden">Fieldset</legend>
+											<div class="row">
+												<div class="large-12 columns">
+													<h2>Review</h2>
+													<p>
+														So you <strong>got an F in your exam</strong>
+														and you thought this meant that you were <strong>an utter failure</strong>
+														and that
+														<strong>you'd never succeed in anything again</strong>
+														, but you realised that this was a
+														<strong>catastrophic scenario</strong>
+														because
+														<strong>it wasn't actually likely</strong>
+														. Now you understand that
+														<strong>this was just a minor setback</strong>
+													</p>
+												</div>
+											</div>
+											<a class="button" href="#/dashboard">See record of previous problems</a>
+										</fieldset>
+									</section>
+>>>>>>> 15e3d7fa21138da92aefd09f66961282f2e887fc
 								</div>
 							</div>
 														<div class="emotion-basket">
