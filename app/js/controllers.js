@@ -5,13 +5,17 @@
 spruce.
   controller('NewEntryCtrl', ['$scope', function($scope) {
   	$scope.stage = 1;
-  	$scope.cbtEntry = {emotions: []};
+  	// deprecated $scope.tempEmotions = [];
+  	$scope.curEmotion = '';
+  	$scope.cbtEntry = { emotions: [], negativeBeliefs: []};
   	$scope.addEmotion = function(newEmotion){
   		$scope.cbtEntry.emotions.push(newEmotion);
       $scope.newEmotion = "";
   	}
+  	$scope.addBelief = function(negativeBelief){
+  		$scope.cbtEntry.negativeBeliefs.push(negativeBelief);
+  	}
   	$scope.$watch('stage', function(newValue, oldValue){
-
   	});
 
 
