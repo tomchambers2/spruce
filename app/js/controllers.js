@@ -6,7 +6,7 @@ spruce.
   controller('NewEntryCtrl', ['$scope', '_Parse', function($scope, _parse) {
   	$scope.stage = 1;
   	$scope.curEmotion = '';
-  	$scope.newThought = ''
+  	$scope.newthought = ''
   	$scope.cbtEntry = { emotions: [], negativeBeliefs: {}};
   	$scope.distortions = ["distortion a", "distortion b", "distortion c", "distortion d", "distortion e", "distortion f"];
     var CbtEntry = _parse.Object.extend("CbtEntry");
@@ -34,7 +34,7 @@ spruce.
   			var nextNeg = negBeliefCopy.pop();
   			$scope.curDistortion = $scope.distortions[0];
   			if(nextNeg === undefined){
-  				$scope.stage = 5;
+  				$scope.stage = '5';
   			}else{
   				$scope.negBelief = nextNeg;
   			}
@@ -62,7 +62,7 @@ spruce.
   	$scope.$watch('stage', function(newValue, oldValue){
   		if(newValue === oldValue){ return; }
 
-  		//if(newValue == 2){init(newEntry);}
+  		if(newValue == 2){init(newEntry);}
 
   		if(newValue == 4){
   			//initialise first neg belief
@@ -77,7 +77,7 @@ spruce.
   		   }
   		}
 
-  		//newEntry.save();
+  		newEntry.save();
   	});
 
 
