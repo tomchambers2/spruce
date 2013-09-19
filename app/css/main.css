@@ -4,16 +4,23 @@ body {
 }
 
 .logo {
-	height: 75px;
-	margin-left: 11%;
 	padding: 5px;
+	color: #FCFBF2;
+	font-weight: bold;
+	display: inline-block;
+	margin: 10px;
+	margin-left: 11%;
+	font-size: 30px;
+}
+
+a.logo:hover {
+	color: #FCFBF2;
 }
 
 .row-panel {
 	background-color: #FCFBF2;
 	margin-bottom: 30px;
 	border-radius: 4px;
-	//box-shadow: inset 0 0 10px #000000;
 }
 
 .bottom {
@@ -24,7 +31,6 @@ body {
 
 .title {
 	background-color: #00957B;
-	//margin-bottom: 20px;
 	width: 100%;
 	border-bottom: 4px solid #22B49E;
 }
@@ -45,6 +51,15 @@ h1 {
 
 h2 {
 	font-size: 30px;
+}
+
+h3 {
+	font-size: 20px;
+	color: #515151;
+}
+
+h3 ~ p {
+	color: #515151;
 }
 
 input[type="text"].process {
@@ -88,10 +103,6 @@ a.button:hover, button.button:hover {
 	height: 100%;
 }
 
-.main-title:first-letter {
-	font-size: 155px;
-}
-
 /* CBT Form Styles */
 legend.hidden {
 	border:none;
@@ -118,6 +129,10 @@ textarea.feelings, textarea.thoughts {
 	margin-left: auto;
 }
 
+.remaining {
+	font-size: 12px;
+}
+
 /* emotion entry */
 .emotion-basket ul {
 	overflow:auto;
@@ -128,6 +143,8 @@ textarea.feelings, textarea.thoughts {
 	padding: 5px;
 	border: 1px dashed #F0ECD5;
 	min-height: 50px;
+	margin-top: 30px;
+	margin-bottom: 30px;
 }
 
 .emotion {
@@ -138,7 +155,7 @@ textarea.feelings, textarea.thoughts {
 	list-style: none;
 }
 
-ul#emotion-list {
+ul#emotion-list, ul.thought-list {
 	margin: 0;
 }
 
