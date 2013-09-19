@@ -59,23 +59,28 @@ a.button, button.button {
 	min-width: 100%;
 }
 
+button[disabled="disabled"].button {
+	background-color: #F2F2F2;
+	border-color:  #BEBEBE;
+	color: #BEBEBE;
+}
+
+button[disabled="disabled"].button:hover {
+	background-color: #F2F2F2;
+	border-color:  #BEBEBE;
+	color: #BEBEBE;
+}
+
+button[disabled="disabled"].button:active {
+	background-color: #F2F2F2;
+	border-color:  #BEBEBE;
+	color: #BEBEBE;
+}
+
 a.button:hover, button.button:hover {
-	background-color: #F0ECD5;
-	color: black;
-}
-
-.equation {
-	font-size: 150px;
-	text-shadow: 5px 0 #696969;
-}
-
-.equation-text {
-	font-size: 23px;
-	font-weight: bold;
-}
-
-.copy-one {
-	border-right:1px solid black;
+	background-color: black;
+	color: #FCFBF2;
+	box-shadow: none;
 }
 
 .help {
@@ -102,6 +107,15 @@ textarea.feelings, textarea.thoughts {
 	border: none;
 	border-radius: 4px;
 	height: 75px;
+}
+
+/* entry page */
+.introHelp {
+	width: 60%px;
+	max-height: 30%;
+	border: 2px solid black;
+	margin-right: auto;
+	margin-left: auto;
 }
 
 /* emotion entry */
@@ -134,6 +148,35 @@ div.row.entry {
 
 .feeling {
 	line-height: 30px;
+}
+
+/* home */
+div#myModal {
+	margin-top: -75px;
+}
+
+.equation {
+	font-size: 150px;
+	text-shadow: 5px 0 #696969;
+}
+
+.equation-text {
+	font-size: 23px;
+	font-weight: bold;
+}
+
+div.row.copy {
+	padding-top: 60px;
+}
+
+.copy-one {
+	border-right:1px dotted black;
+}
+
+a.button.start {
+	margin-top: 30px;
+	min-width: 350px;
+	font-size: 30px;
 }
 
 /* progress bar */
@@ -179,4 +222,14 @@ div.row.entry {
 	line-height: 95px;
 	background-color: #FCFBF9;
 	border: 3px solid #00957B;
+}
+
+/* login and register page */
+.getStarted fieldset {
+	border: 0;
+}
+
+.getStarted legend {
+	background-color: transparent;
+	font-size: 25px;
 }

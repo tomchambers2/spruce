@@ -52,7 +52,7 @@
 						</div>
 					</div>
 					<div class="row">
-						<div class="large-7 columns">200 characters remaining</div>
+						<div class="large-7 columns">200 characters maximum</div>
 						<div class="large-5 columns text-center"><button class="small button" ng-click="$parent.stage='2'">Next</button></div>
 					</div>
 				</fieldset>
@@ -152,11 +152,9 @@
 							<div class="large-12 columns">
 								<h2>Review</h2>
 								<p>So you <strong>got an F in your exam</strong> and you thought this meant that you were <strong>an utter failure</strong> and that <strong>you'd never succeed in anything again</strong>, but you realised that this was a <strong>catastrophic scenario</strong> because <strong>it wasn't actually likely</strong>. Now you understand that <strong>this was just a minor setback</strong></p>
-
-								<p>We'll ask you about you feel in about an hour or so. It can sometimes take time for your feelings to catch up with your thoughts.</p>
 							</div>
 						</div>
-						<button class="small button" ng-click="$parent.stage='1'">See record of previous problems</button>
+						<a class="button" href="#/dashboard">See record of previous problems</a>
 					</fieldset>
 				</form>
 				</div>
@@ -164,6 +162,8 @@
 		</div>
 		<div ng-switch on="stage">
 			<div class="large-5 columns help" ng-switch-default>
+				<a href="#" data-reveal-id="myModal">Click Me For A Modal</a>
+
 			    <h3>What do I do here?</h3>
 			    <p>Start by describing the situation that you think might have caused you to feel this way. It doesn't matter if it you think it might not be right, or if it seems to trivial to worry about - it's not always obvious what the source of the problem is. Only write down one situation and try to be concise about what happened. It might help you to visualise the situation in your mind so you can better remember what happened.</p>
 			    <p>In this step, only write down things that could be proven in court which are totally objective. We'll come to your subjective inpretations of the situation in step 3. Objective details are things like what people did, not what they thought.</p>
@@ -182,7 +182,10 @@
 			    <p>Now it's time to find the reasons why these thoughts that are making you upset might not be true. For each thought you identified, there is a series of questions to test it. Imagine yourself as a lawyer questioning this thought in court. How might you undermine the case?</p>
 			    <p>You don't need to worry about your feelings or any other details right now. This part is important, so try to think carefully in each question about whether it's true.
 			</div>
-			<div class="large-5 columns" ng-switch-when="5">
+			<div class="large-5 columns help" ng-switch-when="5">
+				<h3>That's it!</h3>
+			    <p>You're all done. We'll ask you about you feel in about an hour or so. It can sometimes take time for your feelings to catch up with your thoughts, so it's best to wait a while to see what happens. Make sure to review the passage on the left to really get it into your head, as it's crucial that you change the mental image that is responsible for your emotions.</p>
+			    <p>You can click the button on the left to see previous disputes you've been through.</p>
 			</div>
 		</div>
 	</div>
@@ -191,4 +194,4 @@
 			</div>
 		</div>
 	</div>
-</div><!-- controller div>
+</div><!-- controller div -->

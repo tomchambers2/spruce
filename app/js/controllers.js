@@ -22,7 +22,7 @@ spruce.
   controller('MainCtrl',['$scope', function($scope){
 
   }]).
-  controller('RegistrationCtrl', ['_Parse','$scope', function(_parse, $scope){
+  controller('RegistrationCtrl', ['_Parse','$scope', '$location', function(_parse, $scope, $location){
   	$scope.badLogin = false;
   	$scope.register = function(username, password){
   		var user = new _parse.User();
@@ -32,13 +32,16 @@ spruce.
   		  success: function(user) {
 
   		    //console.log(angular.toJson(user, true));
+          $scope.$apply(function () {
+            $location.path('/entries/new');
+          });
   		  },
   		  error: function(user, error) {
   		    // Show the error message somewhere and let the user try again.
   		    alert("Error: " + error.code + " " + error.message);
   		    console.log("Error: " + angular.toJson(error,true) +  angular.toJson(user,true));
   		  }
-  		});
+  		}, this);
   	}
 
   	$scope.logIn = function(user){
@@ -46,7 +49,10 @@ spruce.
   		_parse.User.logIn(user.username, user.password, {
   		  success: function(user) {
   		  	$scope.badLogin = false;
-  		    console.log("successful login" + angular.toJson(user, true))
+  		    console.log("successful login" + angular.toJson(user, true));
+          $scope.$apply(function () {
+            $location.path('/dashboard');
+          });
   		  },
   		  error: function(user, error) {
   		  	$scope.badLogin = true;
