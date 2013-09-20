@@ -1,0 +1,82 @@
+<div class="large-8 columns title">
+  <!--img src="/app/img/logo.png" class="logo" /-->
+      <h1>Spruce</h1>
+      <div class="large-1 columns">
+  </div>
+</div>
+
+<div class="row row-panel header">
+  <div class="large-12 columns text-center">
+    <h2>Get started</h2>
+  </div>
+</div>
+
+<div class="row row-panel getStarted">
+  <div class="small-6 columns">
+    <form name="registrationForm">
+      <fieldset>
+        <legend>Register</legend>
+        <div class="row">
+          <div class="small-12 columns">
+            <div class="row collapse">
+              <label >Email address: </label>
+              <div class="small-9 columns">
+                <input type="email" ng-model="newUser.email" name="uEmail" placeholder="Email address" required>
+              </div>
+              <div class="small-3 columns">
+                <span ng-show="registrationForm.uEmail.$error.required || registrationForm.uEmail.$error.email" class="postfix"><i class="foundicon-error"></i></span>
+                <span ng-show="!registrationForm.uEmail.$error.required && !registrationForm.uEmail.$error.email" class="postfix"><i class="foundicon-checkmark"></i></span>
+              </div>
+            </div>
+            <div class="row collapse">
+              <label>Password:</label>
+              <div class="small-9 columns">
+                <input type="password" ng-model="newUser.password" name="uPassword" placeholder="Password" required>
+              </div>
+              <div class="small-3 columns">
+                <span ng-show="registrationForm.uPassword.$error.required" class="postfix"><i class="foundicon-error"></i></span>
+                <span ng-show="!registrationForm.uPassword.$error.required" class="postfix"><i class="foundicon-checkmark"></i></span>
+              </div>
+            </div>
+            <button class="button" ng-click="register(newUser.email, newUser.password)"
+                            ng-disabled="registrationForm.$invalid">Register!</button>
+          </div>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+  <div class="small-6 columns">
+    <form name="loginForm">
+      <fieldset>
+        <legend>Log-in</legend>
+        <div class="row">
+          <div class="small-12 columns">
+            <div class="row collapse">
+              <label>Email address:</label>
+              <div class="small-9 columns">
+                <input type="email" ng-model="user.username" name="uName" placeholder="Email address" required>
+              </div>
+              <div class="small-3 columns">
+                <span ng-show="loginForm.uName.$error.required || loginForm.uName.$error.email" class="postfix"><i class="foundicon-error"></i></span>
+                <span ng-show="!loginForm.uName.$error.required && !loginForm.uName.$error.email" class="postfix"><i class="foundicon-checkmark"></i></span>
+              </div>
+            </div>
+            <div class="row collapse">
+              <label>Password:</label>
+              <div class="small-9 columns">
+                <input type="password" ng-model="user.password" name="uPassword" placeholder="Password" required>
+              </div>
+              <div class="small-3 columns">
+                <span ng-show="loginForm.uPassword.$error.required" class="postfix"><i class="foundicon-error"></i></span>
+                <span ng-show="!loginForm.uPassword.$error.required" class="postfix"><i class="foundicon-checkmark"></i></span>
+              </div>
+            </div>
+            <span ng-show="badLogin" class="radius secondary label">Invalid login details. Email support for help.</span>
+            <button class="button" ng-click="logIn(user)"
+                            ng-disabled="loginForm.$invalid">Log In!</button>
+          </div>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+</div>

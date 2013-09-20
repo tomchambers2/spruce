@@ -1,0 +1,247 @@
+body {
+	background-color: #F0ECD5;
+	font-family: Helvetica;
+}
+
+.logo {
+	height: 75px;
+	margin-left: 11%;
+	padding: 5px;
+}
+
+.row-panel {
+	background-color: #FCFBF2;
+	margin-bottom: 30px;
+	border-radius: 4px;
+	//box-shadow: inset 0 0 10px #000000;
+}
+
+.bottom {
+	font-size: 10px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+
+.title {
+	background-color: #00957B;
+	//margin-bottom: 20px;
+	width: 100%;
+	border-bottom: 4px solid #22B49E;
+}
+
+.main {
+	padding: 20px;
+}
+
+p:first-child {
+	padding: 10px;
+}
+
+h1 {
+	font-size: 30px;
+	color:white;
+	margin-left: 11%;
+}
+
+h2 {
+	font-size: 30px;
+}
+
+h3, h3 ~ p {
+	color: #535353;
+}
+
+input[type="text"].process {
+	border: none;
+	border-radius: 4px;
+}
+
+a.button, button.button {
+	border: 2px solid black;
+	background-color: transparent;
+	color: black;
+	min-width: 100%;
+}
+
+button[disabled="disabled"].button {
+	background-color: #F2F2F2;
+	border-color:  #BEBEBE;
+	color: #BEBEBE;
+}
+
+button[disabled="disabled"].button:hover {
+	background-color: #F2F2F2;
+	border-color:  #BEBEBE;
+	color: #BEBEBE;
+}
+
+button[disabled="disabled"].button:active {
+	background-color: #F2F2F2;
+	border-color:  #BEBEBE;
+	color: #BEBEBE;
+}
+
+a.button:hover, button.button:hover {
+	background-color: black;
+	color: #FCFBF2;
+	box-shadow: none;
+}
+
+.help {
+	background-color: #F5F4EB;
+	height: 100%;
+}
+
+.main-title:first-letter {
+	font-size: 155px;
+}
+
+/* CBT Form Styles */
+legend.hidden {
+	border:none;
+	display: none;
+}
+fieldset.hidden {
+	border:none;
+	margin: 0;
+	padding: 0px 20px 0px 0px;
+}
+
+textarea.feelings, textarea.thoughts {
+	border: none;
+	border-radius: 4px;
+	height: 75px;
+}
+
+/* entry page */
+.introHelp {
+	width: 60%px;
+	max-height: 30%;
+	border: 2px solid black;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+/* emotion entry */
+.emotion-basket ul {
+	overflow:auto;
+}
+
+.emotion-basket {
+	border-radius: 8px;
+	padding: 5px;
+	border: 1px dashed #F0ECD5;
+	min-height: 50px;
+	margin-bottom: 25px;
+}
+
+.emotion {
+	float:left;
+	border: 1px solid #9D9D9D;
+	padding: 4px;
+	margin: 4px;
+	list-style: none;
+}
+
+ul#emotion-list {
+	margin: 0;
+}
+
+div.row.entry {
+	margin-top: 50px
+}
+
+.feeling {
+	line-height: 30px;
+}
+
+/* review stage */
+a.button.pass {
+	background-color: #00CB72;
+	color: white;
+}
+
+a.button.fail {
+	background-color: #E74055;
+	color: white;
+}
+
+/* home */
+div#myModal {
+	margin-top: -75px;
+}
+
+.equation {
+	font-size: 150px;
+	text-shadow: 5px 0 #696969;
+}
+
+.equation-text {
+	font-size: 23px;
+	font-weight: bold;
+}
+
+div.row.copy {
+	padding-top: 60px;
+}
+
+.copy-one {
+	border-right:1px dotted black;
+}
+
+a.button.start {
+	margin-top: 30px;
+	min-width: 350px;
+	font-size: 30px;
+}
+
+/* progress bar */
+.form-progress .stepSelected {
+	border-color: #00957B;
+	background-color: #FFF5E2;
+	box-sizing: border-box;
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	color: #00957B;
+}
+
+.form-progress .stepComplete {
+	color: #EDEDED;
+	background-color: #00957B;
+}
+
+.form-progress .stepDisabled {
+	background-color: #EDEDED;
+	color: #D2D2D2;
+	border-color: #D2D2D2;
+}
+
+.progress-bar {
+	margin-top: 20px;
+}
+
+.no-style-list {
+	list-style: none;
+}
+.step {
+	font-size: 20px;
+	display: block;
+	margin-right: auto;
+	margin-left: auto;
+	border-radius: 50%;
+	height: 100px;
+	width: 100px;
+	line-height: 95px;
+	background-color: #FCFBF9;
+	border: 3px solid #00957B;
+}
+
+/* login and register page */
+.getStarted fieldset {
+	border: 0;
+}
+
+.getStarted legend {
+	background-color: transparent;
+	font-size: 25px;
+}
