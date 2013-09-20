@@ -3,7 +3,7 @@
 	<div class="large-1 columns"></div>
 </div>
 
-<div ng-controller="NewEntryCtrl" ng-init="">
+<div ng-init="">
 	<div class="row row-panel header">
 		<div class="large-12 columns text-center progress-bar">
 			<ol data-prog-steps="4" class="form-progress small-block-grid-4">
@@ -167,16 +167,11 @@
 												<div class="large-12 columns">
 													<h2>Review</h2>
 													<p>
-														So you <strong>got an F in your exam</strong>
-														and you thought this meant that you were <strong>an utter failure</strong>
-														and that
-														<strong>you'd never succeed in anything again</strong>
-														, but you realised that this was a
-														<strong>catastrophic scenario</strong>
-														because
-														<strong>it wasn't actually likely</strong>
-														. Now you understand that
-														<strong>this was just a minor setback</strong>
+														So you <strong>{{cbtEntry.concern}}</strong> and this made you feel, <strong ng-repeat="emotion in cbtEntry.emotions">{{emotion}}, </strong>
+														and you thought this meant that you were <strong ng-repeat="(negBelief, distortionList) in cbtEntry.negativeBeliefs">{{negBelief}},</strong>
+														but you realised that
+														<strong ng-repeat="distortion in distortionlist">{{distortion['why']}},</strong>
+														Great!
 													</p>
 												</div>
 											</div>
