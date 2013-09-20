@@ -21,7 +21,6 @@ spruce.
   		    console.log('New object created with objectId: ' + newEntry.id);
   		  },
   		  error: function(newEntry, error) {
-
   		    // Execute any logic that should take place if the save fails.
   		    // error is a Parse.Error with an error code and description.
   		    console.log('Failed to create new object, with error code: ' + error.description);
@@ -63,8 +62,10 @@ spruce.
   		$scope.negativeBeliefsCopy = Object.keys($scope.cbtEntry.negativeBeliefs);
   	}
   	$scope.$watch('stage', function(newValue, oldValue){
-  		if(newValue === oldValue){ return; }
-
+  		if(newValue === oldValue){
+         return;
+      }
+      mixpanel.track("Step "+newValue);
   		if(newValue == 2){init(newEntry);}
 
   		if(newValue == 4){
@@ -86,21 +87,26 @@ spruce.
 
   }]).
   controller('MainCtrl',['$scope', function($scope){
-
+  }]).
+  controller('HomeCtrl',['$scope', function($scope){
+    mixpanel.track("Home");
   }]).
   controller('RegistrationCtrl', ['_Parse','$scope', '$location', function(_parse, $scope, $location){
   	$scope.badLogin = false;
+    mixpanel.track("sign in");
   	$scope.register = function(username, password){
   		var user = new _parse.User();
   		user.setUsername(username, {});
   		user.set("password", password);
   		user.signUp(null, {
   		  success: function(user) {
+            mixpanel.track("$signup");
           	$scope.$apply(function () {
             	$location.path('/entries/new');
           	});
   		  },
   		  error: function(user, error) {
+          mixpanel.track("Signup error");
   		    // Show the error message somewhere and let the user try again.
   		    alert("Error: " + error.code + " " + error.message);
   		    console.log("Error: " + angular.toJson(error,true) +  angular.toJson(user,true));
@@ -112,6 +118,7 @@ spruce.
   		$scope.badLogin = false;
   		_parse.User.logIn(user.username, user.password, {
   		  success: function(user) {
+          mixpanel.track("Logged in");
   		  	$scope.badLogin = false;
   		    console.log("successful login" + angular.toJson(user, true));
           $scope.$apply(function () {
@@ -119,6 +126,7 @@ spruce.
           });
   		  },
   		  error: function(user, error) {
+          mixpanel.track("Log in error");
   		  	$scope.badLogin = true;
   		    alert("Error: " + error.code + " " + error.message + angular.toJson(error));
   		  }

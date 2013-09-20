@@ -48,8 +48,7 @@
 											</div>
 										</div>
 										<div class="row">
-											<div class="large-7 columns">200 characters maximum</div>
-											<div class="large-5 columns text-center">
+											<div class="large-5 columns text-center large-offset-7">
 												<button class="small button" ng-click="$parent.stage='2'">Next step - emotions</button>
 											</div>
 										</div>
@@ -59,58 +58,60 @@
 										<div class="row">
 											<div class="large-12 columns">
 												<h2>What are you feeling about this?</h2>
-												<h3>situation text placeholder</h3>
+												<h3>{{cbtEntry.concern}}</h3>
 												<div class="emotion-basket">
 													<ul id="emotion-list">
 														<li class="emotion" ng-repeat="emotion in cbtEntry.emotions">{{emotion}}</li>
 													</ul>
 												</div>
-												<div class="row entry">
-													<div class="large-10 columns">
-														<div class="row">
-															<div class="large-4 columns inline">
-																<label for="emotion-entry" class="right inline">I'm feeling</label>
-															</div>
-															<div class="large-8 columns">
-																<input class="process" ng-model="newEmotion" type="text" placeholder="angry" id="emotion-entry" list="emotions">
-																<datalist id="emotions">
-																	<option value="angry"></option>
-																	<option value="annoyed"></option>
-																	<option value="unhappy"></option>
-																	<option value="sad"></option>
-																	<option value="melancholy"></option>
-																	<option value="blue"></option>
-																	<option value="pissed off"></option>
-																	<option value="irritable"></option>
-																	<option value="joyful"></option>
-																	<option value="wonderful"></option>
-																	<option value="angsty"></option>
-																	<option value="anxious"></option>
-																	<option value="worried"></option>
-																	<option value="violent"></option>
-																	<option value="wound up"></option>
-																	<option value="joyless"></option>
-																	<option value="cold"></option>
-																	<option value="warm"></option>
-																	<option value="loving"></option>
-																	<option value="paranoid"></option>
-																	<option value="unbearable"></option>
-																	<option value="fed up"></option>
-																	<option value="grumpy"></option>
-																	<option value="fiery"></option>
-																	<option value="powerless"></option>
-																	<option value="weak"></option>
-																	<option value="crushed"></option>
-																	<option value="determined"></option>
-																	<option value="effusive"></option>
-																	<option value="great"></option>
-																</datalist>
+												<form>
+													<div class="row entry">
+														<div class="large-10 columns">
+															<div class="row">
+																<div class="large-4 columns inline">
+																	<label for="emotion-entry" class="right inline">I'm feeling</label>
+																</div>
+																<div class="large-8 columns">
+																	<input class="process" ng-model="newEmotion" type="text" placeholder="angry" id="emotion-entry" list="emotions">
+																	<datalist id="emotions">
+																		<option value="angry"></option>
+																		<option value="annoyed"></option>
+																		<option value="unhappy"></option>
+																		<option value="sad"></option>
+																		<option value="melancholy"></option>
+																		<option value="blue"></option>
+																		<option value="pissed off"></option>
+																		<option value="irritable"></option>
+																		<option value="joyful"></option>
+																		<option value="wonderful"></option>
+																		<option value="angsty"></option>
+																		<option value="anxious"></option>
+																		<option value="worried"></option>
+																		<option value="violent"></option>
+																		<option value="wound up"></option>
+																		<option value="joyless"></option>
+																		<option value="cold"></option>
+																		<option value="warm"></option>
+																		<option value="loving"></option>
+																		<option value="paranoid"></option>
+																		<option value="unbearable"></option>
+																		<option value="fed up"></option>
+																		<option value="grumpy"></option>
+																		<option value="fiery"></option>
+																		<option value="powerless"></option>
+																		<option value="weak"></option>
+																		<option value="crushed"></option>
+																		<option value="determined"></option>
+																		<option value="effusive"></option>
+																		<option value="great"></option>
+																	</datalist>
+																</div>
 															</div>
 														</div>
-													</div>
-													<div class="large-2 columns">
-														<button ng-click="addEmotion(newEmotion)" href="#" class="button prefix">Add</button>
-													</div>
+														<div class="large-2 columns">
+															<button ng-click="addEmotion(newEmotion)" href="#" class="button prefix">Add</button>
+														</div>
+													</form>
 												</div>
 											</div>
 											<div class="row">
@@ -124,14 +125,16 @@
 											<div class="row">
 												<div class="large-12 columns">
 													<h2>What are your thoughts about this situation?</h2>
-													<h3>situation text placeholder</h3>
+													<h3>{{cbtEntry.concern}}</h3>
 													<div class="emotion-basket">
 														<ul>
 															<li class="emotion" ng-repeat="belief in negativeBeliefsCopy">{{belief}}</li>
 														</ul>
 													</div>
-													<input type="text" class="thoughts process" placeholder="Write thought here: imagined consequences, self judgements etc" ng-model="negativeBelief" />
-													<button ng-click="addBelief(negativeBelief)" href="#" class="button prefix">Save this thought</button>
+													<form>
+														<input type="text" class="thoughts process" placeholder="Write thought here: imagined consequences, self judgements etc" ng-model="negativeBelief" />
+														<button ng-click="addBelief(negativeBelief)" href="#" class="button prefix">Save this thought</button>
+													</form>
 												</div>
 											</div>
 											<div class="row">
@@ -220,16 +223,9 @@
 				</div>
 				<div id="introModal" class="reveal-modal">
 					<h2>Welcome to Spruce</h2>
-					<p class="lead">
-						We're taking you to your first dispute so you can try it out straight away. Don't worry if you don't have time right now, we'll be right here waiting for you when you're ready.
-					</p>
-					<p class="lead">
-						Spruce is based on a mental model of the mind that states that it's not what happens to us, but the way we interpret it that makes us feel the way we do. In the process you'll write about a situation that has upset you, add what negative feelings it caused for you, then identify how your interpretation might have made you upset. Finally you'll be prompted with some suggestions of how to make your thinking more rational in this particular case. This will help you to worry less about the situation.
-					</p>
-					<h2>What happens to my data?</h2>
-					<p class="lead">
-						Everything you type is encrypted and stored securely on our servers. We'll never see your entries in a readable format, we don't store your IP address and we won't know who you are.
-					</p>
-					<button class="button" ng-click="closeModal();">Make me happy</button>
+					<p class="lead">We're taking you straight into the disputing process. The tool works most effectively when you deal with whatever is most pressing. If there's a specific event you want to deal with, then use that. Otherwise use whatever incident troubled you most in the past 24 hours and use that to answer the questions.</p>
+					<p class="lead">Spruce is based on a mental model of the mind that states that it's not what happens to us, but the way we interpret it that makes us feel the way we do.</p>
+					<p class="lead">The process will ask you to detail a situation that has upset you, then identify how your interpretation might have made you upset. To help change this interpretation you'll be prompted with some suggestions of how to make your thinking more rational in this particular case.</p>
+					<button class="button" ng-click="closeModal();">Start the process</button>
 					<a class="close-reveal-modal">&#215;</a>
 				</div>
