@@ -59,7 +59,7 @@
 										<div class="row">
 											<div class="large-12 columns">
 												<h2>What are you feeling about this?</h2>
-												<h3>situation text placeholder</h3>
+												<h3>{{cbtEntry.concern}}</h3>
 												<div class="emotion-basket">
 													<ul id="emotion-list">
 														<li class="emotion" ng-repeat="emotion in cbtEntry.emotions">{{emotion}}</li>
@@ -126,7 +126,7 @@
 											<div class="row">
 												<div class="large-12 columns">
 													<h2>What are your thoughts about this situation?</h2>
-													<h3>situation text placeholder</h3>
+													<h3>{{cbtEntry.concern}}</h3>
 													<div class="emotion-basket">
 														<ul>
 															<li class="emotion" ng-repeat="belief in negativeBeliefsCopy">{{belief}}</li>
