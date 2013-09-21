@@ -12,9 +12,16 @@ spruce.
     var CbtEntry = _parse.Object.extend("CbtEntry");
   	var newEntry = new CbtEntry();
   	var negBeliefCopy;
-  	$('#introModal').foundation('reveal', 'open');
 
-  	var init = function(obj){
+  	var init = function(){
+  		if($routeParams.stage){
+  			$scope.stage = $routeParams.stage;
+  		}
+	  	$('#introModal').foundation('reveal', 'open');
+  	}
+  	init();
+
+  	var initEntryObj = function(obj){
   		newEntry.save(null, {
   		  success: function(newEntry) {
   		    // Execute any logic that should take place after the object is saved.
@@ -66,10 +73,10 @@ spruce.
          return;
       }
       mixpanel.track("Step "+newValue);
-  		if(newValue == 2){init(newEntry);}
+  		if(newValue == 2){initEntryObj(newEntry);}
 
   		if(newValue == 4){
-  			//initialise first neg belief
+  			//initEntryObjialise first neg belief
   			negBeliefCopy = $scope.negativeBeliefsCopy;
   			$scope.curDistortion = $scope.distortions[0];
   			$scope.negBelief = negBeliefCopy.pop();
