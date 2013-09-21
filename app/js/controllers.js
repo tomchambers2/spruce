@@ -45,6 +45,12 @@ spruce.
 
   	}
 
+  	$scope.setFinalThought = function(yesNo){
+  		var useful = (yesNO == 'yes') ? true : false;
+  		newEntry.set('useful', useful);
+  		newEntry.save();
+
+  	}
   	$scope.closeModal = function(){
   		$('#introModal').foundation('reveal', 'close');
   	}
