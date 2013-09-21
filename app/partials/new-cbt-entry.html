@@ -151,15 +151,16 @@
 
 													<p>{{curDistortion}} <strong>Does this change your thought?</strong></p>
 
-													<textarea ng-model="newthought" placeholder="If it applies, write a new, more rational version of this thought with this belief in mind (optional)"></textarea>
+													<textarea ng-show='showIsADistortion' ng-model="newthought" placeholder="If it applies, write a new, more rational version of this thought with this belief in mind (optional)"></textarea>
+													<button ng-show="showIsADistortion" ng-click="showIsADistortion=false; nextNegBelief(curDistortion, negBelief, newthought)" href="#" class="button prefix">Save this thought</button>
 												</div>
 											</div>
 											<div class="row">
 												<div class="large-6 columns">
-													<button class="small button pass" ng-click="nextNegBelief(curDistortion, negBelief, newthought); newthought=''">Yes</button>
+													<button ng-hide="showIsADistortion" class="small button pass" ng-click=" newthought=''; showIsADistortion=true;">Yes</button>
 												</div>
 												<div class="large-6 columns">
-													<button class="small button fail" ng-click="nextNegBelief(curDistortion, negBelief, newthought); newthought=''">No</button>
+													<button ng-hide="showIsADistortion" class="small button fail" ng-click="nextNegBelief(curDistortion, negBelief, ''); newthought=''">No</button>
 												</div>
 											</div>
 

@@ -3,7 +3,7 @@
 /* Controllers */
 
 spruce.
-  controller('NewEntryCtrl', ['$scope', '_Parse', function($scope, _parse) {
+  controller('NewEntryCtrl', ['$scope', '_Parse', '$routeParams', function($scope, _parse, $routeParams) {
   	$scope.stage = 1;
   	$scope.curEmotion = '';
   	$scope.newthought = '';
@@ -45,7 +45,7 @@ spruce.
   		}
   		//move on to next distortion
   		else{
-  			if(newThought.length>2){
+  			if(newThought != false && newThought.length>2){
 	  			$scope.cbtEntry.negativeBeliefs[$scope.negBelief].push({'distortion': $scope.curDistortion, 'why': newThought});
   			}
 			$scope.curDistortion = $scope.distortions[$scope.distortions.indexOf(curDistortion)+1];
