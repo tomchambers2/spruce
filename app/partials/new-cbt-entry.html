@@ -44,7 +44,7 @@
 										<div class="row" id="situationTextArea">
 											<div class="large-12 columns">
 												<h2>What situation made you upset?</h2>
-												<textarea class="feelings" placeholder='' ng-model="cbtEntry.concern"></textarea>
+												<textarea class="feelings" placeholder='' ng-model="cbtEntry.concern" required></textarea>
 											</div>
 										</div>
 										<div class="row">
@@ -72,7 +72,7 @@
 																	<label for="emotion-entry" class="right inline">I'm feeling</label>
 																</div>
 																<div class="large-8 columns">
-																	<input class="process" ng-model="newEmotion" type="text" placeholder="" id="emotion-entry" list="emotions">
+																	<input class="process" ng-model="newEmotion" type="text" placeholder="" id="emotion-entry" list="emotions" required>
 																	<datalist id="emotions">
 																		<option value="angry"></option>
 																		<option value="annoyed"></option>
@@ -125,14 +125,14 @@
 											<div class="row">
 												<div class="large-12 columns">
 													<h2>What are your beliefs about this situation?</h2>
-													<h3>Why do you believe you should be <em ng-repeat="emotion in cbtEntry.emotions">{{emotion}} </em></h3>
+													<h3>Situation: <em>{{cbtEntry.concern}}</em></h3>
 													<div class="emotion-basket">
 														<ul>
 															<li class="emotion" ng-repeat="belief in negativeBeliefsCopy">{{belief}}</li>
 														</ul>
 													</div>
 													<form>
-														<input type="text" class="thoughts process" id="beliefs-entry" placeholder="" ng-model="negativeBelief" />
+														<input type="text" class="thoughts process" id="beliefs-entry" placeholder="" ng-model="negativeBelief" required />
 														<button ng-click="addBelief(negativeBelief)" href="#" class="button prefix">Save this thought</button>
 													</form>
 												</div>
@@ -147,7 +147,7 @@
 											<legend class="hidden">Fieldset</legend>
 											<div class="row">
 												<div class="large-12 columns">
-													<h3>Your Belief: <i>{{negBelief}}</i></h3>
+													<h3>Your belief: <i>{{negBelief}}</i></h3>
 													<div class="panel">
 														<small>Dispute #{{getDistortionID(curDistortion)}}</small>
 														<p id="rationalDisputeEntry" >{{curDistortion}} </p>
@@ -186,7 +186,6 @@
 																</ul>
 															</li>
 														</ul>
-														Great!
 													</p>
 												</div>
 											</div>
@@ -214,7 +213,8 @@
 							</div>
 							<div class="large-5 columns help" ng-switch-when="4">
 							    <h3>What do I do here?</h3>
-							    <p>It's time for you to find the reasons why these thoughts that are making you upset might not be true. For each thought you've identified, there is a series of questions to test it. Imagine yourself as a lawyer questioning this thought in court. Using these questions, how might you undermine the case?</p>
+							    <p>It's time for you to find the reasons why these thoughts that are making you upset might not be true. For each thought you've identified, there is a series of questions to test it. Imagine yourself as a lawyer questioning this thought in court. Using these questions, how might you challenge the argument your belief is making?</p>
+							    <p>The set of questions repeat for each belief. Go through them carefully, as this is the most important step in the process, and the one that will help you feel better.</p>
 
 							</div>
 							<div class="large-5 columns help" ng-switch-when="5">
@@ -235,7 +235,7 @@
 				</div>
 				<div id="introModal" class="reveal-modal">
 					<h2>Welcome to Spruce</h2>
-					<p class="lead">We're taking you straight into the disputing process. The tool works most effectively when you deal with whatever is most pressing. If there's a specific event you want to deal with, then use that. Otherwise use whatever incident troubled you most in the past 24 hours and use that to answer the questions.</p>
+					<p class="lead">We're taking you straight into the solution process. The tool works most effectively when you deal with whatever is most pressing. If there's a specific event you want to deal with, then use that. Otherwise use whatever incident troubled you most in the past 24 hours and use that to answer the questions.</p>
 					<p class="lead">Spruce is based on a mental model of the mind that states that it's not what happens to us, but the way we interpret it that makes us feel the way we do.</p>
 					<p class="lead">The process will ask you to detail a situation that has upset you, then identify how your interpretation might have made you upset. To help change this interpretation you'll be prompted with some suggestions of how to make your thinking more rational in this particular case.</p>
 					<button class="button" ng-click="closeModal();">Start the process</button>
@@ -243,24 +243,18 @@
 				</div>
 				<ol class="joyride-list" id="usageJoyride" data-joyride>
 
-						  <li data-id="situationTextArea" data-options="tipLocation:top;tipAnimation:fade;" data-text="Got it.">
-
-						  			<p>Exactly what upset you? Stick to facts like 'I wrote an essay and I got a D", not opinions like "I'm really bad at writing essays and I'll never do well at anything" (we'll deal with opinions later).</p>
-
+						  <li data-id="situationTextArea" data-options="tipLocation:top;tipAnimation:fade;" data-text="Got it">
+						  			<p><strong>Exactly what upset you? Stick to objective facts like "I forgot to book the train tickets", not opinions like "I'm such an idiot because I'm so forgetful and now I've ruined the holiday" (we'll deal with feelings and opinions in the next two steps)</strong></p>
 						  </li>
-						  <li data-id="emotion-entry" data-options="tipLocation:bottom" data-text="Got it.">
+						  <li data-id="emotion-entry" data-options="tipLocation:bottom" data-text="Got it">
 
-						  			<p>Be exhaustive and enter your feelings (e.g. angry, frustrated, sad etc...) one at a time.</p>
-
-						  </li><li data-id="beliefs-entry" data-options="tipLocation:bottom" data-text="Got it.">
-
-						  			<p>In what ways will {{cbtEntry.concern}} upset your life? e.g. "I am X", or "That person thinks Y" etc...</p>
-
+						  			<p><strong>Be exhaustive and enter your feelings (e.g. angry, frustrated, sad etc...) one at a time</strong></p>
 						  </li>
-						  <li data-id="rationalDisputeEntry" data-options="tipLocation:bottom" data-text="Got it.">
-
-						  			<p>Based on this text, try hard to think of a new rational thought that replaces the belief shown above . e.g. "I was too focused on one extreme possibility, which I now realize is very unlikely to happen. Take some time to think about it.</p>
-
+						  <li data-id="beliefs-entry" data-options="tipLocation:bottom" data-text="Got it">
+						  			<p>What do you think this situation, "{{cbtEntry.concern}}" means? For example, beliefs about "I stuttered in my important presentation at work" could be, "My boss will think I'm stupid and not promote me", "my coworkers will laugh at me behind my back", "The project will fail and everyone will hate me"</p>
+						  </li>
+						  <li data-id="rationalDisputeEntry" data-options="tipLocation:bottom" data-text="Got it">
+						  			<p>Look at these questions and think about your belief to see if you can change it in any way. For example, "I messed everything up totally at work" might become, "Although I didn't do my absolute best, it wasn't terrible either, it was just average and that's ok".</p>
 						  </li>
 
 				</ol>
