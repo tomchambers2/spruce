@@ -21,7 +21,10 @@ spruce.
   		}
   		if(sharedState.fromReg){
   			sharedState.fromReg = false;
-	  		$('#introModal').foundation('reveal', 'open');
+        setTimeout(function(){
+          $('#introModal').foundation('reveal', 'open');
+        },500)
+
   		}
   		setTimeout(function(){
   			$(document).foundation('joyride', 'start');
