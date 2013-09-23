@@ -233,29 +233,6 @@
 
 					</div>
 				</div>
-				<div id="introModal" class="reveal-modal">
-					<h2>Welcome to Spruce</h2>
-					<p class="lead">We're taking you straight into the solution process. The tool works most effectively when you deal with whatever is most pressing. If there's a specific event you want to deal with, then use that. Otherwise use whatever incident troubled you most in the past 24 hours and use that to answer the questions.</p>
-					<p class="lead">Spruce is based on a mental model of the mind that states that it's not what happens to us, but the way we interpret it that makes us feel the way we do.</p>
-					<p class="lead">The process will ask you to detail a situation that has upset you, then identify how your interpretation might have made you upset. To help change this interpretation you'll be prompted with some suggestions of how to make your thinking more rational in this particular case.</p>
-					<button class="button" ng-click="closeModal();">Start the process</button>
-					<a class="close-reveal-modal">&#215;</a>
-				</div>
-				<ol class="joyride-list" id="usageJoyride" data-joyride>
-
-						  <li data-id="situationTextArea" data-options="tipLocation:top;tipAnimation:fade;" data-text="Got it">
-						  			<p><strong>Exactly what upset you? Stick to objective facts like "I forgot to book the train tickets", not opinions like "I'm such an idiot because I'm so forgetful and now I've ruined the holiday" (we'll deal with feelings and opinions in the next two steps)</strong></p>
-						  </li>
-						  <li data-id="emotion-entry" data-options="tipLocation:bottom" data-text="Got it">
-
-						  			<p><strong>Be exhaustive and enter your feelings (e.g. angry, frustrated, sad etc...) one at a time</strong></p>
-						  </li>
-						  <li data-id="beliefs-entry" data-options="tipLocation:bottom" data-text="Got it">
-						  			<p>What do you think this situation, "{{cbtEntry.concern}}" means? For example, beliefs about "I stuttered in my important presentation at work" could be, "My boss will think I'm stupid and not promote me", "my coworkers will laugh at me behind my back", "The project will fail and everyone will hate me"</p>
-						  </li>
-						  <li data-id="rationalDisputeEntry" data-options="tipLocation:bottom" data-text="Got it">
-						  			<p>Look at these questions and think about your belief to see if you can change it in any way. For example, "I messed everything up totally at work" might become, "Although I didn't do my absolute best, it wasn't terrible either, it was just average and that's ok".</p>
-						  </li>
-
-				</ol>
+				<div ng-include="'partials/intro-modal.html'"></div>
+				<div ng-include="'partials/new-cbt-entry-joyride.html'"></div>
 
