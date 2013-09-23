@@ -3,7 +3,7 @@
 /* Controllers */
 
 spruce.
-  controller('NewEntryCtrl', ['$scope', '_Parse', '$routeParams', '$location', function($scope, _parse, $routeParams, $location) {
+  controller('NewEntryCtrl', ['$scope', '_Parse', '$routeParams', '$location', 'sharedState', function($scope, _parse, $routeParams, $location, sharedState) {
   	$scope.stage = 1;
   	$scope.curEmotion = '';
   	$scope.newthought = '';
@@ -19,8 +19,8 @@ spruce.
   		if($routeParams.stage){
   			$scope.stage = $routeParams.stage;
   		}
-  		if($routeParams.fromReg){
-  			$location.search('fromReg', null); //delete query string parameter
+  		if(sharedState.fromReg){
+  			sharedState.fromReg = false;
 	  		$('#introModal').foundation('reveal', 'open');
   		}
   		setTimeout(function(){
@@ -121,7 +121,7 @@ spruce.
   controller('HomeCtrl',['$scope', function($scope){
     mixpanel.track("Home");
   }]).
-  controller('RegistrationCtrl', ['_Parse','$scope', '$location', function(_parse, $scope, $location){
+  controller('RegistrationCtrl', ['_Parse','$scope', '$location', 'sharedState', function(_parse, $scope, $location, sharedState){
   	$scope.badLogin = false;
     mixpanel.track("sign in");
   	$scope.register = function(username, password){
@@ -131,8 +131,9 @@ spruce.
   		user.signUp(null, {
   		  success: function(user) {
             mixpanel.track("$signup");
+            sharedState.fromReg = true;
           	$scope.$apply(function () {
-            	$location.url('/entries/new?fromReg=true');
+            	$location.url('/entries/new');
           	});
   		  },
   		  error: function(user, error) {

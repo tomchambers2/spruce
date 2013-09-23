@@ -24,7 +24,7 @@ body {
 	background-color:#FFF5E2;
 	width: 60%;
 	border: 2px black solid;
-
+	z-index: 98;
 }
 
 

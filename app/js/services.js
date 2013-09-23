@@ -12,4 +12,8 @@ spruce.
   			return Parse
   		}
 
-});
+	}).
+	factory("sharedState", function(){
+	  return {fromReg: false };
+	});
+    ;
