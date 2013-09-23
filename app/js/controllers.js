@@ -49,7 +49,7 @@ spruce.
   	}
 
   	$scope.setFinalThought = function(yesNo){
-  		var useful = (yesNO == 'yes') ? true : false;
+  		var useful = (yesNo == 'yes') ? true : false;
   		newEntry.set('useful', useful);
   		newEntry.save();
 
