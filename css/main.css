@@ -2,6 +2,31 @@ body {
 	background-color: #F0ECD5;
 	font-family: Helvetica;
 }
+::-webkit-input-placeholder {
+   color: #535353;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+   color: #535353;
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+   color: #535353;
+}
+
+:-ms-input-placeholder {
+   color: #535353;
+}
+.joyride-tip-guide p{
+	color: #535353;
+}
+.joyride-tip-guide{
+	background-color:#FFF5E2;
+	width: 60%;
+	border: 2px black solid;
+	z-index: 98;
+}
+
 
 .logo {
 	height: 75px;
