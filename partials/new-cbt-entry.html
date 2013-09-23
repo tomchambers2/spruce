@@ -154,7 +154,7 @@
 													</div>
 													<p><strong>Can you think of a new belief?</strong></p>
 
-													<textarea ng-show='showIsADistortion' ng-model="newthought"  placeholder="That's great: now think of a more rational version of what you said above, and write it down"></textarea>
+													<textarea ng-show='showIsADistortion' ng-model="newthought"  placeholder="That's great: now think of a more rational version of what you said above, and write it in this box"></textarea>
 													<button ng-show="showIsADistortion" ng-click="showIsADistortion=false; nextNegBelief(curDistortion, negBelief, newthought)" href="#" class="button prefix">Save this thought</button>
 												</div>
 											</div>
@@ -180,12 +180,15 @@
 															<li ng-repeat="(negBelief, distortionList) in cbtEntry.negativeBeliefs">
 																<strong >{{negBelief}}</strong>, <em>however:</em>
 																<ul>
-																	<li>
-																		<strong ng-repeat="dist in distortionList">{{dist['why']}}</strong>
-																	</li>
+																		<strong ng-repeat="dist in distortionList">
+																			<li>{{dist['why']}}</li>
+																		</strong>
 																</ul>
 															</li>
 														</ul>
+													</p>
+													<p>
+														Look at the emotions listed above and note how they've changed after focussing on these new beliefs.
 													</p>
 												</div>
 											</div>
@@ -235,4 +238,3 @@
 				</div>
 				<div ng-include="'partials/intro-modal.html'"></div>
 				<div ng-include="'partials/new-cbt-entry-joyride.html'"></div>
-
