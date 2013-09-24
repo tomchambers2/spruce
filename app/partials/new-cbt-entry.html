@@ -43,7 +43,8 @@
 
 										<div class="row" id="situationTextArea">
 											<div class="large-12 columns">
-												<h2>Describe the facts of a recent troubling event without feelings or subjective thoughts</h2>
+												<h2>What situation upset you?</h2>
+												<h3>Describe the facts without feelings or subjective thoughts</h3>
 												<textarea class="feelings" placeholder='' ng-model="cbtEntry.concern" required autofocus="autofocus"></textarea>
 											</div>
 										</div>
@@ -69,7 +70,7 @@
 														<div class="large-10 columns">
 															<div class="row">
 																<div class="large-4 columns inline">
-																	<label for="emotion-entry" class="right inline">I'm feeling </label>
+																	<label for="emotion-entry" class="right inline">I'm feeling... (one at a time) </label>
 																</div>
 																<div class="large-8 columns">
 																	<input class="process" ng-model="$parent.newEmotion" type="text" placeholder="" id="emotion-entry" list="emotions" autofocus="autofocus">
@@ -127,7 +128,7 @@
 													<h2>What do you believe about this situation?</h2>
 													<h3>Situation: <em>{{cbtEntry.concern}}</em></h3>
 													<h4>Examples</h4>
-													<h4>"My boss will think I'm stupid and not promote me"<br/>"She ignored me, she must not like me"<br/>"This is going to end in disaster"</h4>
+													<h4>"My boss will think I'm stupid and not promote me"<br/>"This is going to end in disaster"<br/>"She ignored me, she must not like me"</h4>
 													<div class="emotion-basket">
 														<ul>
 															<li class="emotion" ng-repeat="belief in negativeBeliefsCopy">{{belief}}</li>
@@ -203,10 +204,8 @@
 						<div ng-switch on="stage">
 							<div class="large-5 columns help" ng-switch-default>
 							    <h3>Example</h3>
-							    <p>
-							    	<span class="pass">CORRECT</span> "I forgot to book the plane tickets"
-							    	<span class="fail">INCORRECT</span> "I'm such an idiot because I'm so forgetful and now I've ruined the holiday"
-							    </p>
+							    <p><span class="pass">Helpful</span> "I forgot to book the plane tickets"</p>
+							    <p><span class="fail">Less helpful</span> "I'm such an idiot because I'm so forgetful and now I've ruined the holiday"</p>
 							    <p>
 							   		We'll deal with feelings and opinions in the next two steps
 							    </p>
@@ -217,7 +216,13 @@
 							</div>
 							<div class="large-5 columns help" ng-switch-when="3">
 							    <h3>What do I do here?</h3>
-							    <p>Write down what people might have thought, what could happen in the future or what this makes you think of yourself.</p>
+							    <p>Write down:
+							    <ul class="help-list">
+							    	<li>what <strong>people</strong> might have thought</li>
+							    	<li>what could happen in the <strong>future</strong></li>
+							    	<li>what this makes you think of <strong>yourself</strong>.</li>
+							    </ul>
+							    </p>
 							</div>
 							<div class="large-5 columns help" ng-switch-when="4">
 							    <h3>What do I do here?</h3>

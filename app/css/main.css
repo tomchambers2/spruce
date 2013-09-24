@@ -127,6 +127,11 @@ a.button:hover, button.button:hover {
 	height: 100%;
 }
 
+.help-list {
+	margin-left: 40px;
+	color: #535353;
+}
+
 .main-title:first-letter {
 	font-size: 155px;
 }
