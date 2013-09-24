@@ -1,5 +1,5 @@
 body {
-	background-color: #F0ECD5;
+	background-color: #ECE9D2;
 	font-family: Helvetica;
 }
 
@@ -87,7 +87,7 @@ h4 {
 }
 
 input[type="text"].process {
-	border: none;
+	border: 1px solid black;
 	border-radius: 4px;
 }
 
@@ -123,7 +123,7 @@ a.button:hover, button.button:hover {
 }
 
 .help {
-	background-color: #F5F4EB;
+	background-color: #F5F4EA;
 	height: 100%;
 }
 
@@ -148,7 +148,7 @@ fieldset.hidden {
 }
 
 textarea.feelings, textarea.thoughts {
-	border: none;
+	border: 1px solid black;
 	border-radius: 4px;
 	height: 75px;
 }
@@ -170,7 +170,7 @@ textarea.feelings, textarea.thoughts {
 .emotion-basket {
 	border-radius: 8px;
 	padding: 5px;
-	border: 1px dashed #F0ECD5;
+	border: 3px dashed #E8E5CE;
 	min-height: 50px;
 	margin-bottom: 25px;
 }
