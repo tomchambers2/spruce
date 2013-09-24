@@ -160,7 +160,7 @@
 													  <section ng-repeat="(distortionLabel, distortion) in distortions" ng-click='distortionLabel= distortion'>
 													    <p class="title" data-section-title><a href="#">{{distortionLabel}}</a></p>
 													    <div class="content" data-section-content>
-													      <textarea ng-model="newThoughts"  placeholder="That's great: now think of a more rational version of what you said above, and write it in this box"></textarea>
+													      <textarea ng-model="newThoughts[distortionLabel]"  placeholder="That's great: now think of a more rational version of what you said above, and write it in this box"></textarea>
 													    </div>
 													  </section>
 													</div>
