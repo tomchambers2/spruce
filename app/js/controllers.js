@@ -81,13 +81,20 @@ spruce.
   	$scope.getDistortionID = function(distortion){
   		return $scope.distortionsCopy.indexOf(distortion)+1;
   	}
+
   	$scope.addEmotion = function(newEmotion){
-  		$scope.cbtEntry.emotions.push(newEmotion);
-      	$scope.newEmotion = "";
+      if (newEmotion != "") {
+  		  $scope.cbtEntry.emotions.push(newEmotion);
+      }
+      $scope.newEmotion = "";
   	}
   	$scope.addBelief = function(negativeBelief){
-  		$scope.cbtEntry.negativeBeliefs[negativeBelief] = [];
-  		$scope.negativeBeliefsCopy = Object.keys($scope.cbtEntry.negativeBeliefs);
+      if (negativeBelief) {
+    		$scope.cbtEntry.negativeBeliefs[negativeBelief] = [];
+    		$scope.negativeBeliefsCopy = Object.keys($scope.cbtEntry.negativeBeliefs);
+        $scope.negativeBelief = "";
+        window.scrollTo(0,document.body.scrollHeight);
+      }
   	}
   	$scope.$watch('stage', function(newValue, oldValue){
   		if(newValue === oldValue){

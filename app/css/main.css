@@ -2,6 +2,11 @@ body {
 	background-color: #F0ECD5;
 	font-family: Helvetica;
 }
+
+input:focus::-webkit-input-placeholder {
+    color: transparent;
+}
+
 ::-webkit-input-placeholder {
    color: #535353;
 }
@@ -74,6 +79,11 @@ h2 {
 
 h3, h3 ~ p {
 	color: #535353;
+}
+
+h4 {
+	color: #7C7C7C;
+	font-size:1em;
 }
 
 input[type="text"].process {
@@ -186,9 +196,17 @@ a.button.pass {
 	color: white;
 }
 
+span.pass {
+	color: #00CB72;
+}
+
 a.button.fail {
 	background-color: #E74055;
 	color: white;
+}
+
+span.fail {
+	color: #E74055;
 }
 
 /* home */
