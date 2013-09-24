@@ -147,6 +147,9 @@ spruce.
   }]).
   controller('RegistrationCtrl', ['_Parse','$scope', '$location', 'sharedState', function(_parse, $scope, $location, sharedState){
   	$scope.badLogin = false;
+    if (_parse.User.current()) {
+      $location.url('/entries/new');
+    }
     mixpanel.track("sign in");
   	$scope.register = function(username, password){
   		var user = new _parse.User();
