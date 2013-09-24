@@ -20,6 +20,18 @@ spruce.
     ,"Labelling a Person": "By saying ‘That person is an X’ or 'I’m a Y', are you allowing a single action to define an entire life? Think about how many things you’ve done in your life and see how much of your life this incident actually is."
     ,"Assigning Responsibility/Blaming": "Is this thought about assigning responsibility? Think about to what extent you or that person was really responsible, and what might have been down to circumstance or chance."
     ,"Unrealistic Expectations": "Are you using words like ‘must’ or ‘should’? Consider whether your expectations need to be realigned. You’ll either have to adjust your expectations to match reality, or always feel let down by others (or yourself)"
+    };
+    if (_parse.User.current()) {
+      //_parse.User.logOut()
+      mixpanel.identify(_parse.User.current().getUsername());
+      mixpanel.people.set({
+        "$email": _parse.User.current().getUsername(),    // only special properties need the $
+        "$last_login": new Date(),         // properties can be dates...
+      });
+
+    } else {
+      alert('Please log in before using the process');
+      $location.url('/get-started');
     }
 
     var CbtEntry = _parse.Object.extend("CbtEntry");
@@ -98,13 +110,20 @@ spruce.
   	$scope.getDistortionID = function(distortion){
   		return 1;
   	}
+
   	$scope.addEmotion = function(newEmotion){
-  		$scope.cbtEntry.emotions.push(newEmotion);
-      	$scope.newEmotion = "";
+      if (newEmotion != "") {
+  		  $scope.cbtEntry.emotions.push(newEmotion);
+      }
+      $scope.newEmotion = "";
   	}
   	$scope.addBelief = function(negativeBelief){
-  		$scope.cbtEntry.negativeBeliefs[negativeBelief] = [];
-  		$scope.negativeBeliefsCopy = Object.keys($scope.cbtEntry.negativeBeliefs);
+      if (negativeBelief) {
+    		$scope.cbtEntry.negativeBeliefs[negativeBelief] = [];
+    		$scope.negativeBeliefsCopy = Object.keys($scope.cbtEntry.negativeBeliefs);
+        $scope.negativeBelief = "";
+        window.scrollTo(0,document.body.scrollHeight);
+      }
   	}
   	$scope.$watch('stage', function(newValue, oldValue){
   		if(newValue === oldValue){
@@ -142,6 +161,9 @@ spruce.
   }]).
   controller('RegistrationCtrl', ['_Parse','$scope', '$location', 'sharedState', function(_parse, $scope, $location, sharedState){
   	$scope.badLogin = false;
+    if (_parse.User.current()) {
+      $location.url('/entries/new');
+    }
     mixpanel.track("sign in");
   	$scope.register = function(username, password){
   		var user = new _parse.User();
@@ -150,6 +172,11 @@ spruce.
   		user.signUp(null, {
   		  success: function(user) {
             mixpanel.track("$signup");
+            mixpanel.alias(username);
+            mixpanel.people.set_once({
+              'First Login Date': new Date(),
+              'Logins': 0
+            });
             sharedState.fromReg = true;
           	$scope.$apply(function () {
             	$location.url('/entries/new');
@@ -169,6 +196,7 @@ spruce.
   		_parse.User.logIn(user.username, user.password, {
   		  success: function(user) {
           mixpanel.track("Logged in");
+          mixpanel.people.increment("Logins", 1);
   		  	$scope.badLogin = false;
   		    console.log("successful login" + angular.toJson(user, true));
           $scope.$apply(function () {
