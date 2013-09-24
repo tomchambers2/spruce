@@ -145,37 +145,38 @@
 										</fieldset>
 										<fieldset ng-switch-when="4" class="hidden">
 											<div class="row">
+												<div class="large-10 columns">
+													<p class="text-right">Your belief:<i> "{{negBelief}}"</i></p>
+
+												</div>
+												<div ng-show="firstDistortionSelected.focusText" class="large-2 columns">
+													<i class="large-icon foundicon-right-arrow"></i>
+												</div>
+											</div>
+											<div class="row">
 												<div class="large-12 columns">
-													<h3><i>{{negBelief}}</i></h3>
-													<!-- div class="panel">
-														<small>Dispute #{{getDistortionID(curDistortion)}}</small>
-														<p id="rationalDisputeEntry" >{{curDistortion}} </p>
-													</div>
-													<p><strong>Can you think of a new belief?</strong></p -->
-
-
-													<!-- textarea ng-show='showIsADistortion' ng-model="newthought"  placeholder="That's great: now think of a more rational version of what you said above, and write it in this box"></textarea -->
-
+													<label>Click on all that might apply to your belief:</label>
 													<div class="section-container accordion" data-section="accordion">
-													  <section ng-repeat="(distortionLabel, distortion) in distortions" ng-click='distortionLabel= distortion'>
-													    <p class="title" data-section-title><a href="#">{{distortionLabel}}</a></p>
+													  <section ng-repeat="(distortionLabel, distortion) in distortions" id="{{distortionLabel}}">
+													    <p class="title" data-section-title><a href="">Is this {{distortionLabel}}? <i ng-show="selected" class="foundicon-star blue-icon"></i></a></p>
 													    <div class="content" data-section-content>
-													      <textarea ng-model="newThoughts[distortionLabel]"  placeholder="That's great: now think of a more rational version of what you said above, and write it in this box"></textarea>
+													    	<p>{{distortion}}</p>
+													    	<div class="row">
+													    	  <div class="small-12 columns">
+													    	    <button class="button prefix" ng-hide="selected" ng-click=" selected=true; newThoughts.push(distortionLabel); firstDistortionSelected.state = true;">That's an interesting thought!</button>
+													    	    <div class="panel" ng-show="selected"><h5 class="subheader" >Great! Use the textbox to your right to write down thoughts this has inspired.</h5></div>
+													    	  </div>
+													    	</div>
 													    </div>
 													  </section>
 													</div>
 
+
+
 													<!-- button ng-show="showIsADistortion" ng-click="showIsADistortion=false; nextNegBelief(curDistortion, negBelief, newthought)" href="#" class="button prefix">Save this thought</button -->
 												</div>
 											</div>
-											<div class="row">
-												<div class="large-6 columns">
-													<button ng-hide="showIsADistortion" class="small button pass">Yes, I've thought of a new belief</button>
-												</div>
-												<div class="large-6 columns">
-													<button class="small button fail" ng-click="nextNegBelief(curDistortion, negBelief, '');">No</button>
-												</div>
-											</div>
+
 
 										</fieldset>
 										<fieldset ng-switch-when="5" class="hidden">
@@ -190,9 +191,13 @@
 															<li ng-repeat="(negBelief, distortionList) in cbtEntry.negativeBeliefs">
 																<strong >{{negBelief}}</strong>, <em>however:</em>
 																<ul>
-																		<strong ng-repeat="dist in distortionList">
-																			<li>{{dist['why']}}</li>
-																		</strong>
+																		<li> <em>You've realised this is:</em>
+																		<span ng-repeat="dist in distortionList['distortions']">
+																			{{dist}},
+																		</span>
+																			<li><em>So, you're now thinking: </em> <strong>{{distortionList['newThought']}}</strong></li>
+																		</li>
+
 																</ul>
 															</li>
 														</ul>
@@ -224,12 +229,25 @@
 							    <p>This step is all about finding the irrational thoughts that lead to unhealthy negative emotions.</p>
 							    <p>Write down everything you can think of including other people might have thought, what could happen in the future and judgements you've made about yourself.</p>
 							</div>
-							<!-- div class="large-5 columns help" ng-switch-when="4">
-							    <!-- <h3>What do I do here?</h3>
-							    <p>It's time for you to find the reasons why these thoughts that are making you upset might not be true. For each thought you've identified, there is a series of questions to test it. Imagine yourself as a lawyer questioning this thought in court. Using these questions, how might you challenge the argument your belief is making?</p>
-							    <p>The set of questions repeat for each belief. Go through them carefully, as this is the most important step in the process, and the one that will help you feel better.</p> >
+							<div class="large-5 columns " ng-switch-when="4">
 
-							</div -->
+							    <div class="row fat-row">
+							    	<p>{{changeStep.reformedThought}}</p>
+							    </div>
+							    <div ng-show="firstDistortionSelected.state" class="row">
+							    	<div class="columns-12 small">
+
+								    	<label>Feel free to enter here any thoughts that come to mind as you make your selections.</label>
+								    	<textarea ng-model="changeStep.reformedThought" class="tall-textarea" ng-keyup="firstDistortionSelected['focusText'] = true" rows="40"></textarea>
+							    	</div>
+							    	<div class="row">
+							    		<div class="large-6 columns help">
+							    			<button class="small button pass" ng-click="nextNegBelief()">Next Page</button>
+							    		</div>
+							    	</div>
+							    </div>
+
+							</div>
 							<div class="large-5 columns help" ng-switch-when="5">
 								<h3>That's it!</h3>
 							    <p>You're done. Read carefully through the passage on the left to consolidate the new more rational thought.

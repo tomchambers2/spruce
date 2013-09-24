@@ -6,18 +6,20 @@ spruce.
   controller('NewEntryCtrl', ['$scope', '_Parse', '$routeParams', '$location', 'sharedState', function($scope, _parse, $routeParams, $location, sharedState) {
   	$scope.stage = 1;
   	$scope.curEmotion = '';
-  	$scope.newthoughts = {};
+    $scope.newThoughts = [];
+    $scope.changeStep = {reformedThought: ''}
+    $scope.firstDistortionSelected = {'state': false, 'focusText': false};
   	$scope.concern = '';
   	$scope.cbtEntry = { concern: '', emotions: [], negativeBeliefs: {}};
     $scope.distortions =
-    {"All-Or-Nothing Thinking": "Are you seeing things in black and white? Or are there a range of possible interpretations of the situation that you haven't considered?"
+    {"All-Or-Nothing Thinking": "Are you seeing things in black and white? Are there a range of possible interpretations of the situation that you haven't considered?"
     ,"Assuming the Worst Case Scenario": "What have you assumed about the consequences of this situation? If you think about the range of possible outcomes, will it really be as bad as you imagine? What are some other possible ways in which this could go?"
     ,"Mental Filtering": "Are you focussing in on a particular aspect of your life to the exclusion of everything else?"
-    ,"Mind Reading": "Are you assuming something about what another person is thinking, or do you have evidence to support this? How certain you can be about the contents of someone else’s mind? "
+    ,"Mind-Reading": "Are you assuming something about what another person is thinking, or do you have evidence to support this? How certain you can be about the contents of someone else’s mind? "
     ,"Predicting the Future": "Is this thought trying to predict the future? Although you can make guesses about what will happen, it’s a good idea to remember that nothing in this thought is guaranteed to occur."
     ,"Labelling a Person": "By saying ‘That person is an X’ or 'I’m a Y', are you allowing a single action to define an entire life? Think about how many things you’ve done in your life and see how much of your life this incident actually is."
-    ,"Assigning Responsibility": "Is this thought about assigning responsibility? Think about to what extent you or that person was really responsible, and what might have been down to circumstance or chance."
-    ,"Unrealistic Expectation": "Are you using words like ‘must’ or ‘should’? Consider whether your expectations need to be realigned. You’ll either have to adjust your expectations to match reality, or always feel let down by others (or yourself)"
+    ,"Assigning Responsibility/Blaming": "Is this thought about assigning responsibility? Think about to what extent you or that person was really responsible, and what might have been down to circumstance or chance."
+    ,"Unrealistic Expectations": "Are you using words like ‘must’ or ‘should’? Consider whether your expectations need to be realigned. You’ll either have to adjust your expectations to match reality, or always feel let down by others (or yourself)"
     }
 
     var CbtEntry = _parse.Object.extend("CbtEntry");
@@ -66,7 +68,20 @@ spruce.
   	$scope.closeModal = function(){
   		$('#introModal').foundation('reveal', 'close');
   	}
-  	$scope.nextNegBelief = function(curDistortion, curNegBelief, newThought){
+  	$scope.nextNegBelief = function(modifiedBelief){
+        console.log($scope.newThoughts);
+        console.log($scope.changeStep.reformedThought);
+        $scope.cbtEntry.negativeBeliefs[$scope.negBelief] = {distortions: $scope.newThoughts, newThought: $scope.changeStep.reformedThought};
+        var nextNeg  = negBeliefCopy.pop();
+        $scope.newThoughts = [];
+        $scope.changeStep.reformedThought = ''
+        $scope.firstDistortionSelected.state =  $scope.firstDistortionSelected.focusText = false;
+        if(nextNeg === undefined){
+          $scope.stage = '5';
+        }
+        else{
+          $scope.negBelief = nextNeg;
+        }
   			// var nextNeg = negBeliefCopy.pop();
   			// if(nextNeg === undefined){
   			// 	$scope.stage = '5';

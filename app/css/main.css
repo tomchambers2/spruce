@@ -122,6 +122,12 @@ a.button:hover, button.button:hover {
 }
 
 /* CBT Form Styles */
+.large-icon{
+	font-size: 5em;
+}
+.fat-row{
+	min-height: 91px;
+}
 legend.hidden {
 	border:none;
 	display: none;
@@ -139,6 +145,12 @@ textarea.feelings, textarea.thoughts {
 }
 
 /* entry page */
+.tall-textarea{
+	height: 130px;
+}
+.blue-icon{
+	color:blue;
+}
 .introHelp {
 	width: 60%px;
 	max-height: 30%;
@@ -270,3 +282,35 @@ a.button.start {
 	background-color: transparent;
 	font-size: 25px;
 }
+
+/*animation*/
+.animate-show.ng-hide-add,
+.animate-show.ng-hide-remove {
+  -webkit-transition:all linear 0.5s;
+  -moz-transition:all linear 0.5s;
+  -o-transition:all linear 0.5s;
+  transition:all linear 0.5s;
+  display:block!important;
+}
+
+.animate-show.ng-hide-add.ng-hide-add-active,
+.animate-show.ng-hide-remove {
+  line-height:0;
+  opacity:0;
+  padding:0 10px;
+}
+
+.animate-show.ng-hide-add,
+.animate-show.ng-hide-remove.ng-hide-remove-active {
+  line-height:20px;
+  opacity:1;
+  padding:10px;
+  border:1px solid black;
+  background:white;
+}
+
+.check-element {
+  padding:10px;
+  border:1px solid black;
+  background:white;
+  }
