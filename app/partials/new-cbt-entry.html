@@ -214,9 +214,6 @@
 															</li>
 														</ul>
 													</p>
-													<p>
-														How have your emotions (<span ng-repeat="emotion in cbtEntry.emotions">{{emotion}}, </span>), changed after focussing on these new beliefs?
-													</p>
 												</div>
 											</div>
 											<a class="button" href="#/dashboard">See record of previous problems</a>
@@ -254,10 +251,13 @@
 							<div class="large-5 columns help" ng-switch-when="5">
 								<h3>That's it!</h3>
 							    <p>You're done. Read carefully through the passage on the left to consolidate the new more rational thought.
-							    <p>Did this help?</p>
-							    <p>
-							    	<a class="button pass" ng-click="setFinalThought('yes')">Yes, this was helpful</a> <a class="button fail" ng-click="setFinalThought('no')">No, I feel the same/worse</a>
-							   	</p>
+							    <div class="" ng-show="showFeedback">
+								    <p>Did this help?</p>
+								    <p>
+								    	<a class="button pass" ng-click="setFinalThought('yes')">Yes, this was helpful</a> <a class="button fail" ng-click="setFinalThought('no')">No, I feel the same/worse</a>
+								   	</p>
+							   </div>
+							   <p ng-hide="showFeedback">Noted, thanks.</p>
 							    <p style="display:none">
 									<a class="button" href="#/dashboard">Start Again/See record of previous problems</a>
 								</p>

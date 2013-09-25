@@ -11,7 +11,8 @@ spruce.
     $scope.nextBelief = 'Done';
     $scope.changeStep = {reformedThought: ''}
     $scope.firstDistortionSelected = {'state': false, 'focusText': false};
-  	$scope.concern = '';
+    $scope.concern = '';
+  	$scope.showFeedback = true;
   	$scope.cbtEntry = { concern: '', emotions: [], negativeBeliefs: {}};
     $scope.distortions =
     {
@@ -38,7 +39,7 @@ spruce.
     }
 
     var CbtEntry = _parse.Object.extend("CbtEntry");
-  	var newEntry = new CbtEntry();
+  	$scope.newEntry = {}
   	var negBeliefCopy;
 
   	var init = function(){
@@ -57,13 +58,16 @@ spruce.
   	}
   	init();
 
-  	var initEntryObj = function(obj){
-  		newEntry.save(null, {
-  		  success: function(newEntry) {
-  		    // Execute any logic that should take place after the object is saved.
-  		    console.log('New object created with objectId: ' + newEntry.id);
+  	var initEntryObj = function(){
+      $scope.newEntry = new CbtEntry();
+
+      $scope.newEntry.set('stageCompleted', '1');
+  		$scope.newEntry.save(null, {
+  		  success: function(entrySaved) {
+          console.log('Saved new entry with objectId: ' + $scope.newEntry.id);
+          $scope.entryId = entrySaved.id;
   		  },
-  		  error: function(newEntry, error) {
+  		  error: function(entry, error) {
   		    // Execute any logic that should take place if the save fails.
   		    // error is a Parse.Error with an error code and description.
   		    console.log('Failed to create new object, with error code: ' + error.description);
@@ -77,8 +81,9 @@ spruce.
     }
   	$scope.setFinalThought = function(yesNo){
   		var useful = (yesNo == 'yes') ? true : false;
-  		newEntry.set('useful', useful);
-  		newEntry.save();
+  		$scope.newEntry.set('useful', useful);
+  		$scope.newEntry.save();
+      $scope.showFeedback = false;
 
   	}
   	$scope.closeModal = function(){
@@ -88,7 +93,7 @@ spruce.
         console.log($scope.newThoughts);
         console.log($scope.changeStep.reformedThought);
         $scope.cbtEntry.negativeBeliefs[$scope.negBelief] = {distortions: $scope.newThoughts, newThought: $scope.changeStep.reformedThought};
-        var nextNeg  = negBeliefCopy.pop();;
+        var nextNeg  = negBeliefCopy.pop();
         /* refactor this setting next neg business, shuoldn't be dependant on order of code*/
         $scope.setNextBelief();
         $scope.newThoughts = [];
@@ -128,6 +133,15 @@ spruce.
         window.scrollTo(0,document.body.scrollHeight);
       }
   	}
+    var updateParseObject = function(){
+      for (var prop in $scope.cbtEntry) {
+         if($scope.cbtEntry.hasOwnProperty(prop)){
+
+           $scope.newEntry.set(prop, sjcl.encrypt("whampassword", JSON.stringify($scope.cbtEntry[prop])));
+         }
+      }
+      $scope.newEntry.save();
+    }
   	$scope.$watch('stage', function(newValue, oldValue){
   		if(newValue === oldValue){
          return;
@@ -136,8 +150,7 @@ spruce.
       setTimeout(function(){
       	$(document).foundation('joyride', 'start');
       },500);
-  		if(newValue == 1){$(document).foundation('joyride', 'start');}
-  		if(newValue == 2){initEntryObj(newEntry);}
+  		if(newValue == 2){initEntryObj();}
 
   		if(newValue == 4){
   			//initEntryObjialise first neg belief
@@ -145,14 +158,12 @@ spruce.
   			$scope.negBelief = negBeliefCopy.pop();
         $scope.setNextBelief();
   		}
-  		newEntry.set('stageCompleted', String(oldValue));
-  		for (var prop in $scope.cbtEntry) {
-  		   if($scope.cbtEntry.hasOwnProperty(prop)){
-  		     newEntry.set(prop, $scope.cbtEntry[prop]);
-  		   }
-  		}
+      //this if needs to be here to avoid overlapping with parse save callback in initEntryObj method
+      if(newValue>2){
+    		$scope.newEntry.set('stageCompleted', String(oldValue));
+        updateParseObject();
 
-  		newEntry.save();
+      }
   	});
 
 
