@@ -153,12 +153,11 @@
 
 												</div>
 												<div ng-show="firstDistortionSelected.focusText" class="large-2 columns">
-													<i class="large-icon foundicon-right-arrow"></i>
+													<!-- i class="large-icon foundicon-right-arrow"></i-->
 												</div>
 											</div>
 											<div class="row">
 												<div class="large-12 columns">
-													<label>Click on all that might apply to your belief:</label>
 													<div class="section-container accordion" data-section="accordion">
 													  <section ng-repeat="(distortionLabel, distortion) in distortions" id="{{distortionLabel}}">
 													    <p class="title" data-section-title><a href="">Is this {{distortionLabel}}? <i ng-show="selected" class="foundicon-star blue-icon"></i></a></p>
@@ -166,7 +165,7 @@
 													    	<p>{{distortion}}</p>
 													    	<div class="row">
 													    	  <div class="small-12 columns">
-													    	    <button class="button prefix" ng-hide="selected" ng-click=" selected=true; newThoughts.push(distortionLabel); firstDistortionSelected.state = true;">That's an interesting thought!</button>
+													    	    <button class="button prefix" ng-hide="selected" ng-click=" selected=true; newThoughts.push(distortionLabel); firstDistortionSelected.state = true;">Yes, this is relevant!</button>
 													    	    <div class="panel" ng-show="selected"><h5 class="subheader" >Great! Use the textbox to your right to write down thoughts this has inspired.</h5></div>
 													    	  </div>
 													    	</div>
