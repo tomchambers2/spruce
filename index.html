@@ -13,18 +13,28 @@
   <link rel="stylesheet" href="css/main.css">
   <link rel="stylesheet" href="css/general_foundicons.css">
 
+
   <script src="http://www.parsecdn.com/js/parse-1.2.12.min.js"></script>
   <script src="js/vendor/custom.modernizr.js"></script>
+  <script>
+  document.write('<script src=' +
+  ('__proto__' in {} ? 'js/vendor/jquery' : 'js/vendor/zepto') +
+  '.js><\/script>')
+  </script>
+
   <script src="lib/angular/angular.js"></script>
+  <script src="lib/angular/angular-animate.js"></script>
+  <script src="lib/angular/angular-route.js"></script>
   <script src="js/app.js"></script>
   <script src="js/services.js"></script>
   <script src="js/controllers.js"></script>
   <script src="js/filters.js"></script>
+  <script src="js/vendor/sjcl.js"></script>
 
 <!-- start Mixpanel --><script type="text/javascript">(function(e,b){if(!b.__SV){var a,f,i,g;window.mixpanel=b;a=e.createElement("script");a.type="text/javascript";a.async=!0;a.src=("https:"===e.location.protocol?"https:":"http:")+'//cdn.mxpnl.com/libs/mixpanel-2.2.min.js';f=e.getElementsByTagName("script")[0];f.parentNode.insertBefore(a,f);b._i=[];b.init=function(a,e,d){function f(b,h){var a=h.split(".");2==a.length&&(b=b[a[0]],h=a[1]);b[h]=function(){b.push([h].concat(Array.prototype.slice.call(arguments,0)))}}var c=b;"undefined"!==
 typeof d?c=b[d]=[]:d="mixpanel";c.people=c.people||[];c.toString=function(b){var a="mixpanel";"mixpanel"!==d&&(a+="."+d);b||(a+=" (stub)");return a};c.people.toString=function(){return c.toString(1)+".people (stub)"};i="disable track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config people.set people.set_once people.increment people.append people.track_charge people.clear_charges people.delete_user".split(" ");for(g=0;g<i.length;g++)f(c,i[g]);
 b._i.push([a,e,d])};b.__SV=1.2}})(document,window.mixpanel||[]);
-mixpanel.init("1a212f402015d8779483875d328f65ae");</script><!-- end Mixpanel -->
+mixpanel.init("2d89cbb01330c95a962f80a5d379d083");</script><!-- end Mixpanel -->
 </head>
 <body ng-controller="MainCtrl">
   <!-- ClickTale Top part -->
@@ -36,14 +46,10 @@ var WRInitTime=(new Date()).getTime();
 
   <div ng-view></div>
 
-  <script>
-  document.write('<script src=' +
-  ('__proto__' in {} ? 'js/vendor/zepto' : 'js/vendor/jquery') +
-  '.js><\/script>')
-  </script>
 
   <script src="js/foundation.min.js"></script>
   <script src="js/foundation/foundation.joyride.js"></script>
+  <script src="js/foundation/foundation.section.js"></script>
   <!--
 
   <script src="js/foundation/foundation.js"></script>
@@ -65,7 +71,6 @@ var WRInitTime=(new Date()).getTime();
 
   <script src="js/foundation/foundation.reveal.js"></script>
 
-  <script src="js/foundation/foundation.section.js"></script>
 
   <script src="js/foundation/foundation.tooltips.js"></script>
 
@@ -108,7 +113,7 @@ olark.identify('4451-881-10-5574');/*]]>*/</script><noscript><a href="https://ww
 
 <script type='text/javascript'>
 // The ClickTale Balkan Tracking Code may be programmatically customized using hooks:
-// 
+//
 //   function ClickTalePreRecordingHook() { /* place your customized code here */  }
 //
 // For details about ClickTale hooks, please consult the wiki page http://wiki.clicktale.com/Article/Customizing_code_version_2

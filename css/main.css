@@ -1,7 +1,12 @@
 body {
-	background-color: #F0ECD5;
+	background-color: #ECE9D2;
 	font-family: Helvetica;
 }
+
+input:focus::-webkit-input-placeholder {
+    color: transparent;
+}
+
 ::-webkit-input-placeholder {
    color: #535353;
 }
@@ -76,8 +81,13 @@ h3, h3 ~ p {
 	color: #535353;
 }
 
+h4 {
+	color: #7C7C7C;
+	font-size:1em;
+}
+
 input[type="text"].process {
-	border: none;
+	border: 1px solid black;
 	border-radius: 4px;
 }
 
@@ -113,8 +123,13 @@ a.button:hover, button.button:hover {
 }
 
 .help {
-	background-color: #F5F4EB;
+	background-color: #F5F4EA;
 	height: 100%;
+}
+
+.help-list {
+	margin-left: 40px;
+	color: #535353;
 }
 
 .main-title:first-letter {
@@ -122,6 +137,12 @@ a.button:hover, button.button:hover {
 }
 
 /* CBT Form Styles */
+.large-icon{
+	font-size: 5em;
+}
+.fat-row{
+	min-height: 91px;
+}
 legend.hidden {
 	border:none;
 	display: none;
@@ -133,12 +154,18 @@ fieldset.hidden {
 }
 
 textarea.feelings, textarea.thoughts {
-	border: none;
+	border: 1px solid black;
 	border-radius: 4px;
 	height: 75px;
 }
 
 /* entry page */
+.tall-textarea{
+	height: 130px;
+}
+.blue-icon{
+	color:blue;
+}
 .introHelp {
 	width: 60%px;
 	max-height: 30%;
@@ -155,7 +182,7 @@ textarea.feelings, textarea.thoughts {
 .emotion-basket {
 	border-radius: 8px;
 	padding: 5px;
-	border: 1px dashed #F0ECD5;
+	border: 3px dashed #E8E5CE;
 	min-height: 50px;
 	margin-bottom: 25px;
 }
@@ -186,9 +213,17 @@ a.button.pass {
 	color: white;
 }
 
+span.pass {
+	color: #00CB72;
+}
+
 a.button.fail {
 	background-color: #E74055;
 	color: white;
+}
+
+span.fail {
+	color: #E74055;
 }
 
 /* home */
@@ -270,3 +305,35 @@ a.button.start {
 	background-color: transparent;
 	font-size: 25px;
 }
+
+/*animation*/
+.animate-show.ng-hide-add,
+.animate-show.ng-hide-remove {
+  -webkit-transition:all linear 0.5s;
+  -moz-transition:all linear 0.5s;
+  -o-transition:all linear 0.5s;
+  transition:all linear 0.5s;
+  display:block!important;
+}
+
+.animate-show.ng-hide-add.ng-hide-add-active,
+.animate-show.ng-hide-remove {
+  line-height:0;
+  opacity:0;
+  padding:0 10px;
+}
+
+.animate-show.ng-hide-add,
+.animate-show.ng-hide-remove.ng-hide-remove-active {
+  line-height:20px;
+  opacity:1;
+  padding:10px;
+  border:1px solid black;
+  background:white;
+}
+
+.check-element {
+  padding:10px;
+  border:1px solid black;
+  background:white;
+  }

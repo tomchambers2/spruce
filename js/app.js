@@ -2,7 +2,7 @@
 
 /* App Module */
 
-var spruce = angular.module('spruce', [])
+var spruce = angular.module('spruce', ['ngRoute', 'ngAnimate'])
 
 spruce.config(['$routeProvider', function($routeProvider) {
   $routeProvider.
