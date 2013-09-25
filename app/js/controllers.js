@@ -12,14 +12,14 @@ spruce.
   	$scope.concern = '';
   	$scope.cbtEntry = { concern: '', emotions: [], negativeBeliefs: {}};
     $scope.distortions =
-    {"All-Or-Nothing Thinking": "Are you seeing things in black and white? Are there a range of possible interpretations of the situation that you haven't considered?"
-    ,"Assuming the Worst Case Scenario": "What have you assumed about the consequences of this situation? If you think about the range of possible outcomes, will it really be as bad as you imagine? What are some other possible ways in which this could go?"
-    ,"Mental Filtering": "Are you focussing in on a particular aspect of your life to the exclusion of everything else?"
-    ,"Mind-Reading": "Are you assuming something about what another person is thinking, or do you have evidence to support this? How certain you can be about the contents of someone else’s mind? "
-    ,"Predicting the Future": "Is this thought trying to predict the future? Although you can make guesses about what will happen, it’s a good idea to remember that nothing in this thought is guaranteed to occur."
-    ,"Labelling a Person": "By saying ‘That person is an X’ or 'I’m a Y', are you allowing a single action to define an entire life? Think about how many things you’ve done in your life and see how much of your life this incident actually is."
-    ,"Assigning Responsibility/Blaming": "Is this thought about assigning responsibility? Think about to what extent you or that person was really responsible, and what might have been down to circumstance or chance."
-    ,"Unrealistic Expectations": "Are you using words like ‘must’ or ‘should’? Consider whether your expectations need to be realigned. You’ll either have to adjust your expectations to match reality, or always feel let down by others (or yourself)"
+    {"Could there be more options than you've assumed?": "Are you seeing things in black and white? Are there a range of possible interpretations of the situation that you haven't considered?"
+    ,"Have you possibly assumed the worst?": "What have you assumed about the consequences of this situation? If you think about the range of possible outcomes, will it really be as bad as you imagine? What are some other possible ways in which this could go?"
+    ,"Have you focused in on a single aspect of life?": "Are you focussing in on a particular aspect of your life to the exclusion of everything else?"
+    ,"Are you trying to read someone's mind?": "Are you assuming something about what another person is thinking, or do you have evidence to support this? How certain you can be about the contents of someone else’s mind? "
+    ,"Are you trying to predict the future?": "Is this thought trying to predict the future? Although you can make guesses about what will happen, it’s a good idea to remember that nothing in this thought is guaranteed to occur."
+    ,"Have you given yourself or someone else a label?": "By saying ‘That person is an X’ or 'I’m a Y', are you allowing a single action to define an entire life? Think about how many things you’ve done in your life and see how much of your life this incident actually is."
+    ,"Have you assigned responsibility?": "Is this thought about assigning responsibility? Think about to what extent you or that person was really responsible, and what might have been down to circumstance or chance."
+    ,"Do you have unrealistic expectations?": "Are you using words like ‘must’ or ‘should’? Consider whether your expectations need to be realigned. You’ll either have to adjust your expectations to match reality, or always feel let down by others (or yourself)"
     };
     if (_parse.User.current()) {
       //_parse.User.logOut()
@@ -84,11 +84,11 @@ spruce.
         console.log($scope.newThoughts);
         console.log($scope.changeStep.reformedThought);
         $scope.cbtEntry.negativeBeliefs[$scope.negBelief] = {distortions: $scope.newThoughts, newThought: $scope.changeStep.reformedThought};
-        var nextNeg  = negBeliefCopy.pop();
+        var nextNeg  = "";
         $scope.newThoughts = [];
         $scope.changeStep.reformedThought = ''
         $scope.firstDistortionSelected.state =  $scope.firstDistortionSelected.focusText = false;
-        if(nextNeg === undefined){
+        if(nextNeg === ""){
           $scope.stage = '5';
         }
         else{
