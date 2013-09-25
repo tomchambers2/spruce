@@ -98,7 +98,9 @@ spruce.
         $scope.setNextBelief();
         $scope.newThoughts = [];
         $scope.changeStep.reformedThought = ''
-        $scope.firstDistortionSelected.state =  $scope.firstDistortionSelected.focusText = false;
+        //deprecated
+        $scope.firstDistortionSelected.state = false;
+        window.scrollTo(0,140);
         if(nextNeg === undefined){
           $scope.stage = '5';
         }
@@ -122,6 +124,7 @@ spruce.
         $scope.nextBelief = 'Done'
       }
       else{
+
         $scope.nextBelief = 'Next Belief: ' + negBeliefCopy[0];
       }
     }
