@@ -160,7 +160,7 @@
 											<div class="row">
 												<div class="large-12 columns">
 													<div class="section-container accordion" data-section="accordion">
-													  <section ng-repeat="(distortionLabel, distortion) in distortions | orderBy:'shortDescription'" id="{{distortion['shortDescription']}}">
+													  <section ng-repeat="(distortionLabel, distortion) in distortions | orderBy:'shortDescription'" id="{{distortionLabel}}">
 													    <p class="title" data-section-title><a href="">{{distortion['shortDescription']}}<i ng-show="selected" class="foundicon-star blue-icon"></i></a></p>
 													    <div class="content" data-section-content>
 													    	<p>{{distortion['fullDescription']}}</p>
@@ -170,7 +170,7 @@
 													    	    <div class="" ng-show="selected"><!--h5 class="subheader" >Great! Write something about this on the right.</h5-->
 													    	    	<label>Enter any thoughts that come to mind.</label>
 													    	    <textarea ng-model="changeStep.reformedThought" class="tall-textarea" rows="40" autofocus="autofocus"></textarea>
-													    	    <button class="small button pass" ng-click="angular.element('section').removeClass('active')">Ok</button>
+													    	    <button class="small button pass" ng-click="closeAccordion()">Ok</button>
 													    		</div>
 													    	  </div>
 													    	</div>

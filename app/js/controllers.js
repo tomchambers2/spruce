@@ -72,6 +72,9 @@ spruce.
 
   	}
 
+    $scope.closeAccordion = function(el){
+      angular.element('section').removeClass('active');
+    }
   	$scope.setFinalThought = function(yesNo){
   		var useful = (yesNo == 'yes') ? true : false;
   		newEntry.set('useful', useful);

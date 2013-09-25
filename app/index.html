@@ -13,8 +13,15 @@
   <link rel="stylesheet" href="css/main.css">
   <link rel="stylesheet" href="css/general_foundicons.css">
 
+
   <script src="http://www.parsecdn.com/js/parse-1.2.12.min.js"></script>
   <script src="js/vendor/custom.modernizr.js"></script>
+  <script>
+  document.write('<script src=' +
+  ('__proto__' in {} ? 'js/vendor/jquery' : 'js/vendor/zepto') +
+  '.js><\/script>')
+  </script>
+
   <script src="lib/angular/angular.js"></script>
   <script src="lib/angular/angular-animate.js"></script>
   <script src="lib/angular/angular-route.js"></script>
@@ -38,11 +45,6 @@ var WRInitTime=(new Date()).getTime();
 
   <div ng-view></div>
 
-  <script>
-  document.write('<script src=' +
-  ('__proto__' in {} ? 'js/vendor/zepto' : 'js/vendor/jquery') +
-  '.js><\/script>')
-  </script>
 
   <script src="js/foundation.min.js"></script>
   <script src="js/foundation/foundation.joyride.js"></script>
