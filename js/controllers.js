@@ -101,6 +101,10 @@ spruce.
         //deprecated
         $scope.firstDistortionSelected.state = false;
         window.scrollTo(0,140);
+          angular.element('#yourBeliefContainer').hide();
+        setTimeout(function(){
+          angular.element('#yourBeliefContainer').fadeIn('slow')
+        }, 300);
         if(nextNeg === undefined){
           $scope.stage = '5';
         }
