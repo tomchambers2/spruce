@@ -187,6 +187,7 @@ spruce.
 
   }]).
   controller('DashboardCtrl',['$scope', '_Parse', 'objDecrypter', 'orm', function($scope, _parse, objDecrypter, orm){
+    mixpanel.track("Dashboard View");
     $scope.entries = {};
     var populateScope = function(entries){
       entries.forEach(function(val, index){
@@ -198,11 +199,8 @@ spruce.
     orm.getAllEntries(populateScope);
   }]).
   controller('EntryCtrl',['$scope', '$routeParams', '_Parse', 'objDecrypter', 'orm', function($scope, $routeParams, _parse, objDecrypter, orm){
+    mixpanel.track("Entry View");
     $scope.cbtEntry = {};
-    // $scope.populateScope = function(entry){
-
-
-    // }
     orm.getEntry($routeParams.id, function(entry){
       entry = objDecrypter.decryptEntry(entry);
       $scope.cbtEntry = entry;
@@ -263,7 +261,7 @@ spruce.
           });
   		  },
   		  error: function(user, error) {
-          mixpanel.track("Log in error");
+          mixpanel.track("Log in Error", {message: error.message});
   		  	$scope.badLogin = true;
   		    alert("Error: " + error.code + " " + error.message + angular.toJson(error));
   		  }
