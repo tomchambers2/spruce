@@ -27,9 +27,10 @@ spruce.
     };
     if (_parse.User.current()) {
       //_parse.User.logOut()
-      mixpanel.identify(_parse.User.current().getUsername());
+      var uname = _parse.User.current().getUsername();
+      mixpanel.identify(uname);
       mixpanel.people.set({
-        "$email": _parse.User.current().getUsername(),    // only special properties need the $
+        '$name': uname,
         "$last_login": new Date(),         // properties can be dates...
       });
 
@@ -48,9 +49,10 @@ spruce.
   		}
   		if(sharedState.fromReg){
   			sharedState.fromReg = false;
-        setTimeout(function(){
-          $('#introModal').foundation('reveal', 'open');
-        },500)
+        //meh, not using modal for now.
+        // setTimeout(function(){
+        //   $('#introModal').foundation('reveal', 'open');
+        // },500)
 
   		}
 
@@ -153,6 +155,9 @@ spruce.
       $scope.newEntry.save();
     }
   	$scope.$watch('stage', function(newValue, oldValue){
+      if (newValue==1){
+        mixpanel.track("Step "+newValue);
+      }
   		if(newValue === oldValue){
          return;
       }
@@ -199,8 +204,11 @@ spruce.
             mixpanel.track("$signup");
             mixpanel.alias(username);
             mixpanel.people.set_once({
-              'First Login Date': new Date(),
-              'Logins': 0
+              '$created': new Date(),
+              '$name': username,
+              'Logins': 0,
+              "$email": username
+
             });
             sharedState.fromReg = true;
           	$scope.$apply(function () {
@@ -208,7 +216,7 @@ spruce.
           	});
   		  },
   		  error: function(user, error) {
-          mixpanel.track("Signup error");
+          mixpanel.track("Signup error", {errorCode: error.code, errorMessage: error.message});
   		    // Show the error message somewhere and let the user try again.
   		    alert("Error: " + error.code + " " + error.message);
   		    console.log("Error: " + angular.toJson(error,true) +  angular.toJson(user,true));
