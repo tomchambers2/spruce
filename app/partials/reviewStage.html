@@ -1,0 +1,19 @@
+<h2>Review</h2>
+<p>
+	So, <strong>{{cbtEntry.concern}}</strong>, and this made you feel: <strong ng-repeat="emotion in cbtEntry.emotions">{{emotion}}, </strong>
+	and you thought this meant that:
+	<ul>
+		<li ng-repeat="(negBelief, distortionList) in cbtEntry.negativeBeliefs">
+			<strong >{{negBelief}}</strong>, <em>however:</em>
+			<ul>
+					<li> <em>You've realised this is:</em>
+					<span ng-repeat="dist in distortionList['distortions']">
+						{{dist}},
+					</span>
+						<li><em>So, you're now thinking: </em> <strong>{{distortionList['newThought']}}</strong></li>
+					</li>
+
+			</ul>
+		</li>
+	</ul>
+</p>
