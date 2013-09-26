@@ -174,7 +174,7 @@
 													    	  <div class="small-12 columns">
 													    	    <button class="button prefix" ng-hide="selected" ng-click=" selected=true; newThoughts.push(distortionLabel); firstDistortionSelected.state = true;">This question applies to my belief</button>
 													    	    <div class="" ng-show="selected"><!--h5 class="subheader" >Great! Write something about this on the right.</h5-->
-													    	    	<label>What is the problem with your belief according to this? Try writing a new belief</label>
+													    	    	<label><strong>What's the problem with your belief? Try writing a new belief</label>
 													    	    <textarea ng-model="changeStep.reformedThought" class="tall-textarea" rows="40" autofocus="autofocus"></textarea>
 													    	    <button class="small button pass" ng-click="closeAccordion()">Save</button>
 													    		</div>
@@ -243,9 +243,9 @@
 							    	</div-->
 							    </div>
 							</div>
-							<div class="large-5 columns help" ng-switch-when="5">
+							<div class="large-10 large-offset-1 columns help" ng-switch-when="5">
 								<h3>That's it!</h3>
-							    <p>You're done. Read carefully through the passage on the left to consolidate the new more rational thought.
+							    <p>You're done. Read carefully through the passage above to consolidate the new more rational thought.
 							    <div class="" ng-show="showFeedback">
 								    <p>Did this help?</p>
 								    <p>
