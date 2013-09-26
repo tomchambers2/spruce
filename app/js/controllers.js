@@ -183,6 +183,29 @@ spruce.
 
 
   }]).
+  controller('DashboardCtrl',['$scope', '_Parse', 'objDecrypter', 'orm', function($scope, _parse, objDecrypter, orm){
+    $scope.entries = {};
+    var populateScope = function(entries){
+      entries.forEach(function(val, index){
+        $scope.entries[String(index)] = objDecrypter.decryptEntry(val);
+        $scope.$apply();
+      });
+      var pop;
+    }
+    orm.getAllEntries(populateScope);
+  }]).
+  controller('EntryCtrl',['$scope', '$routeParams', '_Parse', 'objDecrypter', 'orm', function($scope, $routeParams, _parse, objDecrypter, orm){
+    $scope.cbtEntry = {};
+    // $scope.populateScope = function(entry){
+
+
+    // }
+    orm.getEntry($routeParams.id, function(entry){
+      entry = objDecrypter.decryptEntry(entry);
+      $scope.cbtEntry = entry;
+       $scope.$apply();
+    });
+  }]).
   controller('MainCtrl',['$scope', function($scope){
 
   }]).
