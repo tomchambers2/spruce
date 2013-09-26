@@ -34,7 +34,7 @@
 			</div>
 
 				<div class="row row-panel main">
-					<div class="large-7 columns" ng-class="{'large-10 large-offset-1': stage==4}">
+					<div class="large-10 large-offset-1 columns" ng-class="{'large-10 large-offset-1': stage==4}">
 						<div class="row">
 							<div class="large-12 columns">
 								<section ng-switch on="stage">
@@ -60,6 +60,7 @@
 											<div class="large-12 columns">
 												<h2>What do you feel about this?</h2>
 												<h3>{{cbtEntry.concern}}</h3>
+												<p>Write what you're feeling now even if it doesn't seem related. Examples: angry, sad, upset, paranoid</p>
 												<div class="emotion-basket">
 													<ul id="emotion-list">
 														<li class="emotion" ng-repeat="emotion in cbtEntry.emotions">{{emotion}}</li>
@@ -125,10 +126,15 @@
 											<legend class="hidden">Fieldset</legend>
 											<div class="row">
 												<div class="large-12 columns">
-													<h2>What do you believe about this situation?</h2>
+													<h2>What are your thoughts about this situation?</h2>
 													<h3>Situation: <em>{{cbtEntry.concern}}</em></h3>
-													<h4>Examples</h4>
-													<h4>"My boss will think I'm stupid and not promote me"<br/>"This is going to end in disaster"<br/>"She ignored me, she must not like me"</h4>
+													<h4>Write thoughts about:</h4>
+													<h4>
+														<strong>people:</strong> "She ignored me, she must not like me" "He's a dick"<br/>
+														<strong>the future:</strong> "This is going to end in disaster"<br/>
+														<strong>yourself:</strong> "If I mess this up, I'm inadequate" "Because I can't do this, I'm a pathetic failure"
+													</h4>
+
 													<div class="emotion-basket">
 														<ul>
 															<li class="emotion" ng-repeat="belief in negativeBeliefsCopy">{{belief}}</li>
@@ -168,7 +174,7 @@
 													    	  <div class="small-12 columns">
 													    	    <button class="button prefix" ng-hide="selected" ng-click=" selected=true; newThoughts.push(distortionLabel); firstDistortionSelected.state = true;">This question applies to my belief</button>
 													    	    <div class="" ng-show="selected"><!--h5 class="subheader" >Great! Write something about this on the right.</h5-->
-													    	    	<label>Why do you feel this question applies?</label>
+													    	    	<label>What is the problem with your belief according to this? Try writing a new belief</label>
 													    	    <textarea ng-model="changeStep.reformedThought" class="tall-textarea" rows="40" autofocus="autofocus"></textarea>
 													    	    <button class="small button pass" ng-click="closeAccordion()">Save</button>
 													    		</div>
@@ -197,8 +203,8 @@
 												<div class="large-12 columns">
 													<h2>Review</h2>
 													<p>
-														So, <strong>{{cbtEntry.concern}}</strong>, and this made you feel: <strong ng-repeat="emotion in cbtEntry.emotions">{{emotion}}, </strong>
-														and you thought this meant that:
+														So, you said '<strong>{{cbtEntry.concern}}</strong>', and this made you feel <strong ng-repeat="emotion in cbtEntry.emotions">{{emotion}}, </strong>
+														and you had these thoughts about it:
 														<ul>
 															<li ng-repeat="(negBelief, distortionList) in cbtEntry.negativeBeliefs">
 																<strong >{{negBelief}}</strong>, <em>however:</em>
@@ -223,22 +229,11 @@
 							</div>
 						</div>
 						<div ng-switch on="stage">
-							<div class="large-5 columns help" ng-switch-default>
-							    <h3>Example</h3>
-							    <p><span class="pass">Helpful</span> "I forgot to book the plane tickets"</p>
-							    <p><span class="fail">Less helpful</span> "I'm such an idiot because I'm so forgetful and now I've ruined the holiday"</p>
+							<div class="large-5 columns" ng-switch-default>
 							</div>
-							<div class="large-5 columns help" ng-switch-when="2">
-							    <h3>What do I write?</h3>
-							    <p>Everything you're feeling at the moment, whether or not it's connected to the problem. This stage helps you to identify your feelings so you can see if they change through the process.</p>
+							<div class="large-5 columns" ng-switch-when="2">
 							</div>
-							<div class="large-5 columns help" ng-switch-when="3">
-							    <h3>Write down</h3>
-							    <ul class="help-list">
-							    	<li>what <strong>people</strong> might have thought</li>
-							    	<li>what could happen in the <strong>future</strong></li>
-							    	<li>what this makes you think of <strong>yourself</strong>.</li>
-							    </ul>
+							<div class="large-5 columns" ng-switch-when="3">
 							</div>
 							<div class="large-5 columns " ng-switch-when="4">
 							    <div class="row">
