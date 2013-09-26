@@ -25,6 +25,7 @@ spruce.
           cb(entry);
         },
         error: function(object, error) {
+          mixpanel.track("Parse Error", {'code': error.code});
           alert(error.description);
         }
       });
@@ -38,6 +39,9 @@ spruce.
       query.find({
         success: function(comments) {
           cb(comments);
+        },
+        error: function(obj, error){
+          mixpanel.track("Parse Error", {'code': error.code});
         }
       });
     }
@@ -54,6 +58,7 @@ spruce.
          plainObj['negativeBeliefs'] = JSON.parse(sjcl.decrypt("whampassword", obj.attributes['negativeBeliefs']));
       }
       catch(e){
+        mixpanel.track("App Error", {'type': e.message});
         plainObj['id'] = ''
         plainObj['concern'] = ''
         plainObj['emotions'] = ''
