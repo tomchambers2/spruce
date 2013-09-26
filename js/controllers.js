@@ -62,6 +62,9 @@ spruce.
       $scope.newEntry = new CbtEntry();
 
       $scope.newEntry.set('stageCompleted', '1');
+      $scope.newEntry.set('parent', _parse.User.current());
+      $scope.newEntry.setACL(new Parse.ACL(Parse.User.current()));
+
   		$scope.newEntry.save(null, {
   		  success: function(entrySaved) {
           console.log('Saved new entry with objectId: ' + $scope.newEntry.id);
