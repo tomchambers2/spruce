@@ -197,26 +197,7 @@
 										<fieldset ng-switch-when="5" class="hidden">
 											<legend class="hidden">Fieldset</legend>
 											<div class="row">
-												<div class="large-12 columns">
-													<h2>Review</h2>
-													<p>
-														So, you said '<strong>{{cbtEntry.concern}}</strong>', and this made you feel <strong ng-repeat="emotion in cbtEntry.emotions">{{emotion}}, </strong>
-														and you had these thoughts about it:
-														<ul>
-															<li ng-repeat="(negBelief, distortionList) in cbtEntry.negativeBeliefs">
-																<strong >{{negBelief}}</strong>, <em>however:</em>
-																<ul>
-																		<li> <em>You've realised this is:</em>
-																		<span ng-repeat="dist in distortionList['distortions']">
-																			{{dist}},
-																		</span>
-																			<li><em>So, you're now thinking: </em> <strong>{{distortionList['newThought']}}</strong></li>
-																		</li>
-
-																</ul>
-															</li>
-														</ul>
-													</p>
+												<div ng-include="'partials/reviewStage.html'" class="large-12 columns">
 												</div>
 											</div>
 											<a class="button spruce-btn" href="#/dashboard">See record of previous problems</a>
@@ -248,9 +229,9 @@
 								    <p>
 								    	<a class="button spruce-btn pass" ng-click="setFinalThought('yes')">Yes, this was helpful</a> <a class="button spruce-btn fail" ng-click="setFinalThought('no')">No, I feel the same/worse</a>
 								   	</p>
-							   </div>
-							   <p ng-hide="showFeedback">Noted, thanks.</p>
-							    <p style="display:none">
+								</div>
+								<p ng-hide="showFeedback">Noted, thanks.</p>
+								<p style="display:none">
 									<a class="button spruce-btn" href="#/dashboard">Start Again/See record of previous problems</a>
 								</p>
 							</div>

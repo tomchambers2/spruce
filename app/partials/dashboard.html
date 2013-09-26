@@ -12,8 +12,23 @@
     </div>
 
     <div class="large-12 columns">
-      <p>Coming soon...</p>
-        <!--h3>History</h3-->
+        <h3>History</h3>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Concern</th>
+              <th>Emotions</th>
+
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="(i, entry) in entries">
+              <td><a ng-href='#/entries/{{entry.id}}'>{{entry.concern}}</a></td>
+              <td><span ng-repeat='emotion in entry.emotions'>{{emotion}} </span></td>
+            </tr>
+          </tbody>
+        </table>
 
     </div>
   </div>
