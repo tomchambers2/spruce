@@ -12,6 +12,7 @@ spruce.
     $scope.firstDistortionSelected = {'state': false, 'focusText': false};
     $scope.concern = '';
   	$scope.showFeedback = true;
+    $scope.negativeBeliefsCopy = [];
   	$scope.cbtEntry = { concern: '', emotions: [], negativeBeliefs: {}};
     $scope.distortions =
     {
@@ -165,6 +166,10 @@ spruce.
          }
       }
       $scope.newEntry.save();
+    }
+    $scope.advanceNextStep = function(){
+      var nextStage = Number($scope.stage) + 1;
+      $scope.stage = String(nextStage);
     }
   	$scope.$watch('stage', function(newValue, oldValue){
       if (newValue==1){
