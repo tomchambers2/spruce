@@ -82,11 +82,24 @@ spruce.
   		  }
   		});
 
-  	}
+  	};
 
     $scope.closeAccordion = function(el){
       angular.element('section').removeClass('active');
     }
+
+    $scope.nextStage = function() {
+      var nextStage = Number($scope.stage) + 1;
+      $location.search({'section': nextStage});
+    }
+
+    $scope.$on('$routeUpdate', function() {
+      if ($routeParams.section == undefined) {
+        $routeParams.section = 1;
+      }
+      $scope.stage = $routeParams.section;
+    });
+
   	$scope.setFinalThought = function(yesNo){
   		var useful = (yesNo == 'yes') ? true : false;
   		$scope.newEntry.set('useful', useful);
@@ -124,7 +137,7 @@ spruce.
           angular.element('#yourBeliefContainer').fadeIn('slow')
         }, 300);
         if(nextNeg === undefined){
-          $scope.stage = '5';
+          $scope.nextStage();
         }
         else{
           $scope.negBelief = nextNeg;
@@ -144,9 +157,7 @@ spruce.
     $scope.setNextBelief = function(){
       if(negBeliefCopy[0] === undefined){
         $scope.nextBelief = 'Done'
-      }
-      else{
-
+      } else {
         $scope.nextBelief = 'Next Belief: ' + negBeliefCopy[0];
       }
     }
