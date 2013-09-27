@@ -115,7 +115,7 @@
 											</div>
 											<div class="row">
 												<div class="large-5 columns text-center large-offset-7">
-													<button class="small button spruce-btn" ng-click="$parent.stage='3'">Next step - beliefs</button>
+													<button class="small button spruce-btn" ng-click="addEmotion(newEmotion); advanceNextStep()">Next step - beliefs</button>
 												</div>
 											</div>
 										</fieldset>
@@ -145,7 +145,7 @@
 											</div>
 											<div class="row">
 												<div class="large-5 columns text-center large-offset-7">
-													<button class="small button spruce-btn" ng-click="$parent.stage='4'">Done, show next step</button>
+													<button class="small button spruce-btn" ng-click="addBelief(negativeBelief); advanceNextStep();">Done, show next step</button>
 												</div>
 											</div>
 										</fieldset>
@@ -169,10 +169,10 @@
 													    	<p>{{distortion['fullDescription']}}</p>
 													    	<div class="row">
 													    	  <div class="small-12 columns">
-													    	    <button class="button spruce-btn prefix" ng-hide="selected" ng-click=" selected=true; newThoughts.push(distortionLabel); firstDistortionSelected.state = true;">This question applies to my belief</button>
+													    	    <button class="button spruce-btn prefix" ng-hide="selected" ng-click=" selected=true;firstDistortionSelected.state = true;">This question applies to my belief</button>
 													    	    <div class="" ng-show="selected"><!--h5 class="subheader" >Great! Write something about this on the right.</h5-->
-													    	    	<label><strong>What's the problem with your belief? Try writing a new belief</label>
-													    	    <textarea ng-model="changeStep.reformedThought" class="tall-textarea" rows="40" autofocus="autofocus"></textarea>
+													    	    	<label><strong>What's the problem with your belief? Try writing a new belief</strong></label>
+													    	    <textarea ng-model="changeStep[distortionLabel]" ng-keyup="distKeyUp()"class="tall-textarea" rows="40" autofocus="autofocus"></textarea>
 													    	    <button class="small button spruce-btn pass" ng-click="closeAccordion()">Save</button>
 													    		</div>
 													    	  </div>
