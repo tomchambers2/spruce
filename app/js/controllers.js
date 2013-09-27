@@ -16,20 +16,24 @@ spruce.
   	$scope.cbtEntry = { concern: '', emotions: [], negativeBeliefs: {}};
     $scope.distortions =
     {
-    "Assuming the Worst Case Scenario": {'fullDescription': "What have you assumed about the consequences of this situation? If you think about the range of possible outcomes, will it really be as bad as you imagine? What are some other possible ways in which this could go?", 'shortDescription': "Have you assumed the worst?"}
-    ,"Mental Filtering": {'fullDescription': "Are you focussing in on a particular aspect of your life to the exclusion of everything else?", 'shortDescription': "Have you focused in on a single aspect of life?"}
-    ,"Mind-Reading": {'fullDescription': "Are you assuming something about what another person is thinking, or do you have evidence to support this? How certain you can be about the contents of someone else’s mind? ", 'shortDescription': "Are you trying to read someone's mind?"}
-    ,"Predicting the Future": {'fullDescription': "Although you can make guesses about what will happen, it’s a good idea to remember that nothing in this thought is guaranteed to occur.", 'shortDescription': "Are you trying to predict the future?"}
-    ,"Labelling a Person": {'fullDescription': "By saying ‘That person is an X’ or 'I’m a Y', are you allowing a single action to define an entire life? Think about how many things you’ve done in your life and see how much of your life this incident actually is.", 'shortDescription': "Have you given yourself or someone else a label?"}
-    ,"Assigning Responsibility/Blaming": {'fullDescription': "Is this thought about assigning responsibility? Think about to what extent you or that person was really responsible, and what might have been down to circumstance or chance.", 'shortDescription': "Are you blaming or assigning responsibility?"}
-    ,"Unrealistic Expectations": {'fullDescription': "Are you using words like ‘must’ or ‘should’? Consider whether your expectations need to be realigned. You’ll either have to adjust your expectations to match reality, or always feel let down by others (or yourself)", 'shortDescription': 'Do you have unrealistic expectations?'}
-    ,"All-Or-Nothing Thinking": {'fullDescription': "Are you seeing things in black and white? Are there a range of possible interpretations of the situation that you haven't considered?", 'shortDescription': "Are you seeing things as only black & white?"}
+    "Assuming the Worst Case Scenario": {'fullDescription': "Sometimes we automatically go to an extremely negative end of the spectrum. If you think about the range of possibilities, is it really as bad as you imagine? What are some other possible ways in which you could state this that are more moderate?", 'shortDescription': "Does this statement seem at all extreme?"}
+    ,"Mental Filtering": {'fullDescription': "Are you focussing in on a particular aspect of your life to the exclusion of everything else? Are there areas your life that are totally unrelated and unaffected by this that bring you pleasure?", 'shortDescription': "Perhaps there might be other areas of life that have been eclipsed by this situation?"}
+    ,"Mind-Reading": {'fullDescription': "Are you assuming something about what another person is thinking, or do you have evidence to support this? How certain you can be about the contents of someone else’s mind? Do you think that your assumption is based on a preconception?", 'shortDescription': "Does this thought state what someone else might be thinking?"}
+    ,"Predicting the Future": {'fullDescription': "Although you can make guesses about what will happen, it’s a good idea to remember that nothing in this thought is guaranteed to occur. However convinced you are, you'll never absolutely know.", 'shortDescription': "Have you made a prediction about the future?"}
+    ,"Labelling a Person": {'fullDescription': "By saying ‘That person is awful or 'I’m stupid', are you allowing a single action to define an entire life? Think about how many things you’ve done in your life and see what proportion of your life this incident actually is. Is it sensible to allow a single thing to define your self worth?", 'shortDescription': "In this thought have you passed judgement on yourself or someone else?"}
+    ,"Assigning Responsibility/Blaming": {'fullDescription': "Is this thought about assigning responsibility? Think about to what extent you or that person was really responsible, and what might have been down to circumstance or chance.", 'shortDescription': "Is this thought about giving yourself or someone else responsibility for what happened?"}
+    ,"Unrealistic Expectations": {'fullDescription': "Are you using words like ‘must’ or ‘should’? Consider whether your expectations need to be realigned. You’ll either have to adjust your expectations to match reality, or always feel let down by others (or yourself)", 'shortDescription': 'Have you used the words "must" or "should" in this thought?'}
+    ,"All-Or-Nothing Thinking": {'fullDescription': "Are you seeing things in black and white with only a binary set of outcomes? Are there a range of possible interpretations of the situation that you haven't considered?", 'shortDescription': "Are you assuming that a single outcome is inevitable?"}
+    ,"Factual accuracy": {'fullDescription': 'Try and think about all the evidence for this statement. Can you think of any evidence for an alternate point of view?', 'shortDescription': 'How much evidence is there for this belief?'}
+    ,"Overgeneralisation": {'fullDescription': 'It\'s easy to focus in one thing and assume that it\'s representative of everything similar. But often that\'s a mistake, it might be your day that\'s going badly, rather than your whole life. Is it possible that it\'s just one thing that\'s bad, rather than everything?', 'shortDescription': 'Have you described many things or something very complex?'}
+    ,"Subjective view": {'fullDescription': "Subjective views are like a filter we put between ourselves and the world. Imagine this view as a coloured pane of glass you're looking through. What other colours could it be if you asked different people? How much of this can be proved objectively?", 'shortDescription': 'Does the truth of this thought rely on your subjective beliefs?'}
     };
     if (_parse.User.current()) {
       //_parse.User.logOut()
-      mixpanel.identify(_parse.User.current().getUsername());
+      var uname = _parse.User.current().getUsername();
+      mixpanel.identify(uname);
       mixpanel.people.set({
-        "$email": _parse.User.current().getUsername(),    // only special properties need the $
+        '$name': uname,
         "$last_login": new Date(),         // properties can be dates...
       });
 
@@ -48,9 +52,10 @@ spruce.
   		}
   		if(sharedState.fromReg){
   			sharedState.fromReg = false;
-        setTimeout(function(){
-          $('#introModal').foundation('reveal', 'open');
-        },500)
+        //meh, not using modal for now.
+        // setTimeout(function(){
+        //   $('#introModal').foundation('reveal', 'open');
+        // },500)
 
   		}
 
@@ -62,6 +67,9 @@ spruce.
       $scope.newEntry = new CbtEntry();
 
       $scope.newEntry.set('stageCompleted', '1');
+      $scope.newEntry.set('parent', _parse.User.current());
+      $scope.newEntry.setACL(new Parse.ACL(Parse.User.current()));
+
   		$scope.newEntry.save(null, {
   		  success: function(entrySaved) {
           console.log('Saved new entry with objectId: ' + $scope.newEntry.id);
@@ -91,13 +99,13 @@ spruce.
   	}
   	$scope.nextNegBelief = function(modifiedBelief){
         console.log($scope.newThoughts);
-        console.log($scope.changeStep.reformedThought);
-        $scope.cbtEntry.negativeBeliefs[$scope.negBelief] = {distortions: $scope.newThoughts, newThought: $scope.changeStep.reformedThought};
+        console.log(angular.toJson($scope.changeStep));
+        //$scope.cbtEntry.negativeBeliefs[$scope.negBelief] = {distortions: $scope.newThoughts, newThought: $scope.changeStep.reformedThought};
         var nextNeg  = negBeliefCopy.pop();
         /* refactor this setting next neg business, shuoldn't be dependant on order of code*/
         $scope.setNextBelief();
         $scope.newThoughts = [];
-        $scope.changeStep.reformedThought = ''
+        //$scope.changeStep.reformedThought = ''
         //deprecated
         $scope.firstDistortionSelected.state = false;
         window.scrollTo(0,140);
@@ -150,13 +158,14 @@ spruce.
       $scope.newEntry.save();
     }
   	$scope.$watch('stage', function(newValue, oldValue){
+      if (newValue==1){
+        mixpanel.track("Step "+newValue);
+      }
   		if(newValue === oldValue){
          return;
       }
       mixpanel.track("Step "+newValue);
-      setTimeout(function(){
-      	$(document).foundation('joyride', 'start');
-      },500);
+
   		if(newValue == 2){initEntryObj();}
 
   		if(newValue == 4){
@@ -175,6 +184,27 @@ spruce.
 
 
   }]).
+  controller('DashboardCtrl',['$scope', '_Parse', 'objDecrypter', 'orm', function($scope, _parse, objDecrypter, orm){
+    mixpanel.track("Dashboard View");
+    $scope.entries = {};
+    var populateScope = function(entries){
+      entries.forEach(function(val, index){
+        $scope.entries[String(index)] = objDecrypter.decryptEntry(val);
+        $scope.$apply();
+      });
+      var pop;
+    }
+    orm.getAllEntries(populateScope);
+  }]).
+  controller('EntryCtrl',['$scope', '$routeParams', '_Parse', 'objDecrypter', 'orm', function($scope, $routeParams, _parse, objDecrypter, orm){
+    mixpanel.track("Entry View");
+    $scope.cbtEntry = {};
+    orm.getEntry($routeParams.id, function(entry){
+      entry = objDecrypter.decryptEntry(entry);
+      $scope.cbtEntry = entry;
+       $scope.$apply();
+    });
+  }]).
   controller('MainCtrl',['$scope', function($scope){
 
   }]).
@@ -186,7 +216,7 @@ spruce.
     if (_parse.User.current()) {
       $location.url('/entries/new');
     }
-    mixpanel.track("sign in");
+    mixpanel.track("sign in page");
   	$scope.register = function(username, password){
   		var user = new _parse.User();
   		user.setUsername(username, {});
@@ -196,8 +226,11 @@ spruce.
             mixpanel.track("$signup");
             mixpanel.alias(username);
             mixpanel.people.set_once({
-              'First Login Date': new Date(),
-              'Logins': 0
+              '$created': new Date(),
+              '$name': username,
+              'Logins': 0,
+              "$email": username
+
             });
             sharedState.fromReg = true;
           	$scope.$apply(function () {
@@ -205,7 +238,7 @@ spruce.
           	});
   		  },
   		  error: function(user, error) {
-          mixpanel.track("Signup error");
+          mixpanel.track("Signup error", {errorCode: error.code, errorMessage: error.message});
   		    // Show the error message somewhere and let the user try again.
   		    alert("Error: " + error.code + " " + error.message);
   		    console.log("Error: " + angular.toJson(error,true) +  angular.toJson(user,true));
@@ -226,7 +259,7 @@ spruce.
           });
   		  },
   		  error: function(user, error) {
-          mixpanel.track("Log in error");
+          mixpanel.track("Log in Error", {message: error.message});
   		  	$scope.badLogin = true;
   		    alert("Error: " + error.code + " " + error.message + angular.toJson(error));
   		  }

@@ -1,7 +1,4 @@
-<div class="large-8 columns title">
-	<h1>Spruce</h1>
-	<div class="large-1 columns"></div>
-</div>
+
 
 <div ng-init="">
 	<div class="row row-panel header">
@@ -34,7 +31,7 @@
 			</div>
 
 				<div class="row row-panel main">
-					<div class="large-7 columns" ng-class="{'large-10 large-offset-1': stage==4}">
+					<div class="large-10 large-offset-1 columns" ng-class="{'large-10 large-offset-1': stage==4}">
 						<div class="row">
 							<div class="large-12 columns">
 								<section ng-switch on="stage">
@@ -50,7 +47,7 @@
 										</div>
 										<div class="row">
 											<div class="large-5 columns text-center large-offset-7">
-												<button class="small button" ng-click="$parent.stage='2'">Next step - emotions</button>
+												<button class="small button spruce-btn" ng-click="$parent.stage='2'">Next step - emotions</button>
 											</div>
 										</div>
 									</fieldset>
@@ -60,6 +57,7 @@
 											<div class="large-12 columns">
 												<h2>What do you feel about this?</h2>
 												<h3>{{cbtEntry.concern}}</h3>
+												<p>Write what you're feeling now even if it doesn't seem related. Examples: angry, sad, upset, paranoid</p>
 												<div class="emotion-basket">
 													<ul id="emotion-list">
 														<li class="emotion" ng-repeat="emotion in cbtEntry.emotions">{{emotion}}</li>
@@ -110,14 +108,14 @@
 															</div>
 														</div>
 														<div class="large-2 columns">
-															<button ng-click="addEmotion(newEmotion)" href="#" class="button prefix">Add</button>
+															<button ng-click="addEmotion(newEmotion)" href="#" class="button spruce-btn prefix">Add</button>
 														</div>
 													</form>
 												</div>
 											</div>
 											<div class="row">
 												<div class="large-5 columns text-center large-offset-7">
-													<button class="small button" ng-click="$parent.stage='3'">Next step - beliefs</button>
+													<button class="small button spruce-btn" ng-click="$parent.stage='3'">Next step - beliefs</button>
 												</div>
 											</div>
 										</fieldset>
@@ -125,10 +123,15 @@
 											<legend class="hidden">Fieldset</legend>
 											<div class="row">
 												<div class="large-12 columns">
-													<h2>What do you believe about this situation?</h2>
+													<h2>What are your thoughts about this situation?</h2>
 													<h3>Situation: <em>{{cbtEntry.concern}}</em></h3>
-													<h4>Examples</h4>
-													<h4>"My boss will think I'm stupid and not promote me"<br/>"This is going to end in disaster"<br/>"She ignored me, she must not like me"</h4>
+													<h4>Write thoughts about:</h4>
+													<h4>
+														<strong>people:</strong> "She ignored me, she must not like me" "He's a dick"<br/>
+														<strong>the future:</strong> "This is going to end in disaster"<br/>
+														<strong>yourself:</strong> "If I mess this up, I'm inadequate" "Because I can't do this, I'm a pathetic failure"
+													</h4>
+
 													<div class="emotion-basket">
 														<ul>
 															<li class="emotion" ng-repeat="belief in negativeBeliefsCopy">{{belief}}</li>
@@ -136,13 +139,13 @@
 													</div>
 													<form>
 														<input type="text" class="thoughts process" id="beliefs-entry" placeholder="" ng-model="$parent.negativeBelief" autofocus="autofocus" />
-														<button ng-click="addBelief(negativeBelief)" href="#" class="button prefix">Add this thought</button>
+														<button ng-click="addBelief(negativeBelief)" href="#" class="button spruce-btn prefix">Add this thought</button>
 													</form>
 												</div>
 											</div>
 											<div class="row">
 												<div class="large-5 columns text-center large-offset-7">
-													<button class="small button" ng-click="$parent.stage='4'">Done, show next step</button>
+													<button class="small button spruce-btn" ng-click="$parent.stage='4'">Done, show next step</button>
 												</div>
 											</div>
 										</fieldset>
@@ -166,11 +169,11 @@
 													    	<p>{{distortion['fullDescription']}}</p>
 													    	<div class="row">
 													    	  <div class="small-12 columns">
-													    	    <button class="button prefix" ng-hide="selected" ng-click=" selected=true; newThoughts.push(distortionLabel); firstDistortionSelected.state = true;">This question applies to my belief</button>
+													    	    <button class="button spruce-btn prefix" ng-hide="selected" ng-click=" selected=true; newThoughts.push(distortionLabel); firstDistortionSelected.state = true;">This question applies to my belief</button>
 													    	    <div class="" ng-show="selected"><!--h5 class="subheader" >Great! Write something about this on the right.</h5-->
-													    	    	<label>Why do you feel this question applies?</label>
-													    	    <textarea ng-model="changeStep.reformedThought" class="tall-textarea" rows="40" autofocus="autofocus"></textarea>
-													    	    <button class="small button pass" ng-click="closeAccordion()">Save</button>
+													    	    	<label><strong>What's the problem with your belief? Try writing a new belief</label>
+													    	    <textarea ng-model="changeStep[distortionLabel].reformedThought" class="tall-textarea" rows="40" autofocus="autofocus"></textarea>
+													    	    <button class="small button spruce-btn pass" ng-click="closeAccordion()">Save</button>
 													    		</div>
 													    	  </div>
 													    	</div>
@@ -180,11 +183,11 @@
 
 
 
-													<!-- button ng-show="showIsADistortion" ng-click="showIsADistortion=false; nextNegBelief(curDistortion, negBelief, newthought)" href="#" class="button prefix">Save this thought</button -->
+													<!-- button ng-show="showIsADistortion" ng-click="showIsADistortion=false; nextNegBelief(curDistortion, negBelief, newthought)" href="#" class="button spruce-btn prefix">Save this thought</button -->
 												</div>
 													<div class="row">
 											    		<div class="large-6 large-offset-3 columns help">
-											    			<button class="small button pass" ng-click="nextNegBelief()">{{nextBelief}}</button>
+											    			<button class="small button spruce-btn pass" ng-click="nextNegBelief()">{{nextBelief}}</button>
 											    		</div>
 											    	</div>
 											</div>
@@ -194,51 +197,21 @@
 										<fieldset ng-switch-when="5" class="hidden">
 											<legend class="hidden">Fieldset</legend>
 											<div class="row">
-												<div class="large-12 columns">
-													<h2>Review</h2>
-													<p>
-														So, <strong>{{cbtEntry.concern}}</strong>, and this made you feel: <strong ng-repeat="emotion in cbtEntry.emotions">{{emotion}}, </strong>
-														and you thought this meant that:
-														<ul>
-															<li ng-repeat="(negBelief, distortionList) in cbtEntry.negativeBeliefs">
-																<strong >{{negBelief}}</strong>, <em>however:</em>
-																<ul>
-																		<li> <em>You've realised this is:</em>
-																		<span ng-repeat="dist in distortionList['distortions']">
-																			{{dist}},
-																		</span>
-																			<li><em>So, you're now thinking: </em> <strong>{{distortionList['newThought']}}</strong></li>
-																		</li>
-
-																</ul>
-															</li>
-														</ul>
-													</p>
+												<div ng-include="'partials/reviewStage.html'" class="large-12 columns">
 												</div>
 											</div>
-											<a class="button" href="#/dashboard">See record of previous problems</a>
+											<a class="button spruce-btn" href="#/dashboard">See record of previous problems</a>
 										</fieldset>
 									</section>
 								</div>
 							</div>
 						</div>
 						<div ng-switch on="stage">
-							<div class="large-5 columns help" ng-switch-default>
-							    <h3>Example</h3>
-							    <p><span class="pass">Helpful</span> "I forgot to book the plane tickets"</p>
-							    <p><span class="fail">Less helpful</span> "I'm such an idiot because I'm so forgetful and now I've ruined the holiday"</p>
+							<div class="large-5 columns" ng-switch-default>
 							</div>
-							<div class="large-5 columns help" ng-switch-when="2">
-							    <h3>What do I write?</h3>
-							    <p>Everything you're feeling at the moment, whether or not it's connected to the problem. This stage helps you to identify your feelings so you can see if they change through the process.</p>
+							<div class="large-5 columns" ng-switch-when="2">
 							</div>
-							<div class="large-5 columns help" ng-switch-when="3">
-							    <h3>Write down</h3>
-							    <ul class="help-list">
-							    	<li>what <strong>people</strong> might have thought</li>
-							    	<li>what could happen in the <strong>future</strong></li>
-							    	<li>what this makes you think of <strong>yourself</strong>.</li>
-							    </ul>
+							<div class="large-5 columns" ng-switch-when="3">
 							</div>
 							<div class="large-5 columns " ng-switch-when="4">
 							    <div class="row">
@@ -248,18 +221,18 @@
 							    	</div-->
 							    </div>
 							</div>
-							<div class="large-5 columns help" ng-switch-when="5">
+							<div class="large-10 large-offset-1 columns help" ng-switch-when="5">
 								<h3>That's it!</h3>
-							    <p>You're done. Read carefully through the passage on the left to consolidate the new more rational thought.
+							    <p>You're done. Read carefully through the passage above to consolidate the new more rational thought.
 							    <div class="" ng-show="showFeedback">
 								    <p>Did this help?</p>
 								    <p>
-								    	<a class="button pass" ng-click="setFinalThought('yes')">Yes, this was helpful</a> <a class="button fail" ng-click="setFinalThought('no')">No, I feel the same/worse</a>
+								    	<a class="button spruce-btn pass" ng-click="setFinalThought('yes')">Yes, this was helpful</a> <a class="button spruce-btn fail" ng-click="setFinalThought('no')">No, I feel the same/worse</a>
 								   	</p>
-							   </div>
-							   <p ng-hide="showFeedback">Noted, thanks.</p>
-							    <p style="display:none">
-									<a class="button" href="#/dashboard">Start Again/See record of previous problems</a>
+								</div>
+								<p ng-hide="showFeedback">Noted, thanks.</p>
+								<p style="display:none">
+									<a class="button spruce-btn" href="#/dashboard">Start Again/See record of previous problems</a>
 								</p>
 							</div>
 							</div>
