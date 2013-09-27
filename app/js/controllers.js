@@ -7,9 +7,8 @@ spruce.
   	$scope.stage = 1;
     $(document).foundation();
   	$scope.curEmotion = '';
-    $scope.newThoughts = [];
     $scope.nextBelief = 'Done';
-    $scope.changeStep = {reformedThought: ''}
+    $scope.changeStep = {}
     $scope.firstDistortionSelected = {'state': false, 'focusText': false};
     $scope.concern = '';
   	$scope.showFeedback = true;
@@ -17,16 +16,16 @@ spruce.
     $scope.distortions =
     {
     "Assuming the Worst Case Scenario": {'fullDescription': "Sometimes we automatically go to an extremely negative end of the spectrum. If you think about the range of possibilities, is it really as bad as you imagine? What are some other possible ways in which you could state this that are more moderate?", 'shortDescription': "Does this statement seem at all extreme?"}
-    ,"Mental Filtering": {'fullDescription': "Are you focussing in on a particular aspect of your life to the exclusion of everything else? Are there areas your life that are totally unrelated and unaffected by this that bring you pleasure?", 'shortDescription': "Perhaps there might be other areas of life that have been eclipsed by this situation?"}
+    //v similar to labeling,"Mental Filtering": {'fullDescription': "Are you focussing in on a particular aspect of your life to the exclusion of everything else? Are there areas your life that are totally unrelated and unaffected by this that bring you pleasure?", 'shortDescription': "Perhaps there might be other areas of life that have been eclipsed by this situation?"}
     ,"Mind-Reading": {'fullDescription': "Are you assuming something about what another person is thinking, or do you have evidence to support this? How certain you can be about the contents of someone else’s mind? Do you think that your assumption is based on a preconception?", 'shortDescription': "Does this thought state what someone else might be thinking?"}
     ,"Predicting the Future": {'fullDescription': "Although you can make guesses about what will happen, it’s a good idea to remember that nothing in this thought is guaranteed to occur. However convinced you are, you'll never absolutely know.", 'shortDescription': "Have you made a prediction about the future?"}
     ,"Labelling a Person": {'fullDescription': "By saying ‘That person is awful or 'I’m stupid', are you allowing a single action to define an entire life? Think about how many things you’ve done in your life and see what proportion of your life this incident actually is. Is it sensible to allow a single thing to define your self worth?", 'shortDescription': "In this thought have you passed judgement on yourself or someone else?"}
-    ,"Assigning Responsibility/Blaming": {'fullDescription': "Is this thought about assigning responsibility? Think about to what extent you or that person was really responsible, and what might have been down to circumstance or chance.", 'shortDescription': "Is this thought about giving yourself or someone else responsibility for what happened?"}
+    ,"Assigning Responsibility or Blaming": {'fullDescription': "Is this thought about assigning responsibility? Think about to what extent you or that person was really responsible, and what might have been down to circumstance or chance.", 'shortDescription': "Is this thought about giving yourself or someone else responsibility for what happened?"}
     ,"Unrealistic Expectations": {'fullDescription': "Are you using words like ‘must’ or ‘should’? Consider whether your expectations need to be realigned. You’ll either have to adjust your expectations to match reality, or always feel let down by others (or yourself)", 'shortDescription': 'Have you used the words "must" or "should" in this thought?'}
     ,"All-Or-Nothing Thinking": {'fullDescription': "Are you seeing things in black and white with only a binary set of outcomes? Are there a range of possible interpretations of the situation that you haven't considered?", 'shortDescription': "Are you assuming that a single outcome is inevitable?"}
-    ,"Factual accuracy": {'fullDescription': 'Try and think about all the evidence for this statement. Can you think of any evidence for an alternate point of view?', 'shortDescription': 'How much evidence is there for this belief?'}
-    ,"Overgeneralisation": {'fullDescription': 'It\'s easy to focus in one thing and assume that it\'s representative of everything similar. But often that\'s a mistake, it might be your day that\'s going badly, rather than your whole life. Is it possible that it\'s just one thing that\'s bad, rather than everything?', 'shortDescription': 'Have you described many things or something very complex?'}
-    ,"Subjective view": {'fullDescription': "Subjective views are like a filter we put between ourselves and the world. Imagine this view as a coloured pane of glass you're looking through. What other colours could it be if you asked different people? How much of this can be proved objectively?", 'shortDescription': 'Does the truth of this thought rely on your subjective beliefs?'}
+    ,"Lack of Factual accuracy": {'fullDescription': 'Try and think about all the evidence for this statement. Can you think of any evidence for an alternate point of view?', 'shortDescription': 'How much factual evidence is there for this belief?'}
+    ,"Overgeneralisation": {'fullDescription': 'It\'s easy to focus in one thing and assume that it\'s representative of everything similar. But often that\'s a mistake, it might be your day that\'s going badly, rather than your whole life. Is it possible that it\'s just one thing that\'s bad, rather than everything?', 'shortDescription': 'Are you predicting how things will work out in the future based on the outcome of a single event?'}
+    // similar to  factual accuracy,"Subjective view": {'fullDescription': "Subjective views are like a filter we put between ourselves and the world. Imagine this view as a coloured pane of glass you're looking through. What other colours could it be if you asked different people? How much of this can be proved objectively?", 'shortDescription': 'Does the truth of this thought rely on your subjective beliefs?'}
     };
     if (_parse.User.current()) {
       //_parse.User.logOut()
@@ -97,17 +96,27 @@ spruce.
   	$scope.closeModal = function(){
   		$('#introModal').foundation('reveal', 'close');
   	}
-  	$scope.nextNegBelief = function(modifiedBelief){
-        console.log($scope.newThoughts);
+    $scope.distKeyUp = function(){
+        console.log($scope.changeStep);
+    }
+    var _pushChangeStepToCbtEntry = function(obj){
+      for (var prop in obj) {
+         if(obj.hasOwnProperty(prop)){
+          $scope.cbtEntry.negativeBeliefs[$scope.negBelief][prop] = obj[prop];
+         }
+      }
+    }
+    //Resets step 4 as user cycles through beliefs.
+    $scope.nextNegBelief = function(modifiedBelief){
         console.log(angular.toJson($scope.changeStep));
-        //$scope.cbtEntry.negativeBeliefs[$scope.negBelief] = {distortions: $scope.newThoughts, newThought: $scope.changeStep.reformedThought};
+        _pushChangeStepToCbtEntry($scope.changeStep);
+        //reset changestep
+        $scope.changeStep = {};
         var nextNeg  = negBeliefCopy.pop();
         /* refactor this setting next neg business, shuoldn't be dependant on order of code*/
+        //updates button. Could be a directive?
         $scope.setNextBelief();
-        $scope.newThoughts = [];
-        //$scope.changeStep.reformedThought = ''
-        //deprecated
-        $scope.firstDistortionSelected.state = false;
+
         window.scrollTo(0,140);
           angular.element('#yourBeliefContainer').hide();
         setTimeout(function(){
@@ -142,7 +151,7 @@ spruce.
     }
   	$scope.addBelief = function(negativeBelief){
       if (negativeBelief) {
-    		$scope.cbtEntry.negativeBeliefs[negativeBelief] = [];
+    		$scope.cbtEntry.negativeBeliefs[negativeBelief] = {};
     		$scope.negativeBeliefsCopy = Object.keys($scope.cbtEntry.negativeBeliefs);
         $scope.negativeBelief = "";
         window.scrollTo(0,document.body.scrollHeight);
@@ -178,7 +187,6 @@ spruce.
       if(newValue>2){
     		$scope.newEntry.set('stageCompleted', String(oldValue));
         updateParseObject();
-
       }
   	});
 
