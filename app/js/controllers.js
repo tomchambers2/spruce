@@ -231,14 +231,27 @@ spruce.
 
   }]).
 
-  controller('HomeCtrl',['$scope','$location','$anchorScroll', function($scope, $location, $anchorScroll){
+  controller('HomeCtrl',['$scope','$location','$anchorScroll', 'orm', function($scope, $location, $anchorScroll, orm){
     mixpanel.track("Home");
+    $scope.badLogin = false;
 
     $scope.scrollTo = function(id) {
         console.log(id);
         $location.hash(id);
         $anchorScroll();
     };
+
+    $scope.register = function(username, password){
+      orm.registerUser(username, password).then(
+          function(result){
+              $location.url('/entries/new');
+          },
+          function(error){
+            alert("Error: " + error.code + " " + error.message+ ' Please try again.');
+            console.log("Error: " + angular.toJson(error,true));
+          }
+        );
+    }
   }]).
   controller('RegistrationCtrl', ['_Parse','$scope', '$location', 'sharedState', 'orm', function(_parse, $scope, $location, sharedState, orm){
   	$scope.badLogin = false;

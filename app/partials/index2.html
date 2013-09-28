@@ -67,11 +67,14 @@
         </div>
       </div>
       <div class="row form">
-        <div class="large-2 columns"><label class="right inline" for="email">Your email</label></div>
-        <div class="large-3 columns"><input type="text" id="email" class="header-register"></div>
-        <div class="large-2 columns"><label class="right inline" for="password">Password</label></div>
-        <div class="large-3 columns"><input type="text" id="password" class="header-register"></div>
-        <div class="large-2 columns"><button class="button register">Register</button></div>
+        <form name="registrationForm">
+          <div class="large-2 columns"><label class="right inline" for="email" autofocus required>Your email</label></div>
+          <div class="large-3 columns"><input type="email" ng-model="newUser.email" id="email" class="header-register"></div>
+          <div class="large-2 columns"><label class="right inline" for="password">Password</label></div>
+          <div class="large-3 columns"><input type="password" ng-model="newUser.password" id="password" class="header-register" required></div>
+          <div class="large-2 columns"><button class="button register" ng-click="register(newUser.email, newUser.password)"
+                            ng-disabled="registrationForm.$invalid" >Register</button></div>
+        </form>
       </div>
     </div>
 
