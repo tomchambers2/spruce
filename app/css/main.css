@@ -18,14 +18,14 @@
 
 h1.superbig {
 	font-size: 50px;
-	color: #00957B;
+	color: #222222;
 	margin-bottom: 0px;
 }
 
 h1.superbig + h2 {
-	color: #00957B;
+	color: #222222;
 	margin-top: 0px;
-	margin-bottom: 120px;
+	margin-bottom: 100px;
 }
 
 h1.landing-page {
@@ -47,10 +47,11 @@ h2.form {
 }
 
 h1.form.button {
-	color: #00957B;
-	border: 3px solid #00957B;
+	color: #222222;
+	border: 3px solid #222222;
 	border-radius: 8px;
 	background-color: #FCFBF2;
+	margin-bottom: 100px;
 }
 
 h1.form.button:hover {
