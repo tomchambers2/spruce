@@ -18,12 +18,12 @@
 
 h1.superbig {
 	font-size: 50px;
-	color: #FCFBF2;
+	color: #00957B;
 	margin-bottom: 0px;
 }
 
 h1.superbig + h2 {
-	color: #FCFBF2;
+	color: #00957B;
 	margin-top: 0px;
 	margin-bottom: 120px;
 }
