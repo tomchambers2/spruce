@@ -43,12 +43,12 @@ h1.form {
 }
 
 h2.form {
-	color: #00957B;
+	color: #002C25;
 }
 
 h1.form.button {
-	color: #222222;
-	border: 3px solid #222222;
+	color: #002C25;
+	border: 3px solid #002C25;
 	border-radius: 8px;
 	background-color: #FCFBF2;
 	margin-bottom: 100px;
@@ -66,7 +66,8 @@ button.button.register {
 	border-radius: 4px;
 	background-color: #FCFBF2;
 	color: #00957B;
-	border: 3px solid #6B958E;
+	border: 1px solid #002C25;
+	color: #002C25;
 	height: 40px;
 	font-size: 15px;
 	margin: 0px;
