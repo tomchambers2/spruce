@@ -26,7 +26,7 @@ spruce.
         },
         error: function(object, error) {
           mixpanel.track("Parse Error", {'code': error.code});
-          alert(error.description);
+          alert(error.message);
         }
       });
     }
