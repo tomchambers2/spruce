@@ -1,3 +1,86 @@
+/* landing page */
+.header {
+	background-color: #00957B;
+	//width:100%;
+	margin-top: 0px;
+	background-image: url('/app/img/background.jpg');
+
+	background-size: 1400px;
+	background-position: center;
+	background-repeat: no-repeat;
+	padding-top: 160px;
+}
+
+.home-logo {
+	height: 150px;
+}
+
+h1.superbig {
+	font-size: 50px;
+	color: #FCFBF2;
+	margin-bottom: 0px;
+}
+
+h1.superbig + h2 {
+	color: #FCFBF2;
+	margin-top: 0px;
+	margin-bottom: 120px;
+}
+
+h1.landing-page {
+	color: #00957B;
+}
+
+h1.form, .form * h1 {
+	font-size: 20px;
+	color: #FCFBF2;
+}
+
+h1.form {
+	font-size: 30px;
+}
+
+button.button.register {
+	border-radius: 4px;
+	background-color: #FCFBF2;
+	color: #00957B;
+	border: 3px solid #6B958E;
+	max-height: 40px;
+	font-size: 15px;
+	margin: 0px;
+}
+
+input.header-register {
+	
+}
+
+.section {
+	background-color: #F8F5DD;
+	width: 100%;
+	padding-top: 40px;
+	padding-bottom: 40px;
+}
+
+.divider {
+	background-color: #ECE9D2;
+	//min-height: 13px;
+	padding: 20px;
+	font-size: 20px;
+	font-weight: bold;
+}
+
+h1.section-title {
+	color: #002C25;
+}
+
+.footer, .footer h1 {
+	background-color: #002C25;
+	color: #FCFBF2;
+}
+
+/* */
+
+
 body {
 	background-color: #ECE9D2;
 	font-family: Helvetica;
@@ -142,6 +225,7 @@ a.button:hover, button.button:hover {
 /* Top Bar Styles */
 .top-bar{
 	background:  #00957B;
+	margin-bottom: 0px;
 }
 
 .top-bar-section li a:not(.button) {

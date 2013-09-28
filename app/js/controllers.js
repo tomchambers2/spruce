@@ -234,6 +234,11 @@ spruce.
   }]).
   controller('HomeCtrl',['$scope', function($scope){
     mixpanel.track("Home");
+
+    $scope.scrollTo = function(id) {
+      $location.hash(id);
+      $anchorScroll();
+   }
   }]).
   controller('RegistrationCtrl', ['_Parse','$scope', '$location', 'sharedState', function(_parse, $scope, $location, sharedState){
   	$scope.badLogin = false;
