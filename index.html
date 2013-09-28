@@ -44,11 +44,6 @@ if(document.location.hostname == 'localhost'){
 </head>
 
 <body ng-controller="MainCtrl">
-  <!-- ClickTale Top part -->
-<script type="text/javascript">
-var WRInitTime=(new Date()).getTime();
-</script>
-<!-- ClickTale end of Top part -->
   <nav class="top-bar">
     <ul class="title-area">
       <li class="name"><h1 class="nav-title"><a href="#">Spruce</a></h1></li>
@@ -56,8 +51,14 @@ var WRInitTime=(new Date()).getTime();
     </ul>
     <section class="top-bar-section">
       <ul class="right">
-        <li class="name">
+        <li ng-show="loggedIn.state" class="name">
           <a href="#/dashboard">Dashboard</a>
+        </li>
+        <li ng-hide="loggedIn.state" class="name">
+          <a href="#/get-started">Log In</a>
+        </li>
+        <li ng-show="loggedIn.state" class="name">
+          <a href="#/" ng-click="logOut()">Log Out</a>
         </li>
       </ul>
     </section>
@@ -126,26 +127,6 @@ loader: "static.olark.com/jsclient/loader0.js",name:"olark",methods:["configure"
 /* custom configuration goes here (www.olark.com/documentation) */
 olark.identify('4451-881-10-5574');/*]]>*/</script><noscript><a href="https://www.olark.com/site/4451-881-10-5574/contact" title="Contact us" target="_blank">Questions? Feedback?</a> powered by <a href="http://www.olark.com?welcome" title="Olark live chat software">Olark live chat software</a></noscript>
 <!-- end olark code -->
-
-
-<!-- ClickTale Bottom part -->
-
-<script type='text/javascript'>
-// The ClickTale Balkan Tracking Code may be programmatically customized using hooks:
-//
-//   function ClickTalePreRecordingHook() { /* place your customized code here */  }
-//
-// For details about ClickTale hooks, please consult the wiki page http://wiki.clicktale.com/Article/Customizing_code_version_2
-
-document.write(unescape("%3Cscript%20src='"+
-(document.location.protocol=='https:'?
-"https://clicktalecdn.sslcs.cdngc.net/www07/ptc/9edf448b-fffe-4c83-9662-2b182be3582d.js":
-"http://cdn.clicktale.net/www07/ptc/9edf448b-fffe-4c83-9662-2b182be3582d.js")+"'%20type='text/javascript'%3E%3C/script%3E"));
-</script>
-
-<!-- ClickTale end of Bottom part -->
-
-
 
   <div class="reveal-modal-bg" style="display: none"></div>
   <!-- At the bottom of your page but inside of the body tag -->

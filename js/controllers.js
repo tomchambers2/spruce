@@ -3,7 +3,7 @@
 /* Controllers */
 
 spruce.
-  controller('NewEntryCtrl', ['$scope', '_Parse', '$routeParams', '$location', 'sharedState', function($scope, _parse, $routeParams, $location, sharedState) {
+  controller('NewEntryCtrl', ['$scope', '_Parse', '$routeParams', '$location', 'sharedState', '$timeout', function($scope, _parse, $routeParams, $location, sharedState, $timeout) {
   	$scope.stage = 1;
     $(document).foundation();
   	$scope.curEmotion = '';
@@ -17,7 +17,6 @@ spruce.
     $scope.distortions =
     {
     "Assuming the Worst Case Scenario": {'fullDescription': "Sometimes we automatically go to an extremely negative end of the spectrum. If you think about the range of possibilities, is it really as bad as you imagine? What are some other possible ways in which you could state this that are more moderate?", 'shortDescription': "Does this statement seem at all extreme?"}
-    //v similar to labeling,"Mental Filtering": {'fullDescription': "Are you focussing in on a particular aspect of your life to the exclusion of everything else? Are there areas your life that are totally unrelated and unaffected by this that bring you pleasure?", 'shortDescription': "Perhaps there might be other areas of life that have been eclipsed by this situation?"}
     ,"Mind-Reading": {'fullDescription': "Are you assuming something about what another person is thinking, or do you have evidence to support this? How certain you can be about the contents of someone else’s mind? Do you think that your assumption is based on a preconception?", 'shortDescription': "Does this thought state what someone else might be thinking?"}
     ,"Predicting the Future": {'fullDescription': "Although you can make guesses about what will happen, it’s a good idea to remember that nothing in this thought is guaranteed to occur. However convinced you are, you'll never absolutely know.", 'shortDescription': "Have you made a prediction about the future?"}
     ,"Labelling a Person": {'fullDescription': "By saying ‘That person is awful or 'I’m stupid', are you allowing a single action to define an entire life? Think about how many things you’ve done in your life and see what proportion of your life this incident actually is. Is it sensible to allow a single thing to define your self worth?", 'shortDescription': "In this thought have you passed judgement on yourself or someone else?"}
@@ -26,7 +25,6 @@ spruce.
     ,"All-Or-Nothing Thinking": {'fullDescription': "Are you seeing things in black and white with only a binary set of outcomes? Are there a range of possible interpretations of the situation that you haven't considered?", 'shortDescription': "Are you assuming that a single outcome is inevitable?"}
     ,"Lack of Factual accuracy": {'fullDescription': 'Try and think about all the evidence for this statement. Can you think of any evidence for an alternate point of view?', 'shortDescription': 'How much factual evidence is there for this belief?'}
     ,"Overgeneralisation": {'fullDescription': 'It\'s easy to focus in one thing and assume that it\'s representative of everything similar. But often that\'s a mistake, it might be your day that\'s going badly, rather than your whole life. Is it possible that it\'s just one thing that\'s bad, rather than everything?', 'shortDescription': 'Are you predicting how things will work out in the future based on the outcome of a single event?'}
-    // similar to  factual accuracy,"Subjective view": {'fullDescription': "Subjective views are like a filter we put between ourselves and the world. Imagine this view as a coloured pane of glass you're looking through. What other colours could it be if you asked different people? How much of this can be proved objectively?", 'shortDescription': 'Does the truth of this thought rely on your subjective beliefs?'}
     };
     if (_parse.User.current()) {
       //_parse.User.logOut()
@@ -52,11 +50,6 @@ spruce.
   		}
   		if(sharedState.fromReg){
   			sharedState.fromReg = false;
-        //meh, not using modal for now.
-        // setTimeout(function(){
-        //   $('#introModal').foundation('reveal', 'open');
-        // },500)
-
   		}
 
 
@@ -82,13 +75,27 @@ spruce.
   		  }
   		});
 
-  	}
+  	};
 
     $scope.closeAccordion = function(el){
       angular.element('section').removeClass('active');
     }
+
+    $scope.nextStage = function() {
+      var nextStage = Number($scope.stage) + 1;
+      $location.search({'section': nextStage});
+    }
+
+    $scope.$on('$routeUpdate', function() {
+      if ($routeParams.section == undefined) {
+        $routeParams.section = 1;
+      }
+      $scope.stage = $routeParams.section;
+    });
+
   	$scope.setFinalThought = function(yesNo){
   		var useful = (yesNo == 'yes') ? true : false;
+      mixpanel.track("feedback", {'useful': useful});
   		$scope.newEntry.set('useful', useful);
   		$scope.newEntry.save();
       $scope.showFeedback = false;
@@ -120,11 +127,11 @@ spruce.
 
         window.scrollTo(0,140);
           angular.element('#yourBeliefContainer').hide();
-        setTimeout(function(){
+        $timeout(function(){
           angular.element('#yourBeliefContainer').fadeIn('slow')
         }, 300);
         if(nextNeg === undefined){
-          $scope.stage = '5';
+          $scope.nextStage();
         }
         else{
           $scope.negBelief = nextNeg;
@@ -144,9 +151,7 @@ spruce.
     $scope.setNextBelief = function(){
       if(negBeliefCopy[0] === undefined){
         $scope.nextBelief = 'Done'
-      }
-      else{
-
+      } else {
         $scope.nextBelief = 'Next Belief: ' + negBeliefCopy[0];
       }
     }
@@ -182,7 +187,7 @@ spruce.
 
   		if(newValue == 2){initEntryObj();}
 
-  		if(newValue == 4){
+  		if(newValue == 4 && oldValue == 3){
   			//initEntryObjialise first neg belief
   			negBeliefCopy = $scope.negativeBeliefsCopy;
   			$scope.negBelief = negBeliefCopy.pop();
@@ -202,10 +207,10 @@ spruce.
     $scope.entries = {};
     var populateScope = function(entries){
       entries.forEach(function(val, index){
-        $scope.entries[String(index)] = objDecrypter.decryptEntry(val);
-        $scope.$apply();
+        $scope.$apply(function(){
+          $scope.entries[String(index)] = objDecrypter.decryptEntry(val);
+        });
       });
-      var pop;
     }
     orm.getAllEntries(populateScope);
   }]).
@@ -214,69 +219,81 @@ spruce.
     $scope.cbtEntry = {};
     orm.getEntry($routeParams.id, function(entry){
       entry = objDecrypter.decryptEntry(entry);
-      $scope.cbtEntry = entry;
-       $scope.$apply();
-    });
-  }]).
-  controller('MainCtrl',['$scope', function($scope){
+      $scope.$apply(function(){
+        $scope.cbtEntry = entry;
+        });
 
+      });
   }]).
-  controller('HomeCtrl',['$scope', function($scope){
+  controller('MainCtrl',['$scope', '_Parse', function($scope, _parse){
+    $scope.loggedIn = {'state': false};
+    var init = function(){
+      $scope.loggedIn['state'] = (_parse.User.current())? true : false;
+    }
+    init()
+
+    $scope.logOut = function(){
+      _parse.User.logOut();
+      $scope.loggedIn['state'] = false;
+    }
+  }]).
+
+  controller('HomeCtrl',['$scope','$location','$anchorScroll', 'orm', function($scope, $location, $anchorScroll, orm){
     mixpanel.track("Home");
+    $scope.badLogin = false;
+
+    $scope.scrollTo = function(id) {
+        console.log(id);
+        $location.hash(id);
+        $anchorScroll();
+    };
+
+    $scope.register = function(username, password){
+      orm.registerUser(username, password).then(
+          function(result){
+              $location.url('/entries/new');
+          },
+          function(error){
+            alert("Error: " + error.code + " " + error.message+ ' Please try again.');
+            console.log("Error: " + angular.toJson(error,true));
+          }
+        );
+    }
   }]).
-  controller('RegistrationCtrl', ['_Parse','$scope', '$location', 'sharedState', function(_parse, $scope, $location, sharedState){
+  controller('RegistrationCtrl', ['_Parse','$scope', '$location', 'sharedState', 'orm', function(_parse, $scope, $location, sharedState, orm){
   	$scope.badLogin = false;
     if (_parse.User.current()) {
       $location.url('/entries/new');
     }
     mixpanel.track("sign in page");
-  	$scope.register = function(username, password){
-  		var user = new _parse.User();
-  		user.setUsername(username, {});
-  		user.set("password", password);
-  		user.signUp(null, {
-  		  success: function(user) {
-            mixpanel.track("$signup");
-            mixpanel.alias(username);
-            mixpanel.people.set_once({
-              '$created': new Date(),
-              '$name': username,
-              'Logins': 0,
-              "$email": username
 
-            });
+  	$scope.register = function(username, password){
+      orm.registerUser(username, password).then(
+          function(result){
             sharedState.fromReg = true;
-          	$scope.$apply(function () {
-            	$location.url('/entries/new');
-          	});
-  		  },
-  		  error: function(user, error) {
-          mixpanel.track("Signup error", {errorCode: error.code, errorMessage: error.message});
-  		    // Show the error message somewhere and let the user try again.
-  		    alert("Error: " + error.code + " " + error.message);
-  		    console.log("Error: " + angular.toJson(error,true) +  angular.toJson(user,true));
-  		  }
-  		}, this);
+            $location.url('/entries/new');
+          },
+          function(error){
+            alert("Error: " + error.code + " " + error.message+ ' Please try again.');
+            console.log("Error: " + angular.toJson(error,true));
+          }
+        );
   	}
 
   	$scope.logIn = function(user){
-  		$scope.badLogin = false;
-  		_parse.User.logIn(user.username, user.password, {
-  		  success: function(user) {
-          mixpanel.track("Logged in");
-          mixpanel.people.increment("Logins", 1);
-  		  	$scope.badLogin = false;
-  		    console.log("successful login" + angular.toJson(user, true));
-          $scope.$apply(function () {
+  		orm.logIn(user).then(
+          function(user){
+            console.log("successful login" + angular.toJson(user, true));
+
+            $scope.loggedIn['state'] = true;
             $location.path('/dashboard');
-          });
-  		  },
-  		  error: function(user, error) {
-          mixpanel.track("Log in Error", {message: error.message});
-  		  	$scope.badLogin = true;
-  		    alert("Error: " + error.code + " " + error.message + angular.toJson(error));
-  		  }
-  		});
+          },
+          function(error){
+            $scope.badLogin = true;
+            alert("Error: " + error.code + " " + error.message + angular.toJson(error));
+          }
+        );
+
   	}
 
   }]);

@@ -40,14 +40,14 @@
 
 										<div class="row" id="situationTextArea">
 											<div class="large-12 columns">
-												<h2>What situation upset you?</h2>
+												<h2>Think of a situation that made you upset.</h2>
 												<h3>Describe the facts without feelings or subjective thoughts</h3>
 												<textarea class="feelings" placeholder='' ng-model="cbtEntry.concern" required autofocus="autofocus"></textarea>
 											</div>
 										</div>
 										<div class="row">
 											<div class="large-5 columns text-center large-offset-7">
-												<button class="small button spruce-btn" ng-click="$parent.stage='2'">Next step - emotions</button>
+												<button class="small button spruce-btn" ng-click="nextStage()">Next step - emotions</button>
 											</div>
 										</div>
 									</fieldset>
@@ -115,7 +115,7 @@
 											</div>
 											<div class="row">
 												<div class="large-5 columns text-center large-offset-7">
-													<button class="small button spruce-btn" ng-click="addEmotion(newEmotion); advanceNextStep()">Next step - beliefs</button>
+													<button class="small button spruce-btn" ng-click="addEmotion(newEmotion);nextStage()">Next step - beliefs</button>
 												</div>
 											</div>
 										</fieldset>
@@ -125,7 +125,7 @@
 												<div class="large-12 columns">
 													<h2>What are your thoughts about this situation?</h2>
 													<h3>Situation: <em>{{cbtEntry.concern}}</em></h3>
-													<h4>Write thoughts about:</h4>
+													<h4>Write 2 or 3 thoughts about:</h4>
 													<h4>
 														<strong>people:</strong> "She ignored me, she must not like me" "He's a dick"<br/>
 														<strong>the future:</strong> "This is going to end in disaster"<br/>
@@ -145,7 +145,7 @@
 											</div>
 											<div class="row">
 												<div class="large-5 columns text-center large-offset-7">
-													<button class="small button spruce-btn" ng-click="addBelief(negativeBelief); advanceNextStep();">Done, show next step</button>
+													<button class="small button spruce-btn" ng-click="addBelief(negativeBelief);nextStage()">Done, show next step</button>
 												</div>
 											</div>
 										</fieldset>
