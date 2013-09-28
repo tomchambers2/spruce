@@ -235,59 +235,42 @@ spruce.
   controller('HomeCtrl',['$scope', function($scope){
     mixpanel.track("Home");
   }]).
-  controller('RegistrationCtrl', ['_Parse','$scope', '$location', 'sharedState', function(_parse, $scope, $location, sharedState){
+  controller('RegistrationCtrl', ['_Parse','$scope', '$location', 'sharedState', 'orm', function(_parse, $scope, $location, sharedState, orm){
   	$scope.badLogin = false;
     if (_parse.User.current()) {
       $location.url('/entries/new');
     }
     mixpanel.track("sign in page");
-  	$scope.register = function(username, password){
-  		var user = new _parse.User();
-  		user.setUsername(username, {});
-  		user.set("password", password);
-  		user.signUp(null, {
-  		  success: function(user) {
-            mixpanel.track("$signup");
-            mixpanel.alias(username);
-            mixpanel.people.set_once({
-              '$created': new Date(),
-              '$name': username,
-              'Logins': 0,
-              "$email": username
 
-            });
+  	$scope.register = function(username, password){
+      orm.registerUser(username, password).then(
+          function(result){
             sharedState.fromReg = true;
-          	$scope.$apply(function () {
-            	$location.url('/entries/new');
-          	});
-  		  },
-  		  error: function(user, error) {
-          mixpanel.track("Signup error", {errorCode: error.code, errorMessage: error.message});
-  		    // Show the error message somewhere and let the user try again.
-  		    alert("Error: " + error.code + " " + error.message);
-  		    console.log("Error: " + angular.toJson(error,true) +  angular.toJson(user,true));
-  		  }
-  		}, this);
+            $scope.$apply(function () {
+              $location.url('/entries/new');
+            });
+          },
+          function(error){
+            alert("Error: " + error.code + " " + error.message+ ' Please try again.');
+            console.log("Error: " + angular.toJson(error,true));
+          }
+        );
   	}
 
   	$scope.logIn = function(user){
-  		$scope.badLogin = false;
-  		_parse.User.logIn(user.username, user.password, {
-  		  success: function(user) {
-          mixpanel.track("Logged in");
-          mixpanel.people.increment("Logins", 1);
-  		  	$scope.badLogin = false;
-  		    console.log("successful login" + angular.toJson(user, true));
-          $scope.$apply(function () {
-            $location.path('/dashboard');
-          });
-  		  },
-  		  error: function(user, error) {
-          mixpanel.track("Log in Error", {message: error.message});
-  		  	$scope.badLogin = true;
-  		    alert("Error: " + error.code + " " + error.message + angular.toJson(error));
-  		  }
-  		});
+  		orm.logIn(user).then(
+          function(user){
+            console.log("successful login" + angular.toJson(user, true));
+            $scope.$apply(function () {
+              $location.path('/dashboard');
+            });
+          },
+          function(error){
+            $scope.badLogin = true;
+            alert("Error: " + error.code + " " + error.message + angular.toJson(error));
+          }
+        );
+
   	}
 
   }]);
