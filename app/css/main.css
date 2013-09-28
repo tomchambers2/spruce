@@ -1,11 +1,12 @@
 /* landing page */
-.header {
+.landing-header {
 	background-color: #00957B;
 	//width:100%;
 	margin-top: 0px;
 	background-image: url('/app/img/background.jpg');
-
-	background-size: 1400px;
+	-webkit-background-size:cover;
+	-moz-background-size:cover;
+	background-size:cover;
 	background-position: center;
 	background-repeat: no-repeat;
 	padding-top: 160px;
@@ -31,9 +32,29 @@ h1.landing-page {
 	color: #00957B;
 }
 
-h1.form, .form * h1 {
+.form * h1 {
 	font-size: 20px;
+	color: #00957B;
+}
+
+h1.form {
 	color: #FCFBF2;
+	margin-bottom: 30px;
+}
+
+h2.form {
+	color: #00957B;
+}
+
+h1.form.button {
+	color: #00957B;
+	border: 3px solid #00957B;
+	border-radius: 8px;
+	background-color: #FCFBF2;
+}
+
+h1.form.button:hover {
+	background-color: #ECE9D2;
 }
 
 h1.form {
@@ -52,8 +73,8 @@ button.button.register {
 	width: 150px;
 }
 
-input.header-register {
-	
+.form input {
+	margin: 0px;
 }
 
 .section {
@@ -66,7 +87,6 @@ input.header-register {
 .divider {
 	background-color: #ECE9D2;
 	//min-height: 13px;
-	padding: 20px;
 	font-size: 20px;
 	font-weight: bold;
 }

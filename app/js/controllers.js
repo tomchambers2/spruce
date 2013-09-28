@@ -232,14 +232,17 @@ spruce.
   controller('MainCtrl',['$scope', function($scope){
 
   }]).
-  controller('HomeCtrl',['$scope', function($scope){
+  
+  controller('HomeCtrl',['$scope','$location','$anchorScroll', function($scope, $location, $anchorScroll){
     mixpanel.track("Home");
 
     $scope.scrollTo = function(id) {
-      $location.hash(id);
-      $anchorScroll();
-   }
+        console.log(id);
+        $location.hash(id);
+        $anchorScroll();
+    };
   }]).
+
   controller('RegistrationCtrl', ['_Parse','$scope', '$location', 'sharedState', function(_parse, $scope, $location, sharedState){
   	$scope.badLogin = false;
     if (_parse.User.current()) {

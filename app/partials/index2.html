@@ -1,23 +1,15 @@
 <div ng-controller="HomeCtrl" ng-init="">
     <!--<div class="large-12 columns header"><img class="home-logo" src="/app/img/spruce.png" /></div>-->
-    <div class="large-12 columns header text-center">
+    <div class="large-12 columns landing-header text-center">
 
       <h1 class="superbig">Feel better</h1>
       <h2>by countering irrational thinking</h2>
 
-      <h1 class="form">Try it for free now</h1>
-
-      <div class="row form">
-        <div class="large-2 columns"><label class="right inline"><h1>Your email</h1></label></div>
-        <div class="large-3 columns"><h1><input type="text" class="header-register"></h1></div>
-        <div class="large-2 columns"><label class="right inline"><h1>Password</h1></label></div>
-        <div class="large-3 columns"><h1><input type="text" class="header-register"></h1></div>
-        <div class="large-2 columns"><h1><button class="button register">Register</button></h1></div>
-      </div>
+      <h1 class="form button" ng-click="scrollTo('register')">Try Spruce now</h1>
     </div>
 
     <div class="large-12 columns text-center">
-      <h1 class="landing-page"><span ng-click="scrollTo('more')">Find out more about Spruce ↓</span></h1>
+      <h1 class="landing-page"><span ng-click="scrollTo('register')">Find out more ↓</span></h1>
     </div>
 
       <div class="large-12 columns section">
@@ -46,6 +38,18 @@
     </div>
 
     <div class="large-12 columns divider text-center">
+      <div class="row">
+        <div class="large-12 columns">
+          <h2 class="form" id="register">Try Spruce now</h2>
+        </div>
+      </div>
+      <div class="row form">
+        <div class="large-2 columns"><label class="right inline"><h1>Your email</h1></label></div>
+        <div class="large-3 columns"><h1><input type="text" class="header-register"></h1></div>
+        <div class="large-2 columns"><label class="right inline"><h1>Password</h1></label></div>
+        <div class="large-3 columns"><h1><input type="text" class="header-register"></h1></div>
+        <div class="large-2 columns"><h1><button class="button register">Register</button></h1></div>
+      </div>
     </div>
 
     <div class="large-12 columns section">
