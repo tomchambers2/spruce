@@ -3,7 +3,7 @@
 /* Controllers */
 
 spruce.
-  controller('NewEntryCtrl', ['$scope', '_Parse', '$routeParams', '$location', 'sharedState', function($scope, _parse, $routeParams, $location, sharedState) {
+  controller('NewEntryCtrl', ['$scope', '_Parse', '$routeParams', '$location', 'sharedState', '$timeout', function($scope, _parse, $routeParams, $location, sharedState, $timeout) {
   	$scope.stage = 1;
     $(document).foundation();
   	$scope.curEmotion = '';
@@ -50,11 +50,6 @@ spruce.
   		}
   		if(sharedState.fromReg){
   			sharedState.fromReg = false;
-        //meh, not using modal for now.
-        // setTimeout(function(){
-        //   $('#introModal').foundation('reveal', 'open');
-        // },500)
-
   		}
 
 
@@ -100,6 +95,7 @@ spruce.
 
   	$scope.setFinalThought = function(yesNo){
   		var useful = (yesNo == 'yes') ? true : false;
+      mixpanel.track("feedback", {'useful': useful});
   		$scope.newEntry.set('useful', useful);
   		$scope.newEntry.save();
       $scope.showFeedback = false;
@@ -131,7 +127,7 @@ spruce.
 
         window.scrollTo(0,140);
           angular.element('#yourBeliefContainer').hide();
-        setTimeout(function(){
+        $timeout(function(){
           angular.element('#yourBeliefContainer').fadeIn('slow')
         }, 300);
         if(nextNeg === undefined){
@@ -191,7 +187,7 @@ spruce.
 
   		if(newValue == 2){initEntryObj();}
 
-  		if(newValue == 4){
+  		if(newValue == 4 && oldValue == 3){
   			//initEntryObjialise first neg belief
   			negBeliefCopy = $scope.negativeBeliefsCopy;
   			$scope.negBelief = negBeliefCopy.pop();
@@ -211,10 +207,10 @@ spruce.
     $scope.entries = {};
     var populateScope = function(entries){
       entries.forEach(function(val, index){
-        $scope.entries[String(index)] = objDecrypter.decryptEntry(val);
-        $scope.$apply();
+        $scope.$apply(function(){
+          $scope.entries[String(index)] = objDecrypter.decryptEntry(val);
+        });
       });
-      var pop;
     }
     orm.getAllEntries(populateScope);
   }]).
@@ -223,9 +219,11 @@ spruce.
     $scope.cbtEntry = {};
     orm.getEntry($routeParams.id, function(entry){
       entry = objDecrypter.decryptEntry(entry);
-      $scope.cbtEntry = entry;
-       $scope.$apply();
-    });
+      $scope.$apply(function(){
+        $scope.cbtEntry = entry;
+        });
+
+      });
   }]).
   controller('MainCtrl',['$scope', '_Parse', function($scope, _parse){
     $scope.loggedIn = {'state': false};
@@ -273,9 +271,7 @@ spruce.
       orm.registerUser(username, password).then(
           function(result){
             sharedState.fromReg = true;
-            $scope.$apply(function () {
-              $location.url('/entries/new');
-            });
+            $location.url('/entries/new');
           },
           function(error){
             alert("Error: " + error.code + " " + error.message+ ' Please try again.');
@@ -288,10 +284,9 @@ spruce.
   		orm.logIn(user).then(
           function(user){
             console.log("successful login" + angular.toJson(user, true));
+
             $scope.loggedIn['state'] = true;
-            //$scope.$apply(function () {
-              $location.path('/dashboard');
-            //});
+            $location.path('/dashboard');
           },
           function(error){
             $scope.badLogin = true;
