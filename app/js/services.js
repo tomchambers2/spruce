@@ -47,6 +47,7 @@ spruce.
     }
     this.getAllEntries = _getAllEntries;
 
+    /* returns promise */
     var _registerUser = function(uName, pass){
           var deferred = $q.defer();
           var user = new _parse.User();
@@ -74,6 +75,7 @@ spruce.
     }
     this.registerUser = _registerUser;
 
+    /* returns promise */
     var _loginUser = function(details){
       var deferred = $q.defer();
       _parse.User.logIn(details.username, details.password).then(
