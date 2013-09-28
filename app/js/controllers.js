@@ -227,8 +227,17 @@ spruce.
        $scope.$apply();
     });
   }]).
-  controller('MainCtrl',['$scope', function($scope){
+  controller('MainCtrl',['$scope', '_Parse', function($scope, _parse){
+    $scope.loggedIn = {'state': false};
+    var init = function(){
+      $scope.loggedIn['state'] = (_parse.User.current())? true : false;
+    }
+    init()
 
+    $scope.logOut = function(){
+      _parse.User.logOut();
+      $scope.loggedIn['state'] = false;
+    }
   }]).
 
   controller('HomeCtrl',['$scope','$location','$anchorScroll', 'orm', function($scope, $location, $anchorScroll, orm){
@@ -279,9 +288,10 @@ spruce.
   		orm.logIn(user).then(
           function(user){
             console.log("successful login" + angular.toJson(user, true));
-            $scope.$apply(function () {
+            $scope.loggedIn['state'] = true;
+            //$scope.$apply(function () {
               $location.path('/dashboard');
-            });
+            //});
           },
           function(error){
             $scope.badLogin = true;
