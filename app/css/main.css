@@ -3,7 +3,7 @@
 	background-color: #00957B;
 	//width:100%;
 	margin-top: 0px;
-	background-image: url('/app/img/background.jpg');
+	background-image: url('../img/background.jpg');
 	-webkit-background-size:cover;
 	-moz-background-size:cover;
 	background-size:cover;
