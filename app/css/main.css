@@ -45,9 +45,11 @@ button.button.register {
 	background-color: #FCFBF2;
 	color: #00957B;
 	border: 3px solid #6B958E;
-	max-height: 40px;
+	height: 40px;
 	font-size: 15px;
 	margin: 0px;
+	padding: 5px;
+	width: 150px;
 }
 
 input.header-register {
