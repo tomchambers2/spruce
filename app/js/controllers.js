@@ -239,7 +239,11 @@ spruce.
   }]).
 
   controller('HomeCtrl',['$scope','$location','$anchorScroll', 'orm', function($scope, $location, $anchorScroll, orm){
-    mixpanel.track("Home");
+    if($location.path().split('/').pop() == 'psychology'){
+      mixpanel.track("Home", {version: 'psychology'});
+    }else{
+      mixpanel.track("Home", {version: 'index'});
+    }
     $scope.badLogin = false;
 
     $scope.scrollTo = function(id) {
