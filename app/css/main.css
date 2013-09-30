@@ -10,6 +10,11 @@
 	background-position: center;
 	background-repeat: no-repeat;
 	padding-top: 160px;
+	padding-bottom: 70px;
+}
+
+.register {
+	background-color: #F8F5DD;
 }
 
 .home-logo {
