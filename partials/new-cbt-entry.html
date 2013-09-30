@@ -129,7 +129,7 @@
 													<h4>
 														<strong>people:</strong> "She ignored me, she must not like me" "He's a dick"<br/>
 														<strong>the future:</strong> "This is going to end in disaster"<br/>
-														<strong>yourself:</strong> "If I mess this up, I'm inadequate" "Because I can't do this, I'm a pathetic failure"
+														<strong>yourself:</strong> "If I mess this up, I'm inadequate" "I can't stand this because..."
 													</h4>
 
 													<div class="emotion-basket">
@@ -153,7 +153,7 @@
 											<div class="row">
 												<div class="large-12 columns">
 													<h2 id="yourBeliefContainer">Your belief: <i>{{negBelief}}</i></h2>
-													<h3>Click on any questions that might be appropriate</h3>
+													<h3>Sometimes, asking ourselves simple questions is helpful. Click on any any you think might be relevant to your situation.</h3>
 
 												</div>
 												<div ng-show="firstDistortionSelected.focusText" class="large-2 columns">
@@ -169,7 +169,7 @@
 													    	<p>{{distortion['fullDescription']}}</p>
 													    	<div class="row">
 													    	  <div class="small-12 columns">
-													    	    <button class="button spruce-btn prefix" ng-hide="selected" ng-click=" selected=true;firstDistortionSelected.state = true;">This question applies to my belief</button>
+													    	    <button class="button spruce-btn prefix" ng-hide="selected" ng-click=" selected=true;firstDistortionSelected.state = true;">Yes, this might be true.</button>
 													    	    <div class="" ng-show="selected"><!--h5 class="subheader" >Great! Write something about this on the right.</h5-->
 													    	    	<label><strong>What's the problem with your belief? Try writing a new belief</strong></label>
 													    	    <textarea ng-model="changeStep[distortionLabel]" ng-keyup="distKeyUp()"class="tall-textarea" rows="40" autofocus="autofocus"></textarea>
