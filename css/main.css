@@ -10,7 +10,6 @@
 	background-position: center;
 	background-repeat: no-repeat;
 	padding-top: 30px;
-	//padding-bottom: 50px;
 }
 
 .testimonial {
@@ -31,11 +30,11 @@ img.radius {
 	height: 150px;
 }
 
-h1.superbig {
-	font-size: 50px;
+h2.superbig {
+	font-size: 40px;
 	color: #222222;
-	margin-bottom: 0px;
-	margin-left: -33%
+	margin-bottom: 30px;
+	margin-left: -38%
 }
 
 h1.superbig + h2 {
