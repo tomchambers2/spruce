@@ -3,13 +3,28 @@
 	background-color: #00957B;
 	//width:100%;
 	margin-top: 0px;
-	background-image: url('../img/background.jpg');
+	background-image: url('http://farm6.staticflickr.com/5021/5676931022_f1ae2f264e_b.jpg');
 	-webkit-background-size:cover;
 	-moz-background-size:cover;
 	background-size:cover;
 	background-position: center;
 	background-repeat: no-repeat;
-	padding-top: 160px;
+	padding-top: 30px;
+	//padding-bottom: 50px;
+}
+
+.testimonial {
+	margin-bottom: 100px;
+}
+
+img.radius {
+	border:3px solid #00957B;
+	height: 90px;
+	border-radius: 37.5px;
+}
+
+.register {
+	background-color: #F8F5DD;
 }
 
 .home-logo {
@@ -20,12 +35,14 @@ h1.superbig {
 	font-size: 50px;
 	color: #222222;
 	margin-bottom: 0px;
+	margin-left: -33%
 }
 
 h1.superbig + h2 {
+	margin-left: -33%;
 	color: #222222;
 	margin-top: 0px;
-	margin-bottom: 100px;
+	margin-bottom: 50px;
 }
 
 h1.landing-page {

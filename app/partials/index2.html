@@ -5,7 +5,34 @@
       <h1 class="superbig">Feel better</h1>
       <h2>by countering irrational thinking</h2>
 
-      <h1 class="form button" ng-click="scrollTo('register')">Try Spruce now</h1>
+      <div class="row testimonial">
+        <div class="large-6 columns">
+          <div class="row">
+            <div class="large-4 columns"><img src="/img/matt.jpeg" class="radius" /><h4>Matt Clifford, user</h4></div>
+            <div class="large-8 columns"><h3>"It really helped me get a handle on my emotions"</h3>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="large-12 columns register text-center">
+        <div class="row">
+          <div class="large-12 columns">
+            <h2 class="form" id="register">Try Spruce now</h2>
+          </div>
+        </div>
+        <div class="row form">
+          <form name="registrationForm">
+            <div class="large-2 columns"><label class="right inline" for="email" autofocus required>Your email</label></div>
+            <div class="large-3 columns"><input type="email" ng-model="newUser.email" id="email" class="header-register"></div>
+            <div class="large-2 columns"><label class="right inline" for="password">Password</label></div>
+            <div class="large-3 columns"><input type="password" ng-model="newUser.password" id="password" class="header-register" required></div>
+            <div class="large-2 columns"><button class="button register" ng-click="register(newUser.email, newUser.password)"
+                              ng-disabled="registrationForm.$invalid" >Register</button></div>
+          </form>
+        </div>
+      </div>
     </div>
 
     <div class="large-12 columns text-center">
@@ -56,25 +83,6 @@
             <p>Anyone who is feeling stressed, troubled or upset. It's effective for minor niggling issues like stress at work as well as more serious problems such as depression.</p>
           </div>
         </div>
-      </div>
-    </div>
-
-
-    <div class="large-12 columns divider text-center">
-      <div class="row">
-        <div class="large-12 columns">
-          <h2 class="form" id="register">Try Spruce now</h2>
-        </div>
-      </div>
-      <div class="row form">
-        <form name="registrationForm">
-          <div class="large-2 columns"><label class="right inline" for="email" autofocus required>Your email</label></div>
-          <div class="large-3 columns"><input type="email" ng-model="newUser.email" id="email" class="header-register"></div>
-          <div class="large-2 columns"><label class="right inline" for="password">Password</label></div>
-          <div class="large-3 columns"><input type="password" ng-model="newUser.password" id="password" class="header-register" required></div>
-          <div class="large-2 columns"><button class="button register" ng-click="register(newUser.email, newUser.password)"
-                            ng-disabled="registrationForm.$invalid" >Register</button></div>
-        </form>
       </div>
     </div>
 
