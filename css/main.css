@@ -12,6 +12,12 @@
 	padding-top: 30px;
 }
 
+@media (max-width: 480px) {
+	.landing-header {
+		background: none;
+	}
+}
+
 .testimonial {
 	margin-bottom: 100px;
 }
