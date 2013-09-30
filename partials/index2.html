@@ -1,33 +1,93 @@
-<div ng-controller="HomeCtrl" ng-init="">
-      <div class="large-8 columns title">
-        <h1>Spruce</h1>
-            <div class="large-1 columns">
+<div>
+    <!--<div class="large-12 columns header"><img class="home-logo" src="/app/img/spruce.png" /></div>-->
+    <div class="large-12 columns landing-header text-center">
+
+      <h1 class="superbig">Feel better</h1>
+      <h2>by countering irrational thinking</h2>
+
+      <div class="row testimonial">
+        <div class="large-6 columns">
+          <div class="row">
+            <div class="large-4 columns"><img src="/img/matt.jpeg" class="radius" /><h4>Matt Clifford, user</h4></div>
+            <div class="large-8 columns"><h3>"It really helped me get a handle on my emotions"</h3>
+              </div>
+          </div>
         </div>
       </div>
+    </div>
 
+    <div class="large-12 columns register text-center">
+        <div class="row">
+          <div class="large-12 columns">
+            <h2 class="form" id="register">Try Spruce now for for free</h2>
+          </div>
+        </div>
+        <div class="row form">
+          <form name="registrationForm">
+            <div class="large-2 columns"><label class="right inline" for="email" autofocus required>Your email</label></div>
+            <div class="large-3 columns"><input type="email" ng-model="newUser.email" id="email" class="header-register"></div>
+            <div class="large-2 columns"><label class="right inline" for="password">Password</label></div>
+            <div class="large-3 columns"><input type="password" ng-model="newUser.password" id="password" class="header-register" required></div>
+            <div class="large-2 columns"><button class="button register" ng-click="register(newUser.email, newUser.password)"
+                              ng-disabled="registrationForm.$invalid" >Register</button></div>
+          </form>
+        </div>
+      </div>
+    </div>
 
-    <div class="row row-panel header">
-      <div class="large-12 columns text-center">
-        <h2>Take control of your thoughts</h2>
+    <div class="large-12 columns text-center">
+      <h1 class="landing-page"><span ng-click="scrollTo('more')">Find out more ↓</span></h1>
+    </div>
+
+      <div class="large-12 columns section" id="more">
+
+      <div class="row">
+        <div class="row">
+          <div class="large-6 columns text-center">
+          </div>
+        </div>
+        <div class="row">
+          <div class="large-4 columns">
+            <h2 class="section-title">Thoughts create emotions</h2>
+            <p>It's not what happens to you, but how you think about it that makes you feel the way you do. By changing the automatic thoughts you have in response to circumstances, you can change the way you feel.</p>
+          </div>
+          <div class="large-4 columns">
+            <h2 class="section-title">Change your thoughts</h2>
+            <p>Use Spruce with a troubling concern to challenge your irrational thoughts and let go of anxiety and sadness. How? We'll ask you a series of questions about an upsetting situation, then we'll give you an exercise to help you revise your thoughts.</p>
+          </div>
+          <div class="large-4 columns">
+            <h2 class="section-title">Keep a journal</h2>
+            <p>You can go back to what you write at any time to review and consolidate your new more rational thinking. This helps in similar situations in the future.</p>
+          </div>
+        </div>
       </div>
 
     </div>
 
-    <div class="row row-panel main">
-      <div class="large-12 columns text-center">
-          <span class="equation">A + B = C</span>
-          <p class="equation-text">your Actions + your Beliefs = emotional Consequences</p>
-      </div>
-        <div class="large-6 columns copy-one">
-            <h3>What does it do?</h3>
-            <p>Spruce helps you combat your negative thoughts and emotions. Spruce can help you deal with your feelings of unwarranted sadness and anxiety in safe and convenient manner.</p>
+    <div class="large-12 columns divider text-center"><br/></div>
+
+
+    <div class="large-12 columns section">
+      <div class="row">
+        <div class="row">
+          <div class="large-4 columns">
+            <h2 class="section-title">Convenient</h2>
+            <p>You can start using the tool immediately. You can return to it at any time you need to. We've found that people use it about 2-3 times per week and feel the benefit after their first use.</p>
+          </div>
+          <div class="large-4 columns">
+            <h2 class="section-title">Confidential</h2>
+            <p>We understand that there are some things you want to talk about, and some you want to keep to yourself. Spruce is totally privately, so you can use it without worrying if your issues are embarassing or just trivial.</p>
+          </div>
+          <div class="large-4 columns">
+            <h2 class="section-title">Who for?</h2>
+            <p>Anyone who is feeling stressed, troubled or upset. It's effective for minor niggling issues like stress at work as well as more serious problems such as depression.</p>
+          </div>
         </div>
-        <div class="large-6 columns copy-two">
-            <h3>How does Spruce work?</h3>
-            <p>We take you through a guided process that helps you identify the thoughts at the root of your troubling emotions. Once those thoughts are identified, Spruce helps you look at your thoughts in a rational & sensible way.</p>
-        </div>
-      <div class="large-12 columns text-center">
-          <a href="#/get-started" class="button start">Get started</a>
       </div>
     </div>
+
+    <div class="large-12 columns footer text-center">
+      <h1>Got more questions? <a href="mailto:tom.chambers@gmail.com">Email us</a></h1>
+    </div>
+
 </div>
