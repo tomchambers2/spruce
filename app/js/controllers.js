@@ -107,13 +107,14 @@ spruce.
     }
     //Resets step 4 as user cycles through beliefs.
     $scope.nextNegBelief = function(modifiedBelief){
+
+        $scope.cbtEntry.negativeBeliefs[negativeBelief]
         console.log(angular.toJson($scope.changeStep));
         _pushChangeStepToCbtEntry($scope.changeStep);
         //reset changestep
         $scope.changeStep = {};
         $scope.hasNewBelief = false;
         var nextNeg  = negBeliefCopy.pop();
-        /* refactor this setting next neg business, shuoldn't be dependant on order of code*/
         //updates button. Could be a directive?
         $scope.setNextBelief();
 
@@ -148,8 +149,10 @@ spruce.
       }
     }
   	$scope.addBelief = function(negativeBelief){
-      if (negativeBelief) {
-    		$scope.cbtEntry.negativeBeliefs[negativeBelief] = {};
+        if($scope.newBelief){
+      		$scope.cbtEntry.negativeBeliefs[negativeBelief]['newBelief'] = $scope.newBelief;
+
+        }
     		$scope.negativeBeliefsCopy = Object.keys($scope.cbtEntry.negativeBeliefs);
         $scope.negativeBelief = "";
         window.scrollTo(0,document.body.scrollHeight);
