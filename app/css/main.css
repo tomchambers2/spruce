@@ -83,7 +83,11 @@ h1.form.button:hover {
 h1.form {
 	font-size: 30px;
 }
-
+.rounded{
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+}
 button.button.register {
 	border-radius: 4px;
 	background-color: #FCFBF2;

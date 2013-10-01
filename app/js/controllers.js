@@ -11,6 +11,7 @@ spruce.
     $scope.changeStep = {}
     $scope.firstDistortionSelected = {'state': false, 'focusText': false};
     $scope.concern = '';
+    $scope.hasNewBelief = false;
   	$scope.showFeedback = true;
     $scope.negativeBeliefsCopy = [];
   	$scope.cbtEntry = { concern: '', emotions: [], negativeBeliefs: {}};
@@ -120,6 +121,7 @@ spruce.
         _pushChangeStepToCbtEntry($scope.changeStep);
         //reset changestep
         $scope.changeStep = {};
+        $scope.hasNewBelief = false;
         var nextNeg  = negBeliefCopy.pop();
         /* refactor this setting next neg business, shuoldn't be dependant on order of code*/
         //updates button. Could be a directive?
