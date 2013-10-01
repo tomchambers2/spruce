@@ -110,9 +110,11 @@ spruce.
         console.log($scope.changeStep);
     }
     var _pushChangeStepToCbtEntry = function(obj){
+      //cycle through changestep {distortionLabel: newthought}
+      //should create a wrapper fo rmanaging distortion?
       for (var prop in obj) {
          if(obj.hasOwnProperty(prop)){
-          $scope.cbtEntry.negativeBeliefs[$scope.negBelief][prop] = obj[prop];
+          $scope.cbtEntry.negativeBeliefs[$scope.negBelief]['newThoughts'][prop] = obj[prop];
          }
       }
     }
@@ -138,10 +140,6 @@ spruce.
         else{
           $scope.negBelief = nextNeg;
         }
-  	}
-    //Deprecated
-  	$scope.getDistortionID = function(distortion){
-  		return 1;
   	}
 
   	$scope.addEmotion = function(newEmotion){

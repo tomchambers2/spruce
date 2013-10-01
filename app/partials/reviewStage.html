@@ -6,7 +6,7 @@
 		<li ng-repeat="(negBelief, distortionList) in cbtEntry.negativeBeliefs">
 			<strong >{{negBelief}}</strong>, <em>however, You've realised this is:</em>
 			<ul>
-					<li ng-repeat="(dist, newThought) in distortionList">
+					<li ng-repeat="(dist, newThought) in distortionList['newThoughts']">
 					<span >
 						{{dist}}
 
