@@ -100,7 +100,9 @@ button.button.register {
 .form input {
 	margin: 0px;
 }
-
+.off-colour{
+	background-color: #ECE9D2;
+}
 .section {
 	background-color: #F8F5DD;
 	width: 100%;

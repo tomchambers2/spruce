@@ -10,7 +10,7 @@ spruce.config(['$routeProvider', function($routeProvider) {
       when('/entries/new', {templateUrl: 'partials/new-cbt-entry.html',   controller: 'NewEntryCtrl', reloadOnSearch: false}).
       when('/entries/:id', {templateUrl: 'partials/cbt-entry.html',   controller: 'EntryCtrl'}).
       when('/', {templateUrl: 'partials/index2.html',   controller: 'HomeCtrl'}).
-      when('/psychology', {templateUrl: 'partials/psychology.html',   controller: 'HomeCtrl'}).
+      when('/psychology', {templateUrl: 'partials/index2.html',   controller: 'HomeCtrl'}).
       when('/get-started', {templateUrl: 'partials/sign-in.html',   controller: 'RegistrationCtrl'}).
       when('/dashboard', {templateUrl: 'partials/dashboard.html', controller: 'DashboardCtrl'}).
       otherwise({redirectTo: '/'});
