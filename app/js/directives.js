@@ -19,7 +19,7 @@ directive('focusMe', function($timeout) {
     }
   };
 }).
-directive('ngFocus', function($timeout) {
+directive('ngFocusWhen', function($timeout) {
     return {
         link: function ( scope, element, attrs ) {
             scope.$watch( attrs.ngFocus, function ( val ) {

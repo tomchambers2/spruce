@@ -187,7 +187,6 @@
 																<div class="small-12 columns">
 																	<button class="button spruce-btn prefix" ng-hide="selected" ng-click=" selected=true;firstDistortionSelected.state = true;">Yes, this might be true.</button>
 																	<div class="" ng-show="selected">
-																		<!--h5 class="subheader" >Great! Write something about this on the right.</h5-->
 																	<label>
 																		<strong>What are the problems with this belief?</strong>
 																	</label>
@@ -199,17 +198,29 @@
 													</div>
 												</section>
 											</div>
+											<hr/>
+												<div class="section-container accordion" data-section="accordion">
+													<section>
+														<p class="title" data-section-title>
+															<a href="">
+																<strong><em>Optional:</em> Click here to write a new rational belief</strong>
+															</a>
+														</p>
+														<div class="content" data-section-content>
+															<p>Think about this statement: "{{negBelief}}". Is it still valid now that you've been through the challenges above?</p>
+															<div class="row">
+																<div class="small-12 columns">
+																  	<input type="text" class="rounded" id="right-label round" autofocus>
+																	<button class="small button spruce-btn pass" ng-hide="hasNewBelief">Save new belief</button>
+																</div>
+															</div>
+														</div>
+													</div>
+												</section>
 
 										</div>
-										<div class="row">
-												<div class="small-12 columns">
-												  <button class="small button round spruce-btn" ng-click="hasNewBelief=true" ng-hide="hasNewBelief">"{{negBelief}}", would you like to put forward a new belief?</button>
-												</div>
-												<div ng-show="hasNewBelief" class="small-12 columns">
-												  <input type="text" class="rounded" id="right-label round" placeholder="Type it in!" ng-focus="hasNewBelief" autofocus>
-												</div>
-										</div>
-<hr/>
+
+										
 										<div class="row">
 											<div class="large-6 large-offset-3 columns help">
 												<button class="small button spruce-btn pass" ng-click="nextNegBelief()">{{nextBelief}}</button>
