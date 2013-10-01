@@ -238,12 +238,17 @@ spruce.
     }
   }]).
 
-  controller('HomeCtrl',['$scope','$location','$anchorScroll', 'orm', function($scope, $location, $anchorScroll, orm){
+  controller('HomeCtrl',['_Parse','$scope','$location','$anchorScroll', 'orm', function(_parse, $scope, $location, $anchorScroll, orm){
+    if (_parse.User.current()) {
+      $location.url('/entries/new');
+    }
+
     if($location.path().split('/').pop() == 'psychology'){
       mixpanel.track("Home", {version: 'psychology'});
     }else{
       mixpanel.track("Home", {version: 'index'});
     }
+
     $scope.badLogin = false;
 
     $scope.scrollTo = function(id) {
