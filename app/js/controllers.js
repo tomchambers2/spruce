@@ -8,7 +8,6 @@ spruce.
     $(document).foundation();
     $scope.nextBelief = 'Done';
     $scope.changeStep = {}
-    $scope.firstDistortionSelected = {'state': false, 'focusText': false};
     $scope.concern = '';
     $scope.hasNewBelief = false;
   	$scope.showFeedback = true;
