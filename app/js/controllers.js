@@ -225,12 +225,13 @@ spruce.
 
       });
   }]).
-  controller('MainCtrl',['$scope', '_Parse', function($scope, _parse){
+  controller('MainCtrl',['$scope', '$timeout', '_Parse', function($scope, $timeout, _parse){
     $scope.loggedIn = {'state': false};
     var init = function(){
-      $scope.loggedIn['state'] = (_parse.User.current())? true : false;
+      $scope.loggedIn['state'] = (Parse.User.current())? true : false;
+      $timeout(function(){ $('.carousel').carousel(); }, 300);
     }
-    init()
+    init();
 
     $scope.logOut = function(){
       _parse.User.logOut();
