@@ -2,15 +2,14 @@
 
 /* jasmine specs for controllers go here */
 
-describe('controllers', function(){
-  beforeEach(module('myApp.controllers'));
+describe('Spruce controllers', function(){
+  describe('NewEntryCtrl', function(){
+	  it('should ....', inject(function() {
+	    //spec body
+	  }));
 
-
-  it('should ....', inject(function() {
-    //spec body
-  }));
-
-  it('should ....', inject(function() {
-    //spec body
-  }));
+	  it('should ....', inject(function() {
+	    //spec body
+	  }));
+  });
 });

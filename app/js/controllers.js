@@ -6,7 +6,6 @@ spruce.
   controller('NewEntryCtrl', ['$scope', '_Parse', '$routeParams', '$location', 'sharedState', '$timeout', function($scope, _parse, $routeParams, $location, sharedState, $timeout) {
   	$scope.stage = 1;
     $(document).foundation();
-  	$scope.curEmotion = '';
     $scope.nextBelief = 'Done';
     $scope.changeStep = {}
     $scope.firstDistortionSelected = {'state': false, 'focusText': false};
@@ -46,14 +45,9 @@ spruce.
   	var negBeliefCopy;
 
   	var init = function(){
-  		if($routeParams.stage){
-  			$scope.stage = $routeParams.stage;
+  		if($routeParams.section){
+  			$scope.stage = $routeParams.section;
   		}
-  		if(sharedState.fromReg){
-  			sharedState.fromReg = false;
-  		}
-
-
   	}
   	init();
 
@@ -105,9 +99,6 @@ spruce.
   	$scope.closeModal = function(){
   		$('#introModal').foundation('reveal', 'close');
   	}
-    $scope.distKeyUp = function(){
-        console.log($scope.changeStep);
-    }
     var _pushChangeStepToCbtEntry = function(obj){
       for (var prop in obj) {
          if(obj.hasOwnProperty(prop)){
