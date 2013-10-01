@@ -6,27 +6,24 @@ spruce.
   controller('NewEntryCtrl', ['$scope', '_Parse', '$routeParams', '$location', 'sharedState', '$timeout', function($scope, _parse, $routeParams, $location, sharedState, $timeout) {
   	$scope.stage = 1;
     $(document).foundation();
-  	$scope.curEmotion = '';
     $scope.nextBelief = 'Done';
     $scope.changeStep = {}
-    $scope.firstDistortionSelected = {'state': false, 'focusText': false};
     $scope.concern = '';
+    $scope.newBelief = ''
   	$scope.showFeedback = true;
     $scope.negativeBeliefsCopy = [];
   	$scope.cbtEntry = { concern: '', emotions: [], negativeBeliefs: {}};
     $scope.distortions =
     {
     "Assuming the Worst Case Scenario": {'fullDescription': "Sometimes we automatically go to an extremely negative end of the spectrum. If you think about the range of possibilities, is it really as bad as you imagine? What are some other possible ways in which you could state this that are more moderate?", 'shortDescription': "Does this statement seem at all extreme?"}
-    //v similar to labeling,"Mental Filtering": {'fullDescription': "Are you focussing in on a particular aspect of your life to the exclusion of everything else? Are there areas your life that are totally unrelated and unaffected by this that bring you pleasure?", 'shortDescription': "Perhaps there might be other areas of life that have been eclipsed by this situation?"}
     ,"Mind-Reading": {'fullDescription': "Are you assuming something about what another person is thinking, or do you have evidence to support this? How certain you can be about the contents of someone else’s mind? Do you think that your assumption is based on a preconception?", 'shortDescription': "Does this thought state what someone else might be thinking?"}
     ,"Predicting the Future": {'fullDescription': "Although you can make guesses about what will happen, it’s a good idea to remember that nothing in this thought is guaranteed to occur. However convinced you are, you'll never absolutely know.", 'shortDescription': "Have you made a prediction about the future?"}
     ,"Labelling a Person": {'fullDescription': "By saying ‘That person is awful or 'I’m stupid', are you allowing a single action to define an entire life? Think about how many things you’ve done in your life and see what proportion of your life this incident actually is. Is it sensible to allow a single thing to define your self worth?", 'shortDescription': "In this thought have you passed judgement on yourself or someone else?"}
     ,"Assigning Responsibility or Blaming": {'fullDescription': "Is this thought about assigning responsibility? Think about to what extent you or that person was really responsible, and what might have been down to circumstance or chance.", 'shortDescription': "Is this thought about giving yourself or someone else responsibility for what happened?"}
     ,"Unrealistic Expectations": {'fullDescription': "Are you using words like ‘must’ or ‘should’? Consider whether your expectations need to be realigned. You’ll either have to adjust your expectations to match reality, or always feel let down by others (or yourself)", 'shortDescription': 'Have you used the words "must" or "should" in this thought?'}
-    ,"All-Or-Nothing Thinking": {'fullDescription': "Are you seeing things in black and white with only a binary set of outcomes? Are there a range of possible interpretations of the situation that you haven't considered?", 'shortDescription': "Are you assuming that a single outcome is inevitable?"}
+    ,"All-Or-Nothing Thinking": {'fullDescription': "Are you seeing things in black and white with only a binary set of outcomes? Are there a range of possible interpretations of the situation that you haven't considered?", 'shortDescription': "Does this statement assume that a single outcome is inevitable?"}
     ,"Lack of Factual accuracy": {'fullDescription': 'Try and think about all the evidence for this statement. Can you think of any evidence for an alternate point of view?', 'shortDescription': 'How much factual evidence is there for this belief?'}
-    ,"Overgeneralisation": {'fullDescription': 'It\'s easy to focus in one thing and assume that it\'s representative of everything similar. But often that\'s a mistake, it might be your day that\'s going badly, rather than your whole life. Is it possible that it\'s just one thing that\'s bad, rather than everything?', 'shortDescription': 'Are you predicting how things will work out in the future based on the outcome of a single event?'}
-    // similar to  factual accuracy,"Subjective view": {'fullDescription': "Subjective views are like a filter we put between ourselves and the world. Imagine this view as a coloured pane of glass you're looking through. What other colours could it be if you asked different people? How much of this can be proved objectively?", 'shortDescription': 'Does the truth of this thought rely on your subjective beliefs?'}
+    ,"Overgeneralisation": {'fullDescription': 'It\'s easy to focus in one thing and assume that it\'s representative of everything similar. But often that\'s a mistake, it might be your day that\'s going badly, rather than your whole life. Is it possible that it\'s just one thing that\'s bad, rather than everything?', 'shortDescription': 'Are you assuming that one thing that happened will happen over and over again?'}
     };
     if (_parse.User.current()) {
       //_parse.User.logOut()
@@ -47,14 +44,9 @@ spruce.
   	var negBeliefCopy;
 
   	var init = function(){
-  		if($routeParams.stage){
-  			$scope.stage = $routeParams.stage;
+  		if($routeParams.section){
+  			$scope.stage = $routeParams.section;
   		}
-  		if(sharedState.fromReg){
-  			sharedState.fromReg = false;
-  		}
-
-
   	}
   	init();
 
@@ -106,10 +98,10 @@ spruce.
   	$scope.closeModal = function(){
   		$('#introModal').foundation('reveal', 'close');
   	}
-    $scope.distKeyUp = function(){
-        console.log($scope.changeStep);
-    }
     var _pushChangeStepToCbtEntry = function(obj){
+      if($scope.cbtEntry.negativeBeliefs[$scope.negBelief].hasOwnProperty('newThoughts') == false){
+        $scope.cbtEntry.negativeBeliefs[$scope.negBelief]['newThoughts'] = {};
+      }
       //cycle through changestep {distortionLabel: newthought}
       //should create a wrapper fo rmanaging distortion?
       for (var prop in obj) {
@@ -119,13 +111,16 @@ spruce.
       }
     }
     //Resets step 4 as user cycles through beliefs.
-    $scope.nextNegBelief = function(modifiedBelief){
+    $scope.nextNegBelief = function(){
+        if($scope.newBelief != ''){
+          $scope.cbtEntry.negativeBeliefs[$scope.negBelief]['newBelief'] = $scope.newBelief;
+          $scope.newBelief = '';
+        }
         console.log(angular.toJson($scope.changeStep));
         _pushChangeStepToCbtEntry($scope.changeStep);
         //reset changestep
         $scope.changeStep = {};
         var nextNeg  = negBeliefCopy.pop();
-        /* refactor this setting next neg business, shuoldn't be dependant on order of code*/
         //updates button. Could be a directive?
         $scope.setNextBelief();
 
@@ -156,12 +151,12 @@ spruce.
       }
     }
   	$scope.addBelief = function(negativeBelief){
-      if (negativeBelief) {
-    		$scope.cbtEntry.negativeBeliefs[negativeBelief] = {};
-    		$scope.negativeBeliefsCopy = Object.keys($scope.cbtEntry.negativeBeliefs);
-        $scope.negativeBelief = "";
-        window.scrollTo(0,document.body.scrollHeight);
-      }
+        if (negativeBelief) {
+          $scope.cbtEntry.negativeBeliefs[negativeBelief] = {};
+          $scope.negativeBeliefsCopy = Object.keys($scope.cbtEntry.negativeBeliefs);
+          $scope.negativeBelief = "";
+          window.scrollTo(0,document.body.scrollHeight);
+        }
   	}
     var updateParseObject = function(){
       for (var prop in $scope.cbtEntry) {
@@ -225,11 +220,50 @@ spruce.
 
       });
   }]).
-  controller('MainCtrl',['$scope', function($scope){
+  controller('MainCtrl',['$scope', '$timeout', '_Parse', function($scope, $timeout, _parse){
+    $scope.loggedIn = {'state': false};
+    var init = function(){
+      $scope.loggedIn['state'] = (Parse.User.current())? true : false;
+      $timeout(function(){ $('.carousel').carousel(); }, 300);
+    }
+    init();
 
+    $scope.logOut = function(){
+      _parse.User.logOut();
+      $scope.loggedIn['state'] = false;
+    }
   }]).
-  controller('HomeCtrl',['$scope', function($scope){
-    mixpanel.track("Home");
+
+  controller('HomeCtrl',['_Parse','$scope','$location','$anchorScroll', 'orm', function(_parse, $scope, $location, $anchorScroll, orm){
+    if (_parse.User.current()) {
+      $location.url('/entries/new');
+    }
+
+    if($location.path().split('/').pop() == 'psychology'){
+      mixpanel.track("Home", {version: 'psychology'});
+    }else{
+      mixpanel.track("Home", {version: 'index'});
+    }
+
+    $scope.badLogin = false;
+
+    $scope.scrollTo = function(id) {
+        console.log(id);
+        $location.hash(id);
+        $anchorScroll();
+    };
+
+    $scope.register = function(username, password){
+      orm.registerUser(username, password).then(
+          function(result){
+              $location.url('/entries/new');
+          },
+          function(error){
+            alert("Error: " + error.code + " " + error.message+ ' Please try again.');
+            console.log("Error: " + angular.toJson(error,true));
+          }
+        );
+    }
   }]).
   controller('RegistrationCtrl', ['_Parse','$scope', '$location', 'sharedState', 'orm', function(_parse, $scope, $location, sharedState, orm){
   	$scope.badLogin = false;
@@ -255,6 +289,8 @@ spruce.
   		orm.logIn(user).then(
           function(user){
             console.log("successful login" + angular.toJson(user, true));
+
+            $scope.loggedIn['state'] = true;
             $location.path('/dashboard');
           },
           function(error){

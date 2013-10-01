@@ -57,12 +57,12 @@ spruce.
 
           user.signUp(null).then(function(result){
             mixpanel.track("$signup");
-            mixpanel.alias(username);
+            mixpanel.alias(result.get('username'));
             mixpanel.people.set_once({
               '$created': new Date(),
-              '$name': username,
+              '$name': result.get('username'),
               'Logins': 0,
-              "$email": username
+              "$email": result.get('username')
 
             });
             deferred.resolve(result);
