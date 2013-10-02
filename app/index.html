@@ -54,13 +54,13 @@ if(document.location.hostname == 'localhost'){
     <section class="top-bar-section">
       <ul class="right">
         <li ng-show="loggedIn.state" class="name">
-          <a href="#/dashboard">Dashboard</a>
+          <a href="#/dashboard">Your History</a>
         </li>
         <li ng-hide="loggedIn.state" class="name">
           <a href="#/get-started">Log In</a>
         </li>
         <li ng-show="loggedIn.state" class="name">
-          <a href="#/" ng-click="logOut()">Log Out</a>
+          <a href="#/" ng-click="logOut()">Log Out <span ng-cloak>({{currentUser}})</span></a>
         </li>
       </ul>
     </section>
