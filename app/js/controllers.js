@@ -225,24 +225,24 @@ spruce.
       });
   }]).
   controller('MainCtrl',['$scope', '$timeout', '_Parse', function($scope, $timeout, _parse){
-    $scope.loggedIn = {'state': false};
-    $scope.currentUser = {name: ''};
+    $scope.currentUser = {'state': false, 'name': ''};
     var init = function(){
-      $scope.loggedIn['state'] = (Parse.User.current())? true : false;
+      $scope.currentUser['state'] = (Parse.User.current())? true : false;
       $timeout(function(){ $('.carousel').carousel(); }, 300);
-      if ($scope.loggedIn.state == true) {
+      if ($scope.currentUser.state == true) {
         $scope.currentUser.name = Parse.User.current().getUsername();
-      } else {
-        console.log("hello")
       }
+    }
+
+    $scope.setLoggedIn = function(username){
+      $scope.currentUser.name = username;
+      $scope.currentUser.state = true;
     }
     init();
 
-
-
     $scope.logOut = function(){
       _parse.User.logOut();
-      $scope.loggedIn['state'] = false;
+      $scope.currentUser['state'] = false;
     }
   }]).
 
@@ -268,6 +268,7 @@ spruce.
     $scope.register = function(username, password){
       orm.registerUser(username, password).then(
           function(result){
+              $scope.setLoggedIn(username);
               $location.url('/entries/new');
           },
           function(error){
@@ -287,7 +288,7 @@ spruce.
   	$scope.register = function(username, password){
       orm.registerUser(username, password).then(
           function(result){
-            sharedState.fromReg = true;
+            $scope.setLoggedIn(username);
             $location.url('/entries/new');
           },
           function(error){
@@ -301,8 +302,7 @@ spruce.
   		orm.logIn(user).then(
           function(user){
             console.log("successful login" + angular.toJson(user, true));
-
-            $scope.loggedIn['state'] = true;
+            $scope.setLoggedIn(user.get('username'));
             $location.path('/dashboard');
           },
           function(error){
