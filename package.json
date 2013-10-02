@@ -1,11 +1,12 @@
 {
-  "name": "angualrjs-seed",
-  "description": "A starter project for angular js",
+  "name": "Spruce",
+  "description": "Spruce, help yourself",
   "devDependencies": {
-        "phantomjs" : "*",
-        "karma" : "*",
-        "karma-junit-reporter" : "*",    
-        "karma-jasmine" : "*",
-        "karma-ng-scenario" : "*"
-    }
+  	"protractor":"*",
+    "phantomjs": "*",
+    "karma": "*",
+    "karma-junit-reporter": "~0.1.0",
+    "karma-jasmine": "*",
+    "karma-ng-scenario": "*"
+  }
 }
