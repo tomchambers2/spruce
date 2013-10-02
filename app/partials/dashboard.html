@@ -28,11 +28,11 @@
               <td></td>
               <td>We're loading your history now</td>
             </tr>
-            <tr ng-repeat="(i, entry) in entries | orderBy:entry.createdAt">
-              <td>{{createdAt}}</td>
+            <tr ng-repeat="(i, entry) in entries">
+              <td>{{entry.createdAt | date:medium}}</td>
               <td><a ng-href='#/entries/{{entry.id}}'>{{entry.concern}}</a></td>
               <td><span ng-repeat='emotion in entry.emotions' class="emotions">{{emotion}}</span></td>
-              <td>{{useful}}</td>
+              <td>{{entry.useful}}</td>
             </tr>
           </tbody>
         </table>
