@@ -101,7 +101,7 @@ spruce.
       try{
          plainObj['createdAt'] = obj.createdAt;
          plainObj['useful'] = obj.get('useful');
-         plainObj['id'] = obj.get('useful');
+         plainObj['id'] = obj.id;
          plainObj['concern'] = JSON.parse(sjcl.decrypt("whampassword", obj.get('concern')));
          plainObj['emotions'] = JSON.parse(sjcl.decrypt("whampassword", obj.get('emotions')));
          plainObj['negativeBeliefs'] = JSON.parse(sjcl.decrypt("whampassword", obj.get('negativeBeliefs')));
