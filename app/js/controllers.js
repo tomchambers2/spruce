@@ -9,7 +9,7 @@ spruce.
     $scope.nextBelief = 'Done';
     $scope.changeStep = {}
     $scope.concern = '';
-    $scope.newBelief = ''
+    $scope.newBelief = {belief: ''}
   	$scope.showFeedback = true;
     $scope.negativeBeliefsCopy = [];
   	$scope.cbtEntry = { concern: '', emotions: [], negativeBeliefs: {}};
@@ -70,7 +70,6 @@ spruce.
   		});
 
   	};
-
     $scope.closeAccordion = function(el){
       angular.element('section').removeClass('active');
     }
@@ -112,9 +111,9 @@ spruce.
     }
     //Resets step 4 as user cycles through beliefs.
     $scope.nextNegBelief = function(){
-        if($scope.newBelief != ''){
-          $scope.cbtEntry.negativeBeliefs[$scope.negBelief]['newBelief'] = $scope.newBelief;
-          $scope.newBelief = '';
+        if($scope.newBelief.belief != ''){
+          $scope.cbtEntry.negativeBeliefs[$scope.negBelief]['newBelief'] = $scope.newBelief.belief;
+          $scope.newBelief.belief = '';
         }
         console.log(angular.toJson($scope.changeStep));
         _pushChangeStepToCbtEntry($scope.changeStep);
@@ -138,7 +137,7 @@ spruce.
   	}
 
   	$scope.addEmotion = function(newEmotion){
-      if (newEmotion != "") {
+      if (newEmotion != "" &&  $scope.cbtEntry.emotions.indexOf(newEmotion) == -1) {
   		  $scope.cbtEntry.emotions.push(newEmotion);
       }
       $scope.newEmotion = "";
@@ -155,7 +154,7 @@ spruce.
           $scope.cbtEntry.negativeBeliefs[negativeBelief] = {};
           $scope.negativeBeliefsCopy = Object.keys($scope.cbtEntry.negativeBeliefs);
           $scope.negativeBelief = "";
-          window.scrollTo(0,document.body.scrollHeight);
+          //window.scrollTo(0,document.body.scrollHeight);
         }
   	}
     var updateParseObject = function(){
