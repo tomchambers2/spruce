@@ -60,7 +60,7 @@ if(document.location.hostname == 'localhost'){
           <a href="#/get-started">Log In</a>
         </li>
         <li ng-show="loggedIn.state" class="name">
-          <a href="#/" ng-click="logOut()">Log Out <span ng-cloak>({{currentUser}})</span></a>
+          <a href="#/" ng-click="logOut()">Log Out <span ng-cloak>({{currentUser.name}})</span></a>
         </li>
       </ul>
     </section>
