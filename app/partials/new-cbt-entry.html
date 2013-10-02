@@ -193,37 +193,34 @@
 															</div>
 														</section>
 													</div>
-													<hr/>
-													<div class="section-container accordion" data-section="accordion">
-														<section>
-															<p class="title" data-section-title>
-																<a href="">
-																	<strong><em>Optional:</em>
-																		Click here to write a new rational belief</strong>
-																</a>
-															</p>
-															<div class="content" data-section-content>
-																<p>
-																	Think about this statement: "{{negBelief}}". Is it still valid now that you've been through the challenges above?
-																</p>
-																<div class="row">
-																	<div class="small-12 columns">
-																		<input type="text" ng-model="newBelief" class="rounded" id="right-label round" autofocus>
-																		<button class="small button spruce-btn pass" ng-click="closeAccordion()" >Save new belief</button>
-																	</div>
+												</section>
+											</div>
+											<hr/>
+												<div class="section-container accordion" data-section="accordion">
+													<section>
+														<p class="title" data-section-title>
+															<a href="">
+																<strong><em>Optional:</em> Click here to write a new rational belief</strong>
+															</a>
+														</p>
+														<div class="content" data-section-content>
+															<p>Think about this statement: "{{negBelief}}". Is it still valid now that you've been through the challenges above?</p>
+															<div class="row">
+																<div class="small-12 columns">
+																	<input type="text" ng-model="newBelief" class="rounded" id="right-label round" autofocus>
+																	<button class="small button spruce-btn pass" ng-click="closeAccordion()" >Save new belief</button>
 																</div>
 															</div>
-														</div>
-														<div class="row">
-															<div class="large-6 large-offset-3 columns help">
-																<button class="small button spruce-btn pass" ng-click="nextNegBelief()">{{nextBelief}}</button>
-															</div>
-														</div>
-													</section>
+													</div>
+												</section>
 
-												</div>
+										</div>
 
+										<div class="row">
+											<div class="large-6 large-offset-3 columns help">
+												<button class="small button spruce-btn pass" ng-click="nextNegBelief()">{{nextBelief}}</button>
 											</div>
+										</div>
 
 										</fieldset>
 										<fieldset ng-switch-when="5" class="hidden">
