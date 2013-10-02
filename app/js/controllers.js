@@ -230,7 +230,7 @@ spruce.
     var init = function(){
       $scope.loggedIn['state'] = (Parse.User.current())? true : false;
       $timeout(function(){ $('.carousel').carousel(); }, 300);
-      if ($scope.loggedIn.state == true) {
+      if (Parse.User.current()) {
         $scope.currentUser.name = Parse.User.current().getUsername();
       } else {
         console.log("hello")
