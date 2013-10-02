@@ -247,9 +247,6 @@ spruce.
   }]).
 
   controller('HomeCtrl',['_Parse','$scope','$location','$anchorScroll', 'orm', function(_parse, $scope, $location, $anchorScroll, orm){
-    if (_parse.User.current()) {
-      $location.url('/entries/new');
-    }
 
     if($location.path().split('/').pop() == 'psychology'){
       mixpanel.track("Home", {version: 'psychology'});
