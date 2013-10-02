@@ -229,6 +229,7 @@ spruce.
     var init = function(){
       $scope.currentUser['state'] = (Parse.User.current())? true : false;
       $timeout(function(){ $('.carousel').carousel(); }, 300);
+
       if ($scope.currentUser.state == true) {
         $scope.currentUser.name = Parse.User.current().getUsername();
       }
