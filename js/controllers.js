@@ -221,11 +221,19 @@ spruce.
   }]).
   controller('MainCtrl',['$scope', '$timeout', '_Parse', function($scope, $timeout, _parse){
     $scope.loggedIn = {'state': false};
+    $scope.currentUser = {name: ''};
     var init = function(){
       $scope.loggedIn['state'] = (Parse.User.current())? true : false;
       $timeout(function(){ $('.carousel').carousel(); }, 300);
+      if ($scope.loggedIn.state == true) {
+        $scope.currentUser.name = Parse.User.current().getUsername();
+      } else {
+        console.log("hello")
+      }
     }
     init();
+
+
 
     $scope.logOut = function(){
       _parse.User.logOut();
