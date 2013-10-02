@@ -8,24 +8,31 @@
 
   <div class="row row-panel main">
     <div class="large-12 columns text-center">
-        <a href="#/entries/new" class="button spruce-btn">Make a new entry.</a>
+        <a href="#/entries/new" class="button spruce-btn">Write new entry</a>
     </div>
 
     <div class="large-12 columns">
         <h3>History</h3>
 
-        <table>
+        <table class="history-table">
           <thead>
             <tr>
-              <th>You Said</th>
-              <th>You Felt</th>
-
+              <th>Date</th>
+              <th>Situation</th>
+              <th>Feelings</th>
+              <th>Useful?</th>
             </tr>
           </thead>
           <tbody>
+            <tr ng-hide="loadedHistory.state" class="text-center">
+              <td></td>
+              <td>We're loading your history now</td>
+            </tr>
             <tr ng-repeat="(i, entry) in entries">
+              <td>{{entry.createdAt | date:medium}}</td>
               <td><a ng-href='#/entries/{{entry.id}}'>{{entry.concern}}</a></td>
-              <td><span ng-repeat='emotion in entry.emotions'>{{emotion}} </span></td>
+              <td><span ng-repeat='emotion in entry.emotions' class="emotions">{{emotion}}</span></td>
+              <td>{{entry.useful}}</td>
             </tr>
           </tbody>
         </table>
