@@ -203,11 +203,13 @@ spruce.
   }]).
   controller('DashboardCtrl',['$scope', '_Parse', 'objDecrypter', 'orm', function($scope, _parse, objDecrypter, orm){
     mixpanel.track("Dashboard View");
+    $scope.loadedHistory = {state: false};
     $scope.entries = {};
     var populateScope = function(entries){
       entries.forEach(function(val, index){
         $scope.$apply(function(){
           $scope.entries[String(index)] = objDecrypter.decryptEntry(val);
+          $scope.loadedHistory.state = true;
         });
       });
     }

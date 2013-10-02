@@ -454,6 +454,18 @@ a.button.start {
 	font-size: 25px;
 }
 
+/* dashboard */
+.history-table {
+	width: 100%;
+}
+
+.history-table .emotions:after {
+	content: ", ";
+}
+.history-table .emotions:last-of-type:after {
+	content: "";
+}
+
 /*animation*/
 .animate-show.ng-hide-add,
 .animate-show.ng-hide-remove {
