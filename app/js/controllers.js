@@ -168,8 +168,7 @@ spruce.
     var updateParseObject = function(){
       for (var prop in $scope.cbtEntry) {
          if($scope.cbtEntry.hasOwnProperty(prop)){
-
-           $scope.newEntry.set(prop, sjcl.encrypt("whampassword", JSON.stringify($scope.cbtEntry[prop])));
+           $scope.newEntry.set(prop, JSON.stringify($scope.cbtEntry[prop]));
          }
       }
       $scope.newEntry.save();
