@@ -227,8 +227,6 @@ spruce.
     }
     init();
 
-    $scope.currentUser = Parse.User.current().getUsername();
-
     $scope.logOut = function(){
       _parse.User.logOut();
       $scope.loggedIn['state'] = false;
