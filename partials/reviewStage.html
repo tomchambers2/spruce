@@ -4,14 +4,14 @@
 	and you had these thoughts about it:
 	<ul>
 		<li ng-repeat="(negBelief, distortionList) in cbtEntry.negativeBeliefs">
-			<strong >{{negBelief}}</strong>, <em>however, You've realised this is:</em>
+			<strong >{{negBelief}}</strong>, <em>however, you now think <strong> {{distortionList['newBelief']}}</strong> because you've realised this is:</em>
 			<ul>
-					<li ng-repeat="(dist, newThought) in distortionList">
+					<li ng-repeat="(dist, newThought) in distortionList['newThoughts']">
 					<span >
-						{{dist}}
+						{{dist}}, for these reasons:
 
 						<ul>
-							<li><em>So, you're now thinking: </em> <strong>{{newThought}}</strong></li>
+							<li><strong>{{newThought}}</strong></li>
 						</ul>
 						</span>
 					</li>

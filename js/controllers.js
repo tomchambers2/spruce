@@ -6,11 +6,10 @@ spruce.
   controller('NewEntryCtrl', ['$scope', '_Parse', '$routeParams', '$location', 'sharedState', '$timeout', function($scope, _parse, $routeParams, $location, sharedState, $timeout) {
   	$scope.stage = 1;
     $(document).foundation();
-  	$scope.curEmotion = '';
     $scope.nextBelief = 'Done';
     $scope.changeStep = {}
-    $scope.firstDistortionSelected = {'state': false, 'focusText': false};
     $scope.concern = '';
+    $scope.newBelief = {belief: ''}
   	$scope.showFeedback = true;
     $scope.negativeBeliefsCopy = [];
   	$scope.cbtEntry = { concern: '', emotions: [], negativeBeliefs: {}};
@@ -45,14 +44,9 @@ spruce.
   	var negBeliefCopy;
 
   	var init = function(){
-  		if($routeParams.stage){
-  			$scope.stage = $routeParams.stage;
+  		if($routeParams.section){
+  			$scope.stage = $routeParams.section;
   		}
-  		if(sharedState.fromReg){
-  			sharedState.fromReg = false;
-  		}
-
-
   	}
   	init();
 
@@ -76,7 +70,6 @@ spruce.
   		});
 
   	};
-
     $scope.closeAccordion = function(el){
       angular.element('section').removeClass('active');
     }
@@ -104,24 +97,29 @@ spruce.
   	$scope.closeModal = function(){
   		$('#introModal').foundation('reveal', 'close');
   	}
-    $scope.distKeyUp = function(){
-        console.log($scope.changeStep);
-    }
     var _pushChangeStepToCbtEntry = function(obj){
+      if($scope.cbtEntry.negativeBeliefs[$scope.negBelief].hasOwnProperty('newThoughts') == false){
+        $scope.cbtEntry.negativeBeliefs[$scope.negBelief]['newThoughts'] = {};
+      }
+      //cycle through changestep {distortionLabel: newthought}
+      //should create a wrapper fo rmanaging distortion?
       for (var prop in obj) {
          if(obj.hasOwnProperty(prop)){
-          $scope.cbtEntry.negativeBeliefs[$scope.negBelief][prop] = obj[prop];
+          $scope.cbtEntry.negativeBeliefs[$scope.negBelief]['newThoughts'][prop] = obj[prop];
          }
       }
     }
     //Resets step 4 as user cycles through beliefs.
-    $scope.nextNegBelief = function(modifiedBelief){
+    $scope.nextNegBelief = function(){
+        if($scope.newBelief.belief != ''){
+          $scope.cbtEntry.negativeBeliefs[$scope.negBelief]['newBelief'] = $scope.newBelief.belief;
+          $scope.newBelief.belief = '';
+        }
         console.log(angular.toJson($scope.changeStep));
         _pushChangeStepToCbtEntry($scope.changeStep);
         //reset changestep
         $scope.changeStep = {};
         var nextNeg  = negBeliefCopy.pop();
-        /* refactor this setting next neg business, shuoldn't be dependant on order of code*/
         //updates button. Could be a directive?
         $scope.setNextBelief();
 
@@ -137,13 +135,9 @@ spruce.
           $scope.negBelief = nextNeg;
         }
   	}
-    //Deprecated
-  	$scope.getDistortionID = function(distortion){
-  		return 1;
-  	}
 
   	$scope.addEmotion = function(newEmotion){
-      if (newEmotion != "") {
+      if (newEmotion != "" &&  $scope.cbtEntry.emotions.indexOf(newEmotion) == -1) {
   		  $scope.cbtEntry.emotions.push(newEmotion);
       }
       $scope.newEmotion = "";
@@ -156,12 +150,12 @@ spruce.
       }
     }
   	$scope.addBelief = function(negativeBelief){
-      if (negativeBelief) {
-    		$scope.cbtEntry.negativeBeliefs[negativeBelief] = {};
-    		$scope.negativeBeliefsCopy = Object.keys($scope.cbtEntry.negativeBeliefs);
-        $scope.negativeBelief = "";
-        window.scrollTo(0,document.body.scrollHeight);
-      }
+        if (negativeBelief) {
+          $scope.cbtEntry.negativeBeliefs[negativeBelief] = {};
+          $scope.negativeBeliefsCopy = Object.keys($scope.cbtEntry.negativeBeliefs);
+          $scope.negativeBelief = "";
+          //window.scrollTo(0,document.body.scrollHeight);
+        }
   	}
     var updateParseObject = function(){
       for (var prop in $scope.cbtEntry) {
