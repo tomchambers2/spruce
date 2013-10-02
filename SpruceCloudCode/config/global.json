@@ -1,0 +1,11 @@
+{
+    "applications": {
+        "_default": {
+            "link": "spruce"
+        }, 
+        "spruce": {
+            "applicationId": "ETUovglfQBF2ZwaZFUpTLwczpnWwTwdHfIDSQ54P", 
+            "masterKey": "CYpSFGkYqgpi71hTi5iSdCkinHHbNWyj1hXrZ2DV"
+        }
+    }
+}
