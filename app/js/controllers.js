@@ -13,6 +13,7 @@ spruce.
   	$scope.showFeedback = true;
     $scope.negativeBeliefsCopy = [];
   	$scope.cbtEntry = { concern: '', emotions: [], negativeBeliefs: {}};
+    var negBeliefCopy;
     $scope.distortions =
     {
     "Assuming the Worst Case Scenario": {'fullDescription': "Sometimes we automatically go to an extremely negative end of the spectrum. If you think about the range of possibilities, is it really as bad as you imagine? What are some other possible ways in which you could state this that are more moderate?", 'shortDescription': "Does this statement seem at all extreme?"}
@@ -41,7 +42,6 @@ spruce.
 
     var CbtEntry = _parse.Object.extend("CbtEntry");
   	$scope.newEntry = {}
-  	var negBeliefCopy;
 
   	var init = function(){
   		if($routeParams.section){
@@ -115,44 +115,52 @@ spruce.
           $scope.cbtEntry.negativeBeliefs[$scope.negBelief]['newBelief'] = $scope.newBelief.belief;
           $scope.newBelief.belief = '';
         }
-        console.log(angular.toJson($scope.changeStep));
         _pushChangeStepToCbtEntry($scope.changeStep);
         //reset changestep
         $scope.changeStep = {};
-        var nextNeg  = negBeliefCopy.pop();
         //updates button. Could be a directive?
-        $scope.setNextBelief();
 
-        window.scrollTo(0,140);
-          angular.element('#yourBeliefContainer').hide();
-        $timeout(function(){
-          angular.element('#yourBeliefContainer').fadeIn('slow')
-        }, 300);
-        if(nextNeg === undefined){
+        if(setNextNegBelief() == undefined){
           $scope.nextStage();
+        }else{
+          //should be moved to directive, controller shouldn't manipulate dom.
+          window.scrollTo(0,140);
+            angular.element('#yourBeliefContainer').hide();
+          $timeout(function(){
+            angular.element('#yourBeliefContainer').fadeIn('slow')
+          }, 300);
         }
-        else{
-          $scope.negBelief = nextNeg;
-        }
-  	}
 
+  	}
+    $scope.getNegativeBeliefs = function(){
+      return Object.keys($scope.cbtEntry.negativeBeliefs);
+    }
   	$scope.addEmotion = function(newEmotion){
       if (newEmotion != "" &&  $scope.cbtEntry.emotions.indexOf(newEmotion) == -1) {
   		  $scope.cbtEntry.emotions.push(newEmotion);
       }
       $scope.newEmotion = "";
   	}
-    $scope.setNextBelief = function(){
-      if(negBeliefCopy[0] === undefined){
-        $scope.nextBelief = 'Done'
-      } else {
-        $scope.nextBelief = 'Next Belief: ' + negBeliefCopy[0];
+    var setNextNegBelief = function(){
+      if(negBeliefCopy == undefined){
+        negBeliefCopy = $scope.getNegativeBeliefs();
+      }
+      if(negBeliefCopy.length == 0){
+        return undefined;
+      }
+      else if(negBeliefCopy.length > 0){
+        $scope.negBelief = negBeliefCopy.shift();
+        if(negBeliefCopy.length == 0){
+          $scope.nextBelief = 'Done'
+        } else {
+          $scope.nextBelief = 'Next Belief: ' + negBeliefCopy[0];
+        }
+        return true;
       }
     }
   	$scope.addBelief = function(negativeBelief){
         if (negativeBelief) {
           $scope.cbtEntry.negativeBeliefs[negativeBelief] = {};
-          $scope.negativeBeliefsCopy = Object.keys($scope.cbtEntry.negativeBeliefs);
           $scope.negativeBelief = "";
           //window.scrollTo(0,document.body.scrollHeight);
         }
@@ -182,10 +190,7 @@ spruce.
   		if(newValue == 2){initEntryObj();}
 
   		if(newValue == 4 && oldValue == 3){
-  			//initEntryObjialise first neg belief
-  			negBeliefCopy = $scope.negativeBeliefsCopy;
-  			$scope.negBelief = negBeliefCopy.pop();
-        $scope.setNextBelief();
+        setNextNegBelief();
   		}
       //this if needs to be here to avoid overlapping with parse save callback in initEntryObj method
       if(newValue>2){
@@ -220,16 +225,25 @@ spruce.
       });
   }]).
   controller('MainCtrl',['$scope', '$timeout', '_Parse', function($scope, $timeout, _parse){
-    $scope.loggedIn = {'state': false};
+    $scope.currentUser = {'state': false, 'name': ''};
     var init = function(){
-      $scope.loggedIn['state'] = (Parse.User.current())? true : false;
+      $scope.currentUser['state'] = (Parse.User.current())? true : false;
       $timeout(function(){ $('.carousel').carousel(); }, 300);
+
+      if ($scope.currentUser.state == true) {
+        $scope.currentUser.name = Parse.User.current().getUsername();
+      }
+    }
+
+    $scope.setLoggedIn = function(username){
+      $scope.currentUser.name = username;
+      $scope.currentUser.state = true;
     }
     init();
 
     $scope.logOut = function(){
       _parse.User.logOut();
-      $scope.loggedIn['state'] = false;
+      $scope.currentUser['state'] = false;
     }
   }]).
 
@@ -255,6 +269,7 @@ spruce.
     $scope.register = function(username, password){
       orm.registerUser(username, password).then(
           function(result){
+              $scope.setLoggedIn(username);
               $location.url('/entries/new');
           },
           function(error){
@@ -274,7 +289,7 @@ spruce.
   	$scope.register = function(username, password){
       orm.registerUser(username, password).then(
           function(result){
-            sharedState.fromReg = true;
+            $scope.setLoggedIn(username);
             $location.url('/entries/new');
           },
           function(error){
@@ -288,8 +303,7 @@ spruce.
   		orm.logIn(user).then(
           function(user){
             console.log("successful login" + angular.toJson(user, true));
-
-            $scope.loggedIn['state'] = true;
+            $scope.setLoggedIn(user.get('username'));
             $location.path('/dashboard');
           },
           function(error){
