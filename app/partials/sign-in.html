@@ -47,7 +47,7 @@
             <div class="row collapse">
               <label>Email address:</label>
               <div class="small-9 columns">
-                <input type="email" ng-model="user.username" name="uName" placeholder="Email address" required>
+                <input type="email" ng-model="user.username" id="login-email" name="uName" placeholder="Email address" required>
               </div>
               <div class="small-3 columns">
                 <span ng-show="loginForm.uName.$error.required || loginForm.uName.$error.email" class="postfix"><i class="foundicon-error"></i></span>
@@ -57,7 +57,7 @@
             <div class="row collapse">
               <label>Password:</label>
               <div class="small-9 columns">
-                <input type="password" ng-model="user.password" name="uPassword" placeholder="Password" required>
+                <input type="password" ng-model="user.password" id="login-password" name="uPassword" placeholder="Password" required>
               </div>
               <div class="small-3 columns">
                 <span ng-show="loginForm.uPassword.$error.required" class="postfix"><i class="foundicon-error"></i></span>
