@@ -2,7 +2,7 @@
   "name": "Spruce",
   "description": "Spruce, help yourself",
   "devDependencies": {
-  	"protractor":"*",
-    "phantomjs": "*",
+  	"protractor": "*",
+    "phantomjs": "*"
   }
 }
