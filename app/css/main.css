@@ -355,6 +355,11 @@ div.row.entry {
 	line-height: 30px;
 }
 
+/* thoughts stage */
+p.selected {
+	background-color: #B5D5A9 !important;
+}
+
 /* review stage */
 a.button.pass {
 	background-color: #00CB72;

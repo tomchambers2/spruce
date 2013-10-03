@@ -198,7 +198,7 @@
 											<hr/>
 												<div class="section-container accordion" data-section="accordion">
 													<section>
-														<p class="title" data-section-title>
+														<p class="title" ng-class="{'selected': selected.state==true}" data-section-title>
 															<a href="">
 																<strong><em>Optional:</em> Click here to write a new rational belief</strong>
 															</a>
@@ -208,7 +208,7 @@
 															<div class="row">
 																<div class="small-12 columns">
 																	<input type="text" ng-model="newBelief.belief" class="rounded" id="right-label round" autofocus>
-																	<button class="small button spruce-btn pass" ng-click="closeAccordion()" >Save new belief</button>
+																	<button class="small button spruce-btn pass" ng-click="closeAccordion();selected.state=true">Save new belief</button>
 																</div>
 															</div>
 														</div>

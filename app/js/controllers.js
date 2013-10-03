@@ -5,6 +5,7 @@
 spruce.
   controller('NewEntryCtrl', ['$scope', '_Parse', '$routeParams', '$location', 'sharedState', '$timeout', function($scope, _parse, $routeParams, $location, sharedState, $timeout) {
   	$scope.stage = 1;
+    $scope.selected = {state: false};
     $(document).foundation();
     $scope.nextBelief = 'Done';
     $scope.changeStep = {}
