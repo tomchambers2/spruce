@@ -1,7 +1,6 @@
 /* landing page */
 .landing-header {
 	background-color: #00957B;
-	//width:100%;
 	margin-top: 0px;
 	background-image: url('http://farm6.staticflickr.com/5021/5676931022_f1ae2f264e_b.jpg');
 	-webkit-background-size:cover;
@@ -10,6 +9,7 @@
 	background-position: center;
 	background-repeat: no-repeat;
 	padding-top: 30px;
+	min-height: 400px;
 }
 
 @media (max-width: 480px) {
@@ -457,12 +457,13 @@ a.button.start {
 /* dashboard */
 .history-table {
 	width: 100%;
+	table-layout: fixed;
 }
 
-.history-table .emotions:after {
+.listed-emotion:after {
 	content: ", ";
 }
-.history-table .emotions:last-of-type:after {
+.listed-emotion:last-of-type:after {
 	content: "";
 }
 

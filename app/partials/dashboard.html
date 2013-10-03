@@ -31,7 +31,7 @@
             <tr ng-repeat="(i, entry) in entries">
               <td>{{entry.createdAt | date:medium}}</td>
               <td><a ng-href='#/entries/{{entry.id}}'>{{entry.concern}}</a></td>
-              <td><span ng-repeat='emotion in entry.emotions' class="emotions">{{emotion}}</span></td>
+              <td><span ng-repeat='emotion in entry.emotions' class="listed-emotion">{{emotion}}</span></td>
               <td>{{entry.useful}}</td>
             </tr>
           </tbody>
