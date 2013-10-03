@@ -168,8 +168,7 @@ spruce.
     var updateParseObject = function(){
       for (var prop in $scope.cbtEntry) {
          if($scope.cbtEntry.hasOwnProperty(prop)){
-
-           $scope.newEntry.set(prop, sjcl.encrypt("whampassword", JSON.stringify($scope.cbtEntry[prop])));
+           $scope.newEntry.set(prop, JSON.stringify($scope.cbtEntry[prop]));
          }
       }
       $scope.newEntry.save();
@@ -203,11 +202,13 @@ spruce.
   }]).
   controller('DashboardCtrl',['$scope', '_Parse', 'objDecrypter', 'orm', function($scope, _parse, objDecrypter, orm){
     mixpanel.track("Dashboard View");
+    $scope.loadedHistory = {state: false};
     $scope.entries = {};
     var populateScope = function(entries){
       entries.forEach(function(val, index){
         $scope.$apply(function(){
           $scope.entries[String(index)] = objDecrypter.decryptEntry(val);
+          $scope.loadedHistory.state = true;
         });
       });
     }
@@ -229,6 +230,7 @@ spruce.
     var init = function(){
       $scope.currentUser['state'] = (Parse.User.current())? true : false;
       $timeout(function(){ $('.carousel').carousel(); }, 300);
+
       if ($scope.currentUser.state == true) {
         $scope.currentUser.name = Parse.User.current().getUsername();
       }
@@ -247,9 +249,6 @@ spruce.
   }]).
 
   controller('HomeCtrl',['_Parse','$scope','$location','$anchorScroll', 'orm', function(_parse, $scope, $location, $anchorScroll, orm){
-    if (_parse.User.current()) {
-      $location.url('/entries/new');
-    }
 
     if($location.path().split('/').pop() == 'psychology'){
       mixpanel.track("Home", {version: 'psychology'});

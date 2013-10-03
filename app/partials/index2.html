@@ -5,7 +5,7 @@
       <div class="row superbig">
         <div class="large-6 columns">
           <div class="row">
-            <div class="large-12 columns"><h2>A private, structured sounding board for your thoughts.</h2></div>
+            <div class="large-12 columns"><h2>A private, structured sounding board for difficult thoughts.</h2></div>
           </div>
         </div>
       </div>
@@ -17,8 +17,8 @@
             <!-- Wrapper for slides -->
             <div class="carousel-inner" data-interval="1000">
               <div class="item active">
-                    <h3>"I found the questions really helpful to get past what I was ruminating over"</h3>
-                    <h4>Andrew Ratomski, UK</h4>
+                <h3>"I found the questions really helpful to get past what I was ruminating over"</h3>
+                <h4>Andrew Ratomski, UK</h4>
               </div>
               <div class="item">
                 <h3>"My mind was running wild. I feel much more grounded now."</h3>
@@ -35,7 +35,7 @@
       </div>
     </div>
 
-    <div class="large-12 columns register text-center">
+    <div class="large-12 columns register text-center" ng-hide="currentUser.state">
         <div class="row">
           <div class="large-12 columns">
             <h2 class="form" id="register">Try Spruce (yes, it's free)</h2>
@@ -43,13 +43,18 @@
         </div>
         <div class="row form">
           <form name="registrationForm">
-            <div class="large-2 columns"><label class="right inline" for="email" autofocus required>Your email <small>(kept private)</small></label></div>
+            <div class="large-2 columns"><label class="right inline" for="email" autofocus required>Your email </label></div>
             <div class="large-3 columns"><input type="email" ng-model="newUser.email" id="email" class="header-register"></div>
             <div class="large-2 columns"><label class="right inline" for="password">Password</label></div>
             <div class="large-3 columns"><input type="password" ng-model="newUser.password" id="password" class="header-register" required></div>
             <div class="large-2 columns"><button class="button register" ng-click="register(newUser.email, newUser.password)"
                               ng-disabled="registrationForm.$invalid" >Register</button></div>
           </form>
+        </div>
+        <div class="row">
+          <div class="large-10 columns large-offset-1">
+            <p><strong>Why do you want my email?</strong> Making an account means you can keep a record of what you write to reflect on in the future. We wouldn't dream of giving your email address or data to anyone.</p>
+          </div>
         </div>
       </div>
     </div>

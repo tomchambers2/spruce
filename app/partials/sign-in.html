@@ -65,7 +65,7 @@
               </div>
             </div>
             <span ng-show="badLogin" class="radius secondary label">Invalid login details. Get help by clicking on the blue bar below.</span>
-            <button class="button" ng-click="logIn(user)"
+            <button class="button" id="login-button" ng-click="logIn(user)"
                             ng-disabled="loginForm.$invalid">Log In!</button>
           </div>
         </div>

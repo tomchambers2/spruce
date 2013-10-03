@@ -2,43 +2,29 @@
 
 /* http://docs.angularjs.org/guide/dev_guide.e2e-testing */
 
-describe('my app', function() {
+describe('Spruce App', function() {
 
   beforeEach(function() {
-    browser().navigateTo('../../app/index.html');
+    browser().navigateTo('index.html#/get-started');
+    input('user.username').enter('testrunner@test.com');
+    input('user.password').enter('abc');
+    element('#login-button').click();
+    sleep(2);
   });
-
-
-  it('should automatically redirect to /view1 when location hash/fragment is empty', function() {
-    expect(browser().location().url()).toBe("/view1");
-  });
-
-
-  describe('view1', function() {
-
-    beforeEach(function() {
-      browser().navigateTo('#/view1');
+  describe('NewCbtEntry view', function() {
+    it('step 1 should have one textarea, and one button', function() {
+      browser().navigateTo('index.html#/entries/new');
+      expect(element('h1.nav-title').count()).toBe(1);
+      expect(element('textarea').count()).toBe(1);
+      console.log(element('button'))
+      expect(element('button').count()).toBe(1);
     });
-
-
-    it('should render view1 when user navigates to /view1', function() {
-      expect(element('[ng-view] p:first').text()).
-        toMatch(/partial for view 1/);
-    });
-
-  });
-
-
-  describe('view2', function() {
-
-    beforeEach(function() {
-      browser().navigateTo('#/view2');
-    });
-
-
-    it('should render view2 when user navigates to /view2', function() {
-      expect(element('[ng-view] p:first').text()).
-        toMatch(/partial for view 2/);
+    it('shoul allow me to submit step 1', function() {
+      browser().navigateTo('index.html#/entries/new');
+      expect(element('h1.nav-title').count()).toBe(1);
+      input('cbtEntry.concern').enter("People avoid sitting next to me on the bus");
+      element('button').click();
+      expect(browser().window().search()).toEqual('1');
     });
 
   });

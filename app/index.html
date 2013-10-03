@@ -54,6 +54,9 @@ if(document.location.hostname == 'localhost'){
     <section class="top-bar-section">
       <ul class="right">
         <li ng-show="currentUser.state" class="name">
+          <a href="#/entries/new">New entry</a>
+        </li>
+        <li ng-show="currentUser.state" class="name">
           <a href="#/dashboard">Your History</a>
         </li>
         <li ng-hide="currentUser.state" class="name">
