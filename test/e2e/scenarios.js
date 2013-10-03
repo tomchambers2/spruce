@@ -3,7 +3,7 @@
 /* http://docs.angularjs.org/guide/dev_guide.e2e-testing */
 
 describe('Spruce App', function() {
-  ptor = protractor.getInstance();
+  var ptor = protractor.getInstance();
   beforeEach(function() {
     ptor.get('index.html#/get-started');
     ptor.findElement(protractor.By.id('login-email')).sendKeys('testrunner@test.com');

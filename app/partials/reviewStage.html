@@ -1,22 +1,17 @@
 <h2>Review</h2>
 <p>
-	So, you said '<strong>{{cbtEntry.concern}}</strong>', and this made you feel <strong ng-repeat="emotion in cbtEntry.emotions">{{emotion}}, </strong>
-	and you had these thoughts about it:
+	<h1>Situation: {{cbtEntry.concern}}</h1>
+	<p><strong>Feelings:</strong> <span class="listed-emotion" ng-repeat="emotion in cbtEntry.emotions">{{emotion}}</span></p>
+	<hr/>
 	<ul>
-		<li ng-repeat="(negBelief, distortionList) in cbtEntry.negativeBeliefs">
-			<strong >{{negBelief}}</strong>, however, <span ng-show="distortionList['newBelief']">you now think <strong> {{distortionList['newBelief']}}</strong> because</span> you've realised this is:
+		<p ng-repeat="(negBelief, distortionList) in cbtEntry.negativeBeliefs">
+			<h2><strong>Old belief:</strong> <span class="fail">{{negBelief}}</span></h2>
+			You found these problems with that belief:
 			<ul>
-					<li ng-repeat="(dist, newThought) in distortionList['newThoughts']">
-					<span >
-						{{dist}}, for these reasons:
-
-						<ul>
-							<li><strong>{{newThought}}</strong></li>
-						</ul>
-						</span>
-					</li>
-
+					<li ng-repeat="(dist, newThought) in distortionList['newThoughts']"><strong>{{dist}}</strong> - {{newThought}}</li>
 			</ul>
-		</li>
+			<h2><strong>New belief:</strong> <span class="pass">{{distortionList['newBelief']}}</span></h2>
+			<hr/>
+		</p>
 	</ul>
 </p>
