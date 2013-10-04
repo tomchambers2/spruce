@@ -97,6 +97,7 @@ spruce.
   service('objDecrypter', function(){
 
     var _decrypt = function (obj) {
+      return obj;
       var plainObj = {};
       try{
          plainObj['createdAt'] = obj.createdAt;
