@@ -104,7 +104,7 @@ spruce.
          plainObj['useful'] = obj.get('useful');
          plainObj['id'] = obj.id;
 
-         if(obj.hasOwnProperty('iv')){
+         if(JSON.parse(obj.get('concern')).hasOwnProperty('iv')){
            plainObj['concern'] = JSON.parse(sjcl.decrypt("whampassword", obj.get('concern')));
            plainObj['emotions'] = JSON.parse(sjcl.decrypt("whampassword", obj.get('emotions')));
            plainObj['negativeBeliefs'] = JSON.parse(sjcl.decrypt("whampassword", obj.get('negativeBeliefs')));
