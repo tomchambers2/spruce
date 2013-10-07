@@ -2,11 +2,7 @@
   "name": "Spruce",
   "description": "Spruce, help yourself",
   "devDependencies": {
-  	"protractor":"*",
-    "phantomjs": "*",
-    "karma": "*",
-    "karma-junit-reporter": "~0.1.0",
-    "karma-jasmine": "*",
-    "karma-ng-scenario": "*"
+  	"protractor": "*",
+    "phantomjs": "*"
   }
 }

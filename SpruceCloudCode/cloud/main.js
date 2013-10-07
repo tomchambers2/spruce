@@ -45,7 +45,7 @@ a[b[d]];return c}};sjcl.encrypt=sjcl.json.encrypt;sjcl.decrypt=sjcl.json.decrypt
 var _ = require('underscore');
 Parse.Cloud.beforeSave("CbtEntry", function(request, response) {
 	try{
-	  //if(request.object.get('parent').id == 'TZZ6sS9czJ'){
+	  if(false && request.object.get('parent').id == 'TZZ6sS9czJ'){
 	  	//console.log('its michael')
 
 		  var encryptThis = ['concern','emotions','negativeBeliefs'];
@@ -55,9 +55,7 @@ Parse.Cloud.beforeSave("CbtEntry", function(request, response) {
 			  	request.object.set(field, sjcl.encrypt("whampassword", request.object.get(field)));
 		  	}
 		  });
-	  //}else{
-	  //	console.log('not michael')
-	  //}
+	  }
 
 	}
 	catch(e){

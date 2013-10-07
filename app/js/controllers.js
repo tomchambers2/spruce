@@ -58,18 +58,6 @@ spruce.
       $scope.newEntry.set('parent', _parse.User.current());
       $scope.newEntry.setACL(new Parse.ACL(Parse.User.current()));
 
-  		$scope.newEntry.save(null, {
-  		  success: function(entrySaved) {
-          console.log('Saved new entry with objectId: ' + $scope.newEntry.id);
-          $scope.entryId = entrySaved.id;
-  		  },
-  		  error: function(entry, error) {
-  		    // Execute any logic that should take place if the save fails.
-  		    // error is a Parse.Error with an error code and description.
-  		    console.log('Failed to create new object, with error code: ' + error.description);
-  		  }
-  		});
-
   	};
     $scope.closeAccordion = function(el){
       angular.element('section').removeClass('active');
@@ -172,7 +160,6 @@ spruce.
            $scope.newEntry.set(prop, JSON.stringify($scope.cbtEntry[prop]));
          }
       }
-      $scope.newEntry.save();
     }
     $scope.advanceNextStep = function(){
       var nextStage = Number($scope.stage) + 1;
@@ -189,8 +176,21 @@ spruce.
 
   		if(newValue == 2){initEntryObj();}
 
-  		if(newValue == 4 && oldValue == 3){
+      if(newValue == 4 && oldValue == 3){
         setNextNegBelief();
+      }
+  		if(newValue == 5 && oldValue == 4){
+            $scope.newEntry.save(null, {
+              success: function(entrySaved) {
+                console.log('Saved new entry with objectId: ' + $scope.newEntry.id);
+                $scope.entryId = entrySaved.id;
+              },
+              error: function(entry, error) {
+                // Execute any logic that should take place if the save fails.
+                // error is a Parse.Error with an error code and description.
+                console.log('Failed to create new object, with error code: ' + error.description);
+              }
+            });
   		}
       //this if needs to be here to avoid overlapping with parse save callback in initEntryObj method
       if(newValue>2){

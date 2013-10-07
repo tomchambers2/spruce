@@ -97,14 +97,19 @@ spruce.
   service('objDecrypter', function(){
 
     var _decrypt = function (obj) {
+
       var plainObj = {};
       try{
          plainObj['createdAt'] = obj.createdAt;
          plainObj['useful'] = obj.get('useful');
          plainObj['id'] = obj.id;
-         plainObj['concern'] = JSON.parse(sjcl.decrypt("whampassword", obj.get('concern')));
-         plainObj['emotions'] = JSON.parse(sjcl.decrypt("whampassword", obj.get('emotions')));
-         plainObj['negativeBeliefs'] = JSON.parse(sjcl.decrypt("whampassword", obj.get('negativeBeliefs')));
+
+         plainObj['emotions'] = JSON.parse(obj.get('emotions'));
+         plainObj['concern'] = JSON.parse(obj.get('concern'));
+         plainObj['negativeBeliefs'] = JSON.parse(obj.get('negativeBeliefs'));
+         // plainObj['concern'] = JSON.parse(sjcl.decrypt("whampassword", obj.get('concern')));
+         // plainObj['emotions'] = JSON.parse(sjcl.decrypt("whampassword", obj.get('emotions')));
+         // plainObj['negativeBeliefs'] = JSON.parse(sjcl.decrypt("whampassword", obj.get('negativeBeliefs')));
       }
       catch(e){
         mixpanel.track("App Error", {'type': e.message});
