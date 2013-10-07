@@ -32,7 +32,6 @@ spruce.
       mixpanel.identify(uname);
       mixpanel.people.set({
         '$name': uname,
-        "$last_login": new Date(),         // properties can be dates...
       });
 
     } else {
