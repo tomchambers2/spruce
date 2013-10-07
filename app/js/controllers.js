@@ -174,10 +174,15 @@ spruce.
 
   		if(newValue == 2){initEntryObj();}
 
+      //this if needs to be here to avoid overlapping with parse save callback in initEntryObj method
+      if(newValue>2){
+    		$scope.newEntry.set('stageCompleted', String(oldValue));
+        updateParseObject();
+      }
       if(newValue == 4 && oldValue == 3){
         setNextNegBelief();
       }
-  		if(newValue == 5 && oldValue == 4){
+      if(newValue == 5 && oldValue == 4){
             $scope.newEntry.save(null, {
               success: function(entrySaved) {
                 console.log('Saved new entry with objectId: ' + $scope.newEntry.id);
@@ -189,11 +194,6 @@ spruce.
                 console.log('Failed to create new object, with error code: ' + error.description);
               }
             });
-  		}
-      //this if needs to be here to avoid overlapping with parse save callback in initEntryObj method
-      if(newValue>2){
-    		$scope.newEntry.set('stageCompleted', String(oldValue));
-        updateParseObject();
       }
   	});
 
