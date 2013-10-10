@@ -4,14 +4,16 @@
 	<p><strong>Feelings:</strong> <span class="listed-emotion" ng-repeat="emotion in cbtEntry.emotions">{{emotion}}</span></p>
 	<hr/>
 	<ul>
-		<p ng-repeat="(negBelief, distortionList) in cbtEntry.negativeBeliefs">
-			<h2><strong>Old belief:</strong> <span class="fail">{{negBelief}}</span></h2>
+
+		<li class="no-style-list" ng-repeat="(negBelief, distortionList) in cbtEntry.negativeBeliefs">
+
+			<h2><strong>Old belief:</strong> <span class="fail"> {{negBelief}} </span></h2>
 			You found these problems with that belief:
 			<ul>
 					<li ng-repeat="(dist, newThought) in distortionList['newThoughts']"><strong>{{dist}}</strong> - {{newThought}}</li>
 			</ul>
-			<h2><strong>New belief:</strong> <span class="pass">{{distortionList['newBelief']}}</span></h2>
+			<h2 ng-show="distortionList['newBelief']"><strong>New belief:</strong> <span class="pass">{{distortionList['newBelief']}}</span></h2>
 			<hr/>
-		</p>
+		</li>
 	</ul>
 </p>
