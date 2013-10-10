@@ -18,7 +18,7 @@
 					<li>
 						<div class="step radius" ng-class="{stepComplete: stage>
 							3, stepSelected: stage==3, stepDisabled: stage
-							<3}" >Beliefs</div>
+							<3}" >Thoughts</div>
 						</li>
 						<li>
 							<div class="step radius" ng-class="{stepComplete: stage>
@@ -40,7 +40,7 @@
 										<div class="row" id="situationTextArea">
 											<div class="large-12 columns">
 												<h2>Think of a situation that made you upset.</h2>
-												<h3>Describe the facts without feelings or subjective thoughts</h3>
+												<h3>Describe just the facts without feelings.</h3>
 												<textarea class="feelings" id="situation-textarea" placeholder='' ng-model="cbtEntry.concern" required autofocus="autofocus"></textarea>
 											</div>
 										</div>
@@ -159,7 +159,7 @@
 											<div class="row">
 												<div class="large-12 columns">
 													<h2 id="yourBeliefContainer">
-														Your belief: <i>{{negBelief}}</i>
+														Your thought: <i>{{negBelief}}</i>
 													</h2>
 													<h3>
 														Sometimes, asking ourselves simple questions is helpful. Click on any any questions you think might be relevant to your situation.
@@ -170,7 +170,7 @@
 											<div class="row">
 												<div class="large-12 columns">
 													<div class="section-container accordion" data-section="accordion">
-														<section ng-repeat="(distortionLabel, distortion) in distortions | orderBy:'shortDescription'" id="{{distortionLabel}}">
+														<section ng-repeat="distortion in distortionsArray" id="{{distortion.name}}">
 															<p class="title" data-section-title>
 																<a href="">
 																	{{distortion['shortDescription']}} <i ng-show="selected" class="foundicon-star blue-icon"></i>
@@ -183,9 +183,9 @@
 																		<button class="button spruce-btn prefix" ng-hide="selected" ng-click=" selected=true;">Yes, this might be true.</button>
 																		<div class="" ng-show="selected">
 																			<label>
-																				<strong>What are the problems with this belief?</strong>
+																				<strong>What's wrong with your thought?</strong>
 																			</label>
-																			<textarea ng-model="changeStep[distortionLabel]" class="tall-textarea" rows="40" autofocus="autofocus"></textarea>
+																			<textarea ng-model="changeStep[distortion.name]" class="tall-textarea" rows="40" autofocus="autofocus"></textarea>
 																			<button class="small button spruce-btn pass" ng-click="closeAccordion()">Save</button>
 																		</div>
 																	</div>
