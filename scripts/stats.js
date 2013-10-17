@@ -16,7 +16,13 @@ fs.readFile(file, 'utf8', function (err, data) {
   data.results.forEach(function(entry){
   	cleanData.results.push(dec(entry));
   });
-  console.dir(cleanData);
+  fs.writeFile("../test", JSON.stringify(cleanData,null," "), function(err) {
+      if(err) {
+          console.log(err);
+      } else {
+          console.log("The file was saved!");
+      }
+  });
 });
 
 dec = function(obj){
