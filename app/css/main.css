@@ -113,7 +113,11 @@ button.button.register {
 	padding-top: 40px;
 	padding-bottom: 40px;
 }
-
+.stick-it{
+	/*fixes tuff to top*/
+	background:#eee; border:1px solid #666; left:0; position:fixed; width:100%; top:0;
+	z-index:1000;
+}
 .divider {
 	background-color: #ECE9D2;
 	//min-height: 13px;

@@ -15,16 +15,29 @@ spruce.
     $scope.negativeBeliefsCopy = [];
   	$scope.cbtEntry = { concern: '', emotions: [], negativeBeliefs: {}};
     var negBeliefCopy;
+    $scope.distortionsArray =
+    [
+     {'name': "Predicting the Future", 'fullDescription': "Although you can make guesses about what will happen, it’s a good idea to remember that nothing in this thought is guaranteed to occur. However convinced you are, you'll never absolutely know.", 'shortDescription': "Are you predicting the future?"}
+    ,{'name': "Mind-Reading", 'fullDescription': "Are you assuming something about what another person is thinking, or do you have evidence to support this? How certain you can be about the contents of someone else’s mind? Do you think that your assumption is based on a preconception?", 'shortDescription': "Are you assuming what someone else is thinking?"}
+    ,{'name': "Unrealistic Expectations", 'fullDescription': "Are you using words like ‘must’ or ‘should’? Consider whether your expectations need to be realigned. You’ll either have to adjust your expectations to match reality, or always feel let down by others (or yourself)", 'shortDescription': 'Have you used the words "must" or "should" in this thought?'}
+    ,{'name': "Lack of Factual accuracy", 'fullDescription': 'Try and think about all the evidence for this statement. Can you think of any evidence for an alternate point of view?', 'shortDescription': 'Do you have any facts to support this thought?'}
+    ,{'name': "Assuming the Worst Case Scenario", 'fullDescription': "Sometimes we automatically go to an extremely negative end of the spectrum. If you think about the range of possibilities, is it really as bad as you imagine? What are some other possible ways in which you could state this that are less extreme?", 'shortDescription': "Does this statement seem at all extreme?"}
+    ,{'name': "Labelling a Person", 'fullDescription': "By saying ‘That person is awful or 'I’m stupid', are you allowing a single action to define an entire life? Think about how many things you’ve done in your life and see what proportion of your life this incident actually is. Is it sensible to allow a single thing to define your self worth?", 'shortDescription': "In this thought have you judged yourself or someone else?"}
+    ,{'name': "Overgeneralisation", 'fullDescription': 'It\'s easy to focus in one thing and assume that it\'s representative of everything similar. But often that\'s a mistake, it might be your day that\'s going badly, rather than your whole life. Is it possible that it\'s just one thing that\'s bad, rather than everything?', 'shortDescription': 'Are you assuming that one thing that happened will happen over and over again?'}
+    ,{'name': "Assigning Responsibility or Blaming", 'fullDescription': "Is this thought about assigning responsibility? Think about to what extent you or that person was really responsible, and what might have been down to circumstance or chance.", 'shortDescription': "Is this thought about blaming yourself or someone else?"}
+    ,{'name': "All-Or-Nothing Thinking", 'fullDescription': "Are you seeing things in black and white? Are convinced one particular thing is going to happen, when actually there a number of different things that could happen?", 'shortDescription': "Does this statement assume that a somethiing is inevitable?"}
+    ];
+    //refactor, get rid of this object, just use array
     $scope.distortions =
     {
-    "Assuming the Worst Case Scenario": {'fullDescription': "Sometimes we automatically go to an extremely negative end of the spectrum. If you think about the range of possibilities, is it really as bad as you imagine? What are some other possible ways in which you could state this that are more moderate?", 'shortDescription': "Does this statement seem at all extreme?"}
+    "Assuming the Worst Case Scenario": {'fullDescription': "Sometimes we automatically go to an extremely negative end of the spectrum. If you think about the range of possibilities, is it really as bad as you imagine? What are some other possible ways in which you could state this that are less extreme?", 'shortDescription': "Does this statement seem at all extreme?"}
     ,"Mind-Reading": {'fullDescription': "Are you assuming something about what another person is thinking, or do you have evidence to support this? How certain you can be about the contents of someone else’s mind? Do you think that your assumption is based on a preconception?", 'shortDescription': "Does this thought state what someone else might be thinking?"}
-    ,"Predicting the Future": {'fullDescription': "Although you can make guesses about what will happen, it’s a good idea to remember that nothing in this thought is guaranteed to occur. However convinced you are, you'll never absolutely know.", 'shortDescription': "Have you made a prediction about the future?"}
-    ,"Labelling a Person": {'fullDescription': "By saying ‘That person is awful or 'I’m stupid', are you allowing a single action to define an entire life? Think about how many things you’ve done in your life and see what proportion of your life this incident actually is. Is it sensible to allow a single thing to define your self worth?", 'shortDescription': "In this thought have you passed judgement on yourself or someone else?"}
-    ,"Assigning Responsibility or Blaming": {'fullDescription': "Is this thought about assigning responsibility? Think about to what extent you or that person was really responsible, and what might have been down to circumstance or chance.", 'shortDescription': "Is this thought about giving yourself or someone else responsibility for what happened?"}
+    ,"Predicting the Future": {'fullDescription': "Although you can make guesses about what will happen, it’s a good idea to remember that nothing in this thought is guaranteed to occur. However convinced you are, you'll never absolutely know.", 'shortDescription': "Are you predicting the future?"}
+    ,"Labelling a Person": {'fullDescription': "By saying ‘That person is awful or 'I’m stupid', are you allowing a single action to define an entire life? Think about how many things you’ve done in your life and see what proportion of your life this incident actually is. Is it sensible to allow a single thing to define your self worth?", 'shortDescription': "In this thought have you judged yourself or someone else?"}
+    ,"Assigning Responsibility or Blaming": {'fullDescription': "Is this thought about assigning responsibility? Think about to what extent you or that person was really responsible, and what might have been down to circumstance or chance.", 'shortDescription': "Is this thought about blaming yourself or someone else?"}
     ,"Unrealistic Expectations": {'fullDescription': "Are you using words like ‘must’ or ‘should’? Consider whether your expectations need to be realigned. You’ll either have to adjust your expectations to match reality, or always feel let down by others (or yourself)", 'shortDescription': 'Have you used the words "must" or "should" in this thought?'}
-    ,"All-Or-Nothing Thinking": {'fullDescription': "Are you seeing things in black and white with only a binary set of outcomes? Are there a range of possible interpretations of the situation that you haven't considered?", 'shortDescription': "Does this statement assume that a single outcome is inevitable?"}
-    ,"Lack of Factual accuracy": {'fullDescription': 'Try and think about all the evidence for this statement. Can you think of any evidence for an alternate point of view?', 'shortDescription': 'How much factual evidence is there for this belief?'}
+    ,"All-Or-Nothing Thinking": {'fullDescription': "Are you seeing things in black and white? Are you too focused one particular thing happening, when there are actually a number of different things that could happen?", 'shortDescription': "Does this statement assume that a single outcome is inevitable?"}
+    ,"Lack of Factual accuracy": {'fullDescription': 'Try and think about all the evidence for this statement. Can you think of any evidence for an alternate point of view?', 'shortDescription': 'Do you have any facts to support this thought?'}
     ,"Overgeneralisation": {'fullDescription': 'It\'s easy to focus in one thing and assume that it\'s representative of everything similar. But often that\'s a mistake, it might be your day that\'s going badly, rather than your whole life. Is it possible that it\'s just one thing that\'s bad, rather than everything?', 'shortDescription': 'Are you assuming that one thing that happened will happen over and over again?'}
     };
     if (_parse.User.current()) {
@@ -33,7 +46,6 @@ spruce.
       mixpanel.identify(uname);
       mixpanel.people.set({
         '$name': uname,
-        "$last_login": new Date(),         // properties can be dates...
       });
 
     } else {
@@ -176,10 +188,15 @@ spruce.
 
   		if(newValue == 2){initEntryObj();}
 
+      //this if needs to be here to avoid overlapping with parse save callback in initEntryObj method
+      if(newValue>2){
+    		$scope.newEntry.set('stageCompleted', String(oldValue));
+        updateParseObject();
+      }
       if(newValue == 4 && oldValue == 3){
         setNextNegBelief();
       }
-  		if(newValue == 5 && oldValue == 4){
+      if(newValue == 5 && oldValue == 4){
             $scope.newEntry.save(null, {
               success: function(entrySaved) {
                 console.log('Saved new entry with objectId: ' + $scope.newEntry.id);
@@ -191,11 +208,6 @@ spruce.
                 console.log('Failed to create new object, with error code: ' + error.description);
               }
             });
-  		}
-      //this if needs to be here to avoid overlapping with parse save callback in initEntryObj method
-      if(newValue>2){
-    		$scope.newEntry.set('stageCompleted', String(oldValue));
-        updateParseObject();
       }
   	});
 

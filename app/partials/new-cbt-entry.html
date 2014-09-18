@@ -18,7 +18,7 @@
 					<li>
 						<div class="step radius" ng-class="{stepComplete: stage>
 							3, stepSelected: stage==3, stepDisabled: stage
-							<3}" >Beliefs</div>
+							<3}" >Thoughts</div>
 						</li>
 						<li>
 							<div class="step radius" ng-class="{stepComplete: stage>
@@ -40,13 +40,13 @@
 										<div class="row" id="situationTextArea">
 											<div class="large-12 columns">
 												<h2>Think of a situation that made you upset.</h2>
-												<h3>Describe the facts without feelings or subjective thoughts</h3>
-												<textarea class="feelings" placeholder='' ng-model="cbtEntry.concern" required autofocus="autofocus"></textarea>
+												<h3>Describe just the facts without feelings.</h3>
+												<textarea class="feelings" id="situation-textarea" placeholder='' ng-model="cbtEntry.concern" required autofocus="autofocus"></textarea>
 											</div>
 										</div>
 										<div class="row">
 											<div class="large-5 columns text-center large-offset-7">
-												<button class="small button spruce-btn" ng-click="nextStage()">Next step - emotions</button>
+												<button class="small button spruce-btn" id="stage-1-btn" ng-click="nextStage()">Next step - emotions</button>
 											</div>
 										</div>
 									</fieldset>
@@ -109,14 +109,14 @@
 															</div>
 														</div>
 														<div class="large-2 columns">
-															<button ng-click="addEmotion(newEmotion)" href="#" class="button spruce-btn prefix">Add</button>
+															<button ng-click="addEmotion(newEmotion)" id="add-emotion" href="#" class="button spruce-btn prefix">Add</button>
 														</div>
 													</form>
 												</div>
 											</div>
 											<div class="row">
 												<div class="large-5 columns text-center large-offset-7">
-													<button class="small button spruce-btn" ng-click="addEmotion(newEmotion);nextStage()">Next step - beliefs</button>
+													<button class="small button spruce-btn" id="next-beliefs-btn" ng-click="addEmotion(newEmotion);nextStage()">Next step - beliefs</button>
 												</div>
 											</div>
 										</fieldset>
@@ -145,22 +145,24 @@
 													</div>
 													<form>
 														<input type="text" class="thoughts process" id="beliefs-entry" placeholder="" ng-model="$parent.negativeBelief" autofocus="autofocus" />
-														<button ng-click="addBelief(negativeBelief)" href="#" class="button spruce-btn prefix">Add this thought</button>
+														<button ng-click="addBelief(negativeBelief)" id="beliefs-entry-btn" href="#" class="button spruce-btn prefix">Add this thought</button>
 													</form>
 												</div>
 											</div>
 											<div class="row">
 												<div class="large-5 columns text-center large-offset-7">
-													<button class="small button spruce-btn" ng-click="addBelief(negativeBelief);nextStage()">Done, show next step</button>
+													<button class="small button spruce-btn" id="next-step-4" ng-click="addBelief(negativeBelief);nextStage()">Done, show next step</button>
 												</div>
 											</div>
 										</fieldset>
 										<fieldset ng-switch-when="4" class="hidden">
-											<div class="row">
+											<div  class="row">
 												<div class="large-12 columns">
-													<h2 id="yourBeliefContainer">
-														Your belief: <i>{{negBelief}}</i>
+													<div scrollfix>
+													<h2  id="yourBeliefContainer">
+														Your thought: <i>{{negBelief}}</i>
 													</h2>
+													</div>
 													<h3>
 														Sometimes, asking ourselves simple questions is helpful. Click on any any questions you think might be relevant to your situation.
 													</h3>
@@ -170,7 +172,7 @@
 											<div class="row">
 												<div class="large-12 columns">
 													<div class="section-container accordion" data-section="accordion">
-														<section ng-repeat="(distortionLabel, distortion) in distortions | orderBy:'shortDescription'" id="{{distortionLabel}}">
+														<section ng-repeat="distortion in distortionsArray" id="{{distortion.name}}">
 															<p class="title" data-section-title>
 																<a href="">
 																	{{distortion['shortDescription']}} <i ng-show="selected" class="foundicon-star blue-icon"></i>
@@ -183,9 +185,9 @@
 																		<button class="button spruce-btn prefix" ng-hide="selected" ng-click=" selected=true;">Yes, this might be true.</button>
 																		<div class="" ng-show="selected">
 																			<label>
-																				<strong>What are the problems with this belief?</strong>
+																				<strong>What's wrong with your thought?</strong>
 																			</label>
-																			<textarea ng-model="changeStep[distortionLabel]" class="tall-textarea" rows="40" autofocus="autofocus"></textarea>
+																			<textarea ng-model="changeStep[distortion.name]" class="tall-textarea" rows="40" autofocus="autofocus"></textarea>
 																			<button class="small button spruce-btn pass" ng-click="closeAccordion()">Save</button>
 																		</div>
 																	</div>
@@ -200,7 +202,7 @@
 													<section>
 														<p class="title" ng-class="{'selected': selected.state==true}" data-section-title>
 															<a href="">
-																<strong><em>Optional:</em> Click here to write a new rational belief</strong>
+																<strong><em>Optional:</em> Click here to write a new, more rational thought</strong>
 															</a>
 														</p>
 														<div class="content" data-section-content>
@@ -217,7 +219,7 @@
 
 										<div class="row">
 											<div class="large-6 large-offset-3 columns help">
-												<button class="small button spruce-btn pass" ng-click="nextNegBelief()">{{nextBelief}}</button>
+												<button class="small button spruce-btn pass" id="next-neg-belief" ng-click="nextNegBelief()">{{nextBelief}}</button>
 											</div>
 										</div>
 
@@ -255,4 +257,3 @@
 
 					</div>
 				</div>
-				<div ng-include="'partials/intro-modal.html'"></div>
